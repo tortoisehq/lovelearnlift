@@ -1,0 +1,134 @@
+[
+  {
+    "term": "escape sequence",
+    "category": "python",
+    "definition": "A backslash plus a special character inside a string literal. Tells Python the next character is not what it looks like — interpret it specially. Examples: \\\" (literal quote), \\n (newline), \\t (tab), \\\\ (literal backslash).",
+    "session": "E11"
+  },
+  {
+    "term": "escape character",
+    "category": "python",
+    "definition": "The backslash (\\) itself. The signal that escapes the next character. Distinct from an escape sequence, which is the backslash plus its payload.",
+    "session": "E11"
+  },
+  {
+    "term": "f-string (formatted string literal)",
+    "category": "python",
+    "definition": "A string prefixed with f that lets you embed variables directly using {}. The f is a string TYPE marker — like b\"...\" for bytes or r\"...\" for raw — not a function call. Variables in {} get interpolated with their actual values at runtime.",
+    "session": "E11"
+  },
+  {
+    "term": "interpolation",
+    "category": "python",
+    "definition": "Replacing {variable} with the actual value of variable at runtime. The mechanism that f-strings use to fill in placeholders.",
+    "session": "E11"
+  },
+  {
+    "term": "function",
+    "category": "python",
+    "definition": "An action the language knows how to do. Called with parentheses, can take arguments, may return a value. Example: print(\"hello\") calls the print function with the argument \"hello\".",
+    "session": "E1+"
+  },
+  {
+    "term": "argument",
+    "category": "python",
+    "definition": "The value you pass into a function when you call it. Flows IN. Influences function behavior. Example: in print(\"hi\"), the string \"hi\" is the argument.",
+    "session": "E5+"
+  },
+  {
+    "term": "parameter",
+    "category": "python",
+    "definition": "The placeholder name in a function definition that receives an argument. Distinct from argument: parameter is def-side (the slot), argument is call-side (the value you pass in).",
+    "session": "E10"
+  },
+  {
+    "term": "named parameter",
+    "category": "python",
+    "definition": "Call-time syntax for passing an argument by parameter name rather than position. Example: print(\"hi\", end=\"\") — end is the parameter name spelled out at call time.",
+    "session": "E10"
+  },
+  {
+    "term": "default value",
+    "category": "python",
+    "definition": "A def-time property attached to a parameter, used only when the caller skips that argument. Example: def hello(to=\"world\") — \"world\" is the default for parameter to.",
+    "session": "E10"
+  },
+  {
+    "term": "return value",
+    "category": "python",
+    "definition": "A value a function hands BACK to whoever called it. Flows OUT. Distinct from side effect (visible action). Example: input() has both a side effect (showing prompt) AND a return value (the typed string).",
+    "session": "E5+"
+  },
+  {
+    "term": "side effect",
+    "category": "python",
+    "definition": "A visible action a function performs that is NOT its return value. Example: print() shows text on the screen — that's the side effect. The return value is None.",
+    "session": "E6"
+  },
+  {
+    "term": "variable",
+    "category": "python",
+    "definition": "A labeled named storage location. Created with assignment: name = value. Accessed by name: print(name). Different from a string with the same characters: \"name\" is literal text, name is the variable.",
+    "session": "E5+"
+  },
+  {
+    "term": "assignment operator (=)",
+    "category": "python",
+    "definition": "Single equals sign. Right-to-left copy. Stores the value on the right into the variable on the left. NOT equality (which is ==).",
+    "session": "E7"
+  },
+  {
+    "term": "EPIC framework",
+    "category": "memory",
+    "definition": "Energize · Physics-breaking · Impossible scale · Charged emotion. My upgrade of the standard SEE principle. Construction rule for every encoded image — must hit all four pillars to be championship-grade.",
+    "session": "E11"
+  },
+  {
+    "term": "image quality rubric",
+    "category": "memory",
+    "definition": "Star ratings ★1–5 for encoded images. ★★★★★ requires physics broken + 3+ senses + specific named emotion + vivid action + 30-day cold survival. No inflation — honest ratings only.",
+    "session": "E11"
+  },
+  {
+    "term": "spaced repetition",
+    "category": "memory",
+    "definition": "Review schedule: Day 0, Day 1, Day 3, Day 7, Day 30 maintenance. An item is locked when it survives three clean cold tests at the right intervals. Not before.",
+    "session": "E11"
+  },
+  {
+    "term": "flag escalation ladder",
+    "category": "memory",
+    "definition": "Session 1: drill the wording 3×. Session 2: rebuild the image. Session 3: stop everything, fix before any new work. Session 4+: image is architecturally broken, rebuild from scratch with a new approach.",
+    "session": "E11"
+  },
+  {
+    "term": "atomic loci protocol",
+    "category": "memory",
+    "definition": "Three tests every locus must pass: distinct (could a stranger find this exact spot?), stable (will it exist in 2 years?), separated (clear gap to the next locus?). Fail any test = not a locus.",
+    "session": "E11"
+  },
+  {
+    "term": "method of loci",
+    "category": "memory",
+    "definition": "Spatial scaffolding for sequential information — a memory palace. Encode items at distinct locations along a familiar route; recall by mentally walking the route. Greek origin (Simonides), still the strongest natural memory system humans possess.",
+    "session": "E5+"
+  },
+  {
+    "term": "generation effect",
+    "category": "learning",
+    "definition": "The act of self-generating an answer, image, or example produces stronger encoding than reading or hearing the same content. Why I build my own palace images instead of being given them.",
+    "session": "E11"
+  },
+  {
+    "term": "productive failure",
+    "category": "learning",
+    "definition": "Predicting before running. Wrong predictions prime the brain to encode the correct answer when it comes. The error message becomes a tutor when you've staked a guess against it.",
+    "session": "E11"
+  },
+  {
+    "term": "5-step active learning loop",
+    "category": "learning",
+    "definition": "Per video segment: (1) pre-test predict before play, (2) watch the segment, (3) type it in IDE/REPL, (4) break it on purpose to see the error, (5) Feynman gate — explain in 2 sentences as if to a 6-year-old. The trace built by typing and breaking is what survives the 30-day cold test.",
+    "session": "E11"
+  }
+]

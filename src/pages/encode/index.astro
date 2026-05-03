@@ -3,11 +3,25 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostListItem from '../../components/PostListItem.astro';
 import { categories } from '../../lib/categories';
+import memoryLesson from '../../data/memory-lesson.json';
+import definitions from '../../data/definitions.json';
 
 const meta = categories.encode;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'encode'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+type Definition = { term: string; category: string; definition: string; session: string };
+
+const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
+  (acc[def.category] = acc[def.category] || []).push(def);
+  return acc;
+}, {} as Record<string, Definition[]>);
+
+const categoryOrder = ['python', 'memory', 'learning'];
+const orderedCategories = categoryOrder.filter((c) => defsByCat[c]);
+
+const stars = '★'.repeat(memoryLesson.rating) + '☆'.repeat(5 - memoryLesson.rating);
 ---
 
 <Layout title={meta.name} description={meta.description} palette="encode">
@@ -17,6 +31,52 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
     <p class="text-lg text-neutral-700 max-w-xl">Learning in public. Sessions where I sit down at zero and try to leave with one thing locked. The misses are part of the data.</p>
   </header>
 
+  <details class="mb-4 border border-neutral-200 group">
+    <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
+      <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">Memory lesson today</span>
+        <span class="text-black font-semibold">Lesson {memoryLesson.lessonNumber} / {memoryLesson.of} — {memoryLesson.title}</span>
+      </span>
+      <span class="text-neutral-400 text-xs font-mono ml-3 group-open:rotate-90 transition-transform">▶</span>
+    </summary>
+    <div class="px-4 pb-5 pt-3 border-t border-neutral-200 bg-neutral-50 space-y-3 text-sm">
+      <p class="text-black font-medium leading-relaxed">{memoryLesson.oneLiner}</p>
+      <dl class="grid grid-cols-[110px_1fr] gap-y-1 text-xs font-mono">
+        <dt class="text-neutral-500">Block</dt><dd class="text-neutral-800">{memoryLesson.block}</dd>
+        <dt class="text-neutral-500">Locus</dt><dd class="text-neutral-800">{memoryLesson.locus}</dd>
+        <dt class="text-neutral-500">Encoded</dt><dd class="text-neutral-800">{memoryLesson.encodedDate} · Session {memoryLesson.encodedSession}</dd>
+        <dt class="text-neutral-500">Rating</dt><dd class="text-neutral-800">{stars}</dd>
+        <dt class="text-neutral-500">Status</dt><dd class="text-neutral-800">{memoryLesson.status}</dd>
+      </dl>
+      <p class="text-neutral-700 leading-relaxed pt-3 border-t border-neutral-200">{memoryLesson.whyItWorks}</p>
+    </div>
+  </details>
+
+  <details class="mb-12 border border-neutral-200 group">
+    <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
+      <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">Definitions</span>
+        <span class="text-black font-semibold">{(definitions as Definition[]).length} terms locked</span>
+      </span>
+      <span class="text-neutral-400 text-xs font-mono ml-3 group-open:rotate-90 transition-transform">▶</span>
+    </summary>
+    <div class="px-4 pb-5 pt-3 border-t border-neutral-200 bg-neutral-50 space-y-6">
+      {orderedCategories.map((cat) => (
+        <div>
+          <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-3 mt-2">{cat}</p>
+          <dl class="space-y-3">
+            {defsByCat[cat].map((def) => (
+              <div>
+                <dt class="text-black font-semibold text-sm">{def.term} <span class="text-neutral-400 font-mono text-[10px] font-normal">{def.session}</span></dt>
+                <dd class="text-neutral-700 text-sm leading-relaxed">{def.definition}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </details>
+
   {posts.length === 0 ? (
     <p class="text-neutral-600">No posts in this category yet.</p>
   ) : (
@@ -25,3 +85,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
     </div>
   )}
 </Layout>
+
+<style>
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary { list-style: none; }
+</style>
