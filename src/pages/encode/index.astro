@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostListItem from '../../components/PostListItem.astro';
 import { categories } from '../../lib/categories';
-import memoryLesson from '../../data/memory-lesson.json';
+import memoryLessons from '../../data/memory-lessons.json';
 import definitions from '../../data/definitions.json';
 
 const meta = categories.encode;
@@ -12,6 +12,19 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 type Definition = { term: string; category: string; definition: string; session: string };
+type MemoryLesson = {
+  lessonNumber: number;
+  of: number;
+  title: string;
+  oneLiner: string;
+  block: string;
+  locus: string;
+  encodedDate: string;
+  encodedSession: string;
+  rating: number;
+  status: string;
+  whyItWorks: string;
+};
 
 const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
   (acc[def.category] = acc[def.category] || []).push(def);
@@ -20,6 +33,12 @@ const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
 
 const categoryOrder = ['python', 'memory', 'learning'];
 const orderedCategories = categoryOrder.filter((c) => defsByCat[c]);
+
+// Latest encoded memory lesson — sort newest first by encodedDate, take head.
+const sortedLessons = (memoryLessons as MemoryLesson[]).slice()
+  .sort((a, b) => b.encodedDate.localeCompare(a.encodedDate));
+const memoryLesson = sortedLessons[0];
+const memoryLessonsTotal = sortedLessons.length;
 
 const stars = '★'.repeat(memoryLesson.rating) + '☆'.repeat(5 - memoryLesson.rating);
 ---
@@ -49,6 +68,11 @@ const stars = '★'.repeat(memoryLesson.rating) + '☆'.repeat(5 - memoryLesson.
         <dt class="text-neutral-500">Status</dt><dd class="text-neutral-800">{memoryLesson.status}</dd>
       </dl>
       <p class="text-neutral-700 leading-relaxed pt-3 border-t border-neutral-200">{memoryLesson.whyItWorks}</p>
+      <p class="pt-2 text-xs font-mono">
+        <a href={`/encode/memory/${memoryLesson.lessonNumber}`} class="underline hover:text-black">Lesson detail →</a>
+        <span class="text-neutral-400 mx-2">·</span>
+        <a href="/findings" class="underline hover:text-black">All {memoryLessonsTotal} memory lessons + Forge findings →</a>
+      </p>
     </div>
   </details>
 
