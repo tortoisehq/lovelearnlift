@@ -37,3 +37,5 @@ What today did was show me a different kind of progress, the kind that doesn't s
 The next session opens with a fresh-context rebuild against the round-two findings. Eleven mechanical fixes. The dual-auditor protocol runs automatically now. The discipline I keep returning to — read your own signal before acting on someone else's — is logged as the active focus.
 
 It's not what I wanted today. It's what today turned out to be.
+
+*Full Forge Finding on this lesson — Theranos as the canonical case, sources, reader prompt — at [/lessons/theranos-source-vs-audit](/lessons/theranos-source-vs-audit).*
