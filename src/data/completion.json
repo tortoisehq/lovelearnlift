@@ -73,5 +73,10 @@
     "date": "2026-05-04",
     "forge": true,
     "encode": true
+  },
+  {
+    "date": "2026-05-05",
+    "forge": false,
+    "encode": true
   }
 ]
