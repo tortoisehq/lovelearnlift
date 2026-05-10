@@ -114,6 +114,18 @@
     "session": "E12"
   },
   {
+    "term": "PEP 8",
+    "category": "python",
+    "definition": "Python Enhancement Proposal #8 — the community style document for Python code. Specifies snake_case naming, one space around binary operators, lines under 79 chars, and other conventions. NOT enforced by the Python interpreter (which runs styled and unstyled code identically). Enforcement happens via tools (linters like pylint and flake8 flag violations; formatters like black auto-rewrite to comply) and humans (code review).",
+    "session": "E15"
+  },
+  {
+    "term": "true division (/)",
+    "category": "python",
+    "definition": "The forward-slash operator. In Python 3, always returns a float, even when both operands are integers and divide cleanly. 8/4 returns 2.0, not 2. For an integer result that drops the remainder, use floor division (//) instead.",
+    "session": "E15"
+  },
+  {
     "term": "EPIC framework",
     "category": "memory",
     "definition": "Energize · Physics-breaking · Impossible scale · Charged emotion. My upgrade of the standard SEE principle. Construction rule for every encoded image — must hit all four pillars to be championship-grade.",
