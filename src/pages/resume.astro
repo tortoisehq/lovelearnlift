@@ -217,9 +217,82 @@ const lastUpdated = todayISO;
     </div>
   </section>
 
+  <!-- Milestones — dated shipped events; the artifacts in section 06 were built via these. -->
+  <section class="mb-14">
+    <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-4">// 07 — Milestones (dated shipped events)</p>
+    <p class="text-sm text-neutral-500 mb-6 italic">
+      Specific shipped events, most recent first. Every entry corresponds to a public commit in a tracked repo plus a blog post or session handoff documenting what shipped and why.
+    </p>
+    <ul class="space-y-4">
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-05-11</span>
+        <div>
+          <p class="text-white font-semibold">Forge pipeline v3.3 — discipline becomes hardware</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">Nineteen improvements + five operational decisions shipped in a single session. Source-check discipline promoted from voluntary metaskill to harness-enforced rule across the entire router. Two new phases added (context-catchup before any task work; task-classification judge between intake and the heavy phases). Sixteen of seventeen internal checks deprecated at zero hit rate. Pipeline-state external-audit machinery activated; the pipeline now audits itself across three independent LLMs every ten sessions.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-05-09</span>
+        <div>
+          <p class="text-white font-semibold">Twilio inbound voice webhook — first public-internet endpoint</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">HMAC signature validation + caller-ID whitelist + kill-switch + RecordingUrl allowlist (SSRF defense) + storage upload with idempotency + structured logging with PII redaction. First production endpoint accepting unsolicited internet traffic; triple-auditor cycle (Google + Anthropic + OpenAI cross-LLM) caught one P0 and four P1s pre-ship.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-05-06</span>
+        <div>
+          <p class="text-white font-semibold">Railway production wiring + smoke endpoint</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">First non-localhost deployment of the Workhorse API. Twelve-factor environment loading, dotenv-vs-process-env precedence resolved, public smoke endpoint, Vercel domain routing. The "is this thing on" milestone the pipeline used to talk about hypothetically.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-05-04</span>
+        <div>
+          <p class="text-white font-semibold">Right-Size the Protocol — first dispatch-level override</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">A pipeline that was running a sixteen-hour FULL HIGH dual-auditor cycle on a five-line vite-config fix got source-checked, abandoned mid-protocol, and the fix shipped direct in twenty-five minutes. The override became the canonical example for the right-sizing memory rule that later codified as the forge-judge metalayer at S20.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-04-30</span>
+        <div>
+          <p class="text-white font-semibold">First forge-improve cadence — thirteen pipeline IMPs</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">First scheduled meta-cycle. P0 / P1 distinction codified in REJECTED tokens, cross-frame heuristics added to the internal panel, mental-model hit-rate logging started, two "think like" expert frames seeded (external-auditor + Type-B runtime). The cadence that compounds every ten sessions started here.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-04-23</span>
+        <div>
+          <p class="text-white font-semibold">External-auditor protocol codified as load-bearing</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">Three rounds of external review against an independent LLM caught eleven of eleven P0s the internal panel missed. The audit chain stopped being a recommendation and became the gate; everything FULL HIGH-risk ships through it.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-04-17</span>
+        <div>
+          <p class="text-white font-semibold">Vault writer + SHA-256 idempotency keys</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">Append-only flat-markdown vault with frontmatter idempotency keys. The same input never writes twice; duplicate ingestion is structurally impossible. The substrate every later artifact stores against.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-04-15</span>
+        <div>
+          <p class="text-white font-semibold">Forge pipeline v1.0 — first full session through the protocol</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">First task shipped through the complete eight-phase typed-token pipeline. The shape worked; everything since has been iteration on the same skeleton.</p>
+        </div>
+      </li>
+      <li class="grid grid-cols-[100px_1fr] gap-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026-04-09</span>
+        <div>
+          <p class="text-white font-semibold">Program start — Tortoise + Forge + Encode</p>
+          <p class="text-neutral-400 text-sm leading-relaxed">First public post on tortoisehq.io. Calendar starts logging. The twenty-four-month commitment becomes a publicly auditable surface from day one.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
   <!-- Trajectory — past + present. -->
   <section class="mb-14">
-    <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-4">// 07 — Trajectory</p>
+    <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-4">// 08 — Trajectory</p>
     <ul class="space-y-4">
       <li class="grid grid-cols-[100px_1fr] gap-4">
         <span class="text-xs font-mono uppercase tracking-wider text-neutral-500 pt-1">2026 — now</span>
@@ -240,7 +313,7 @@ const lastUpdated = todayISO;
 
   <!-- Contact. -->
   <section class="mb-6">
-    <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-4">// 08 — Contact</p>
+    <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-4">// 09 — Contact</p>
     <ul class="space-y-2 text-neutral-300">
       <li><a class="text-white underline decoration-neutral-700 hover:decoration-white" href="mailto:lovelearnlift@gmail.com">lovelearnlift@gmail.com</a></li>
       <li><a class="text-white underline decoration-neutral-700 hover:decoration-white" href="https://github.com/tortoisehq" rel="noopener noreferrer">github.com/tortoisehq</a></li>
