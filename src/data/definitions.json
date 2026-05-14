@@ -214,5 +214,23 @@
     "category": "python",
     "definition": "Python's error when an operator can't combine the types it's given. Example: 5 + \"3\" raises TypeError: unsupported operand type(s) for +: 'int' and 'str'. The error message names the two types it couldn't combine — the rule whispered back at you. Read the types in the error; they tell you what's actually in your variables.",
     "session": "E16"
+  },
+  {
+    "term": "Shell vs Python distinction",
+    "category": "python",
+    "definition": "PowerShell and the Python REPL both wait for typed input, but they parse different command grammars. PowerShell expects cmdlets (Get-ChildItem, cd). Python REPL expects Python syntax (print(), x = 5). Same keyboard, different language. Wrong-grammar input often fails at execute-time with a NameError because Python successfully parses the line (e.g. Get-ChildItem reads as 'Get minus ChildItem') but can't resolve the name.",
+    "session": "E17"
+  },
+  {
+    "term": "conditional statement",
+    "category": "python",
+    "definition": "Code that picks ONE path to take, out of several possible paths. Each path has a yes/no question attached; the path runs only when its question evaluates to True. The if / elif / else family forms the standard branching structure. Mutual exclusion: once one path fires, the rest are skipped — even if their questions would also be true.",
+    "session": "E17"
+  },
+  {
+    "term": "Kindergarten Ladder",
+    "category": "learning",
+    "definition": "Lock-then-layer learning method codified at E17. For each new vocabulary term: Layer 0 = simplest possible definition in 5-10 words plus a retrieval question, confirm the lock before proceeding. Layer 1 = one piece of complexity added (mechanism or property) plus another retrieval question, confirm the lock. Stop at Layer 0+1 in vocabulary front-load. Deeper layers (code anchor, predict-output, edge cases) come from real context (video, REPL), not from front-load. Construction analog: each layer cures before the next pours; pouring all five at once produces walls that LOOK done but fail under load.",
+    "session": "E17"
   }
 ]
