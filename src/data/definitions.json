@@ -232,5 +232,23 @@
     "category": "learning",
     "definition": "Lock-then-layer learning method codified at E17. For each new vocabulary term: Layer 0 = simplest possible definition in 5-10 words plus a retrieval question, confirm the lock before proceeding. Layer 1 = one piece of complexity added (mechanism or property) plus another retrieval question, confirm the lock. Stop at Layer 0+1 in vocabulary front-load. Deeper layers (code anchor, predict-output, edge cases) come from real context (video, REPL), not from front-load. Construction analog: each layer cures before the next pours; pouring all five at once produces walls that LOOK done but fail under load.",
     "session": "E17"
+  },
+  {
+    "term": "image-as-def",
+    "category": "memory",
+    "definition": "Memory palace encoding rule codified at E18. At each locus, the kindergarten definition AND the multi-sensory image are encoded as a single unit, not separate work. Recall the image and you've recalled the meaning; splitting them costs cross-modal reinforcement. Matches the EPIC standard — embed image at encoding time, never separate def from anchor. Construction analog: rebar goes IN the wet concrete, not drilled into cured slab afterward.",
+    "session": "E18"
+  },
+  {
+    "term": "family bundling",
+    "category": "memory",
+    "definition": "Memory palace technique for fitting N related concepts into fewer than N loci. Cluster related terms at one physical anchor with distinct sub-imagery. Example: the function family (Functions, Arguments, Side Effects, Defining Functions) lives at the garage door — door = function, button = argument, sound = side effect, mechanism = the def keyword. One locus, four sub-anchors. Use when the palace is locus-constrained but family relationships are strong.",
+    "session": "E18"
+  },
+  {
+    "term": "palace chain",
+    "category": "memory",
+    "definition": "Multi-palace strategy where vocabulary or curriculum overflows from one palace to the next in a personal sequence. Example codified E18 for CS50P: Nanaimo Street House → Truck → No Limits Gym, in that order. Solves the 'one palace runs out of loci' problem with chained personal locations the learner walks reliably. Transition between palaces is learner-triggered, not auto-triggered by locus count.",
+    "session": "E18"
   }
 ]
