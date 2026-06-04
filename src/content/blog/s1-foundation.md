@@ -12,7 +12,7 @@ The first thing that had to die was the old editorial structure. Three pillars, 
 
 I considered separate content collections per category. Cleaner mental model, maybe. But a single collection with a category field is simpler to query, better for cross-category indexes, and means the RSS feed works without stitching anything together. Simplicity won.
 
-The scaffold is Astro 5, Tailwind v3, MDX, with routes for home, all posts, four category pages, single post, and RSS. Four seed posts, one per category, written in voice. The repo lives under a new `tortoisehq` GitHub org, separate from my business namespace at `ironridgeai`. Tortoise is a personal program, not a company project. Mixing them under one org muddies both brands for zero benefit.
+The scaffold is Astro 5, Tailwind v3, MDX, with routes for home, all posts, four category pages, single post, and RSS. Four seed posts, one per category, written in voice. The repo lives under a new `tortoisehq` GitHub org, separate from my company's own GitHub namespace. Tortoise is a personal program, not a company project. Mixing them under one org muddies both brands for zero benefit.
 
 Three hours in, I discovered I'd already built a scaffold yesterday. Different design, different categories, already deployed. I'd forgotten it existed. That's a memory failure that cost real time and produced a lesson worth keeping: future sessions start with "check what already exists" before writing a single file. The old repo got renamed to archive. Yesterday's five commits are preserved. Today's clean start became the foundation.
 
