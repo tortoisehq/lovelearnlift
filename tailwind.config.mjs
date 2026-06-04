@@ -7,6 +7,7 @@ export default {
       colors: {
         flame: '#A82A1A',
         cream: '#F4ECDD',
+        gold: '#FFC233',
       },
       fontFamily: {
         sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],

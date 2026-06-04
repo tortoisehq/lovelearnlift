@@ -89,29 +89,29 @@ const year = new Date().getFullYear();
       </div>
 
       <!-- FORGE — red — Pillar II -->
-      <div class="bg-flame text-cream border-b md:border-b-0 md:border-r border-neutral-800">
+      <div class="bg-flame text-gold border-b md:border-b-0 md:border-r border-neutral-800">
         <div class="px-6 md:px-8 py-16 md:py-20">
-          <p class="text-xs font-mono uppercase tracking-[0.3em] text-cream/80 mb-4">// Pillar II — Build</p>
+          <p class="text-xs font-mono uppercase tracking-[0.3em] text-gold/80 mb-4">// Pillar II — Build</p>
           <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">FORGE</h2>
-          <p class="text-base text-cream/80 mb-10 leading-relaxed">Building and shipping. Code lands in production. The trade-offs that earned it. The rules I write so I don't make the same mistake twice.</p>
+          <p class="text-base text-gold/80 mb-10 leading-relaxed">Building and shipping. Code lands in production. The trade-offs that earned it. The rules I write so I don't make the same mistake twice.</p>
 
           <div class="space-y-5 mb-10">
             {forgePosts.length === 0 ? (
-              <p class="text-cream/70">No Forge posts yet.</p>
+              <p class="text-gold/70">No Forge posts yet.</p>
             ) : forgePosts.map((post) => (
               <article class="border-b border-black/20 pb-5 last:border-b-0">
-                <p class="text-xs font-mono uppercase tracking-wider text-cream/70 mb-2">
+                <p class="text-xs font-mono uppercase tracking-wider text-gold/70 mb-2">
                   {post.data.date.toISOString().slice(0, 10)}
                 </p>
                 <h3 class="text-lg font-bold mb-1 tracking-tight leading-snug">
                   <a href={`/blog/${post.slug}`} class="no-underline hover:underline">{post.data.title}</a>
                 </h3>
-                <p class="text-cream/70 text-sm leading-relaxed">{post.data.excerpt}</p>
+                <p class="text-gold/70 text-sm leading-relaxed">{post.data.excerpt}</p>
               </article>
             ))}
           </div>
 
-          <a href="/forge" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-cream hover:text-white no-underline border-b border-cream/40 hover:border-cream pb-1">
+          <a href="/forge" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-gold hover:text-white no-underline border-b border-gold/40 hover:border-gold pb-1">
             All Forge →
           </a>
         </div>
