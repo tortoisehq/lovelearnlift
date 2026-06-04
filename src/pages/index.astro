@@ -59,30 +59,30 @@ const year = new Date().getFullYear();
 
     <!-- The Split — Encode (I) | Forge (II) | Beacon (III) -->
     <section class="grid grid-cols-1 md:grid-cols-3 border-b border-neutral-800">
-      <!-- ENCODE — black — Pillar I -->
+      <!-- ENCODE — black — Pillar I — all white text -->
       <div class="bg-black text-white border-b md:border-b-0 md:border-r border-neutral-800">
         <div class="px-6 md:px-8 py-16 md:py-20">
-          <p class="text-xs font-mono uppercase tracking-[0.3em] text-flame mb-4">// Pillar I — Learn</p>
+          <p class="text-xs font-mono uppercase tracking-[0.3em] text-white mb-4">// Pillar I — Learn</p>
           <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">ENCODE</h2>
-          <p class="text-base text-neutral-300 mb-10 leading-relaxed">Learning in public. Sit down at zero, leave with one thing locked. The misses are part of the data.</p>
+          <p class="text-base text-white mb-10 leading-relaxed">Learning in public. Sit down at zero, leave with one thing locked. The misses are part of the data.</p>
 
           <div class="space-y-5 mb-10">
             {encodePosts.length === 0 ? (
-              <p class="text-neutral-500">No Encode posts yet.</p>
+              <p class="text-white">No Encode posts yet.</p>
             ) : encodePosts.map((post) => (
               <article class="border-b border-neutral-800 pb-5 last:border-b-0">
-                <p class="text-xs font-mono uppercase tracking-wider text-flame mb-2">
+                <p class="text-xs font-mono uppercase tracking-wider text-white mb-2">
                   {post.data.date.toISOString().slice(0, 10)}
                 </p>
                 <h3 class="text-lg font-bold mb-1 tracking-tight leading-snug">
                   <a href={`/blog/${post.slug}`} class="no-underline hover:underline">{post.data.title}</a>
                 </h3>
-                <p class="text-neutral-400 text-sm leading-relaxed">{post.data.excerpt}</p>
+                <p class="text-white text-sm leading-relaxed">{post.data.excerpt}</p>
               </article>
             ))}
           </div>
 
-          <a href="/encode" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-flame hover:text-white no-underline border-b border-flame/40 hover:border-flame pb-1">
+          <a href="/encode" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-white hover:text-white no-underline border-b border-white/40 hover:border-white pb-1">
             All Encode →
           </a>
         </div>
@@ -117,30 +117,30 @@ const year = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- BEACON — white — Pillar III -->
+      <!-- BEACON — white — Pillar III — all black text -->
       <div class="bg-white text-black">
         <div class="px-6 md:px-8 py-16 md:py-20">
-          <p class="text-xs font-mono uppercase tracking-[0.3em] text-flame mb-4">// Pillar III — Signal</p>
+          <p class="text-xs font-mono uppercase tracking-[0.3em] text-black mb-4">// Pillar III — Signal</p>
           <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">BEACON</h2>
-          <p class="text-base text-neutral-700 mb-10 leading-relaxed">Building in public. The story behind the build — what I'm making, why, and the part I'm giving away. Honest, not a pitch.</p>
+          <p class="text-base text-black mb-10 leading-relaxed">Building in public. The story behind the build — what I'm making, why, and the part I'm giving away. Honest, not a pitch.</p>
 
           <div class="space-y-5 mb-10">
             {beaconPosts.length === 0 ? (
-              <p class="text-neutral-500">No signals yet. The first one's coming.</p>
+              <p class="text-black">No signals yet. The first one's coming.</p>
             ) : beaconPosts.map((post) => (
               <article class="border-b border-neutral-200 pb-5 last:border-b-0">
-                <p class="text-xs font-mono uppercase tracking-wider text-flame mb-2">
+                <p class="text-xs font-mono uppercase tracking-wider text-black mb-2">
                   {post.data.date.toISOString().slice(0, 10)}
                 </p>
                 <h3 class="text-lg font-bold mb-1 tracking-tight leading-snug">
                   <a href={`/blog/${post.slug}`} class="no-underline hover:underline">{post.data.title}</a>
                 </h3>
-                <p class="text-neutral-600 text-sm leading-relaxed">{post.data.excerpt}</p>
+                <p class="text-black text-sm leading-relaxed">{post.data.excerpt}</p>
               </article>
             ))}
           </div>
 
-          <a href="/beacon" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-flame hover:text-black no-underline border-b border-flame/40 hover:border-flame pb-1">
+          <a href="/beacon" class="inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-black hover:text-black no-underline border-b border-black/30 hover:border-black pb-1">
             All Beacon →
           </a>
         </div>
