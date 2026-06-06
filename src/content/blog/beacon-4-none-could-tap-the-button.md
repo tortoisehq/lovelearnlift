@@ -21,4 +21,8 @@ I almost did not get there today. I tested the wrong copy. I hit a wall, then an
 
 The tools are godlike. The proof is still human. That is not a problem to automate away. That is the job, and it is mine.
 
+![Before: the Patterns tab, dead on every run — "Streaming not supported on this device runtime."](/images/s40-patterns-broken.jpg)
+
+![After: same tab, same phone, after the fix and the thumb on the button — the error gone.](/images/s40-patterns-fixed.jpg)
+
 I am building this in the open. lovelearnlift.com.

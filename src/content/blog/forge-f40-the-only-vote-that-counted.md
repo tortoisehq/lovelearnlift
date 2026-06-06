@@ -2,7 +2,7 @@
 title: "Four Reviews Passed. The Only Vote That Counted Was My Thumb."
 date: "2026-06-05"
 category: "forge"
-tags: [forge, build-1, use-proof, the-misses]
+tags: [forge, building-in-public, use-proof, the-misses]
 excerpt: "A feature I built fifteen sessions ago had never once run. Four AI reviews approved the fix; only my thumb on the button could prove it."
 ---
 
@@ -13,6 +13,10 @@ The tab was supposed to read my last two weeks of notes and hand back the patter
 Then the wall. My phone showed the same old error, so I assumed the fix had failed. It hadn't. I'd tested a stale copy; the fix wasn't even on the device. And the build to put it there was going to take five hours. So I paid for the faster lane, and it took seven minutes.
 
 I installed it. Opened the tab. Tapped the button. It worked.
+
+![Before — the Patterns tab, dead on every device since the day I built it: "Streaming not supported on this device runtime."](/images/s40-patterns-broken.jpg)
+
+![After — same tab, same phone, the red gone. It streams.](/images/s40-patterns-fixed.jpg)
 
 ## A Green Checkmark Is Not a User
 
