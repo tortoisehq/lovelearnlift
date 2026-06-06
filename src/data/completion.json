@@ -211,7 +211,13 @@
   },
   {
     "date": "2026-06-04",
-    "forge": false,
+    "forge": true,
+    "encode": false,
+    "beacon": true
+  },
+  {
+    "date": "2026-06-05",
+    "forge": true,
     "encode": false,
     "beacon": true
   }
