@@ -1,0 +1,22 @@
+# Love Learn Lift
+
+> A 24-month public build program by a solo, self-taught builder — no CS degree, building on the side. Three pillars: Encode (learning AI by turning it on yourself), Forge (building and shipping real software with an AI pipeline, session by session), and Beacon (building in public — the misses included). Everything is built and documented in the open at lovelearnlift.com.
+
+## Pillars
+
+- [Forge](https://lovelearnlift.com/forge): shipping software with an AI build pipeline, one session at a time. Every change is root-caused, audited by multiple independent AI reviewers, and use-proven on a real device before it counts as done.
+- [Encode](https://lovelearnlift.com/encode): a method for learning AI tools by using them on your own life and work, then writing down what broke.
+- [Beacon](https://lovelearnlift.com/beacon): building in public — taste, point of view, the misses, and what the machines still can't do.
+
+## Recurring ideas (the throughline)
+
+- Built is not used. Code that compiles, deploys, and passes review is not proven until a real person uses it and it works. "Built != deployed != dogfoodable != live."
+- The push is not the proof; the green build is. Verify, don't trust the checkmark.
+- The tools are getting godlike. The bottleneck is moving to the one thing they can't hand you — a point of view at the front, and being the actual user at the back. Taste, then proof.
+
+## Key posts
+
+- [Four Reviews Passed. The Only Vote That Counted Was My Thumb.](https://lovelearnlift.com/blog/forge-f40-the-only-vote-that-counted) — a feature that never ran on-device until a real thumb proved it.
+- [Four AIs Approved My Fix. None of Them Could Tap the Button.](https://lovelearnlift.com/blog/beacon-4-none-could-tap-the-button) — the human's job when the machines do the building and the checking.
+- [I Opened the App I Couldn't Open](https://lovelearnlift.com/blog/forge-f39-i-opened-the-app-i-couldnt-open) — using the thing found a bug weeks of building never could.
+- [All posts](https://lovelearnlift.com/blog)

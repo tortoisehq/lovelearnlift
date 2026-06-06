@@ -28,7 +28,12 @@ const tagText = palette === 'beacon' ? 'text-green-700' : 'text-neutral-500';
 const proseText = palette === 'beacon' ? 'text-green-900' : palette === 'encode' ? 'text-neutral-800' : 'text-neutral-200';
 ---
 
-<Layout title={post.data.title} description={post.data.excerpt} palette={palette}>
+<Layout
+  title={post.data.title}
+  description={post.data.excerpt}
+  palette={palette}
+  article={{ date: post.data.date.toISOString(), category: post.data.category, tags: post.data.tags }}
+>
   <article>
     <header class="mb-10">
       <div class={`flex items-center gap-3 mb-4 text-sm font-sans ${dateText}`}>
