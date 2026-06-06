@@ -3,6 +3,7 @@ title: "Four AIs Approved My Fix. None of Them Could Tap the Button."
 date: "2026-06-05"
 category: "beacon"
 tags: [building-in-public, ai, use-proof]
+excerpt: "An AI wrote my fix; four more reviewed it. None could do the one thing that proves software works — be the person using it."
 draft: false
 ---
 
