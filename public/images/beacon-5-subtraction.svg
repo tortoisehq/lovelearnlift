@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="These tools build and check and never stop adding. The human job is to decide it is enough and cut it back.">
+  <rect width="1200" height="600" fill="#0b0b0c"/>
+  <rect x="598" y="104" width="4" height="296" fill="#f59e0b"/>
+  <text x="300" y="152" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" letter-spacing="5" fill="#f59e0b">// THE MACHINE</text>
+  <text x="300" y="298" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="40" font-weight="700" fill="#fafaf9">Builds. Checks.</text>
+  <text x="300" y="362" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="40" font-weight="700" fill="#fafaf9">Never stops adding.</text>
+  <text x="900" y="152" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" letter-spacing="5" fill="#f59e0b">// MY JOB</text>
+  <text x="900" y="298" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="40" font-weight="700" fill="#fafaf9">Decide it's enough.</text>
+  <text x="900" y="362" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="40" font-weight="700" fill="#fafaf9">Then cut.</text>
+  <rect x="360" y="436" width="480" height="3" fill="#dc2626"/>
+  <text x="600" y="498" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="32" font-weight="700" fill="#dc2626">Today I deleted more than I built.</text>
+</svg>

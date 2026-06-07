@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Cut today: a check panel that caught nothing, a draft I kept stepping around, ideas gone stale and never built. What is left is lighter and more honest.">
+  <rect width="1200" height="600" fill="#0b0b0c"/>
+  <text x="130" y="158" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="6" fill="#f59e0b">// CUT TODAY</text>
+  <text x="130" y="256" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" fill="#a8a29e" text-decoration="line-through">a check panel that caught nothing</text>
+  <text x="130" y="320" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" fill="#a8a29e" text-decoration="line-through">a draft I kept stepping around</text>
+  <text x="130" y="384" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" fill="#a8a29e" text-decoration="line-through">ideas gone stale, never built</text>
+  <rect x="130" y="438" width="440" height="3" fill="#dc2626"/>
+  <text x="130" y="500" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" font-weight="700" fill="#dc2626">Lighter. And more honest.</text>
+</svg>
