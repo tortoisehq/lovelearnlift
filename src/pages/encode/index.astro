@@ -18,7 +18,7 @@ const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
   return acc;
 }, {} as Record<string, Definition[]>);
 
-const categoryOrder = ['python', 'memory', 'learning'];
+const categoryOrder = ['data-analytics', 'python', 'memory', 'learning'];
 const orderedCategories = categoryOrder.filter((c) => defsByCat[c]);
 
 // Latest method version (sorted newest first by codifiedAt).

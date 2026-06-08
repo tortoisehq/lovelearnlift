@@ -274,5 +274,11 @@
     "category": "data-analytics",
     "definition": "The collection, transformation, and organization of data in order to draw conclusions, make predictions, and drive informed decision-making.",
     "session": "E25"
+  },
+  {
+    "term": "data analytics",
+    "category": "data-analytics",
+    "definition": "The science of data. One of three disciplines under the data-science umbrella (with statistics and machine learning); the exploratory one — used when you don't yet know how many decisions you'll make before you begin, hunting for what's interesting.",
+    "session": "E27"
   }
 ]
