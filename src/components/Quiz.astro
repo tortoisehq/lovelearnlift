@@ -1,0 +1,541 @@
+---
+/**
+ * Quiz.astro — client-side, scoreable homework engine.
+ *
+ * Static site = no backend. All scoring/progress lives in localStorage (per device).
+ * Features: auto-scored MCQ, instant feedback + explanation, shuffled options each
+ * attempt, per-concept mastery, Leitner-box resurfacing (missed items come back first),
+ * best-score + attempts, daily streak + "due today", mnemonic hints, shareable card,
+ * keyboard nav (1-4 to answer, Enter to advance).
+ *
+ * Pure vanilla JS — matches the site's no-framework convention (see Calendar.astro).
+ */
+type Question = {
+  id: string;
+  type?: 'mcq' | 'written';
+  concept: string;
+  prompt: string;
+  options?: string[];
+  answer: number | string;
+  keywords?: string[];
+  explanation: string;
+  hint?: string;
+};
+type Quiz = {
+  id: string;
+  title: string;
+  session: string;
+  course: string;
+  excerpt: string;
+  passPct: number;
+  questions: Question[];
+};
+
+interface Props { quiz: Quiz }
+const { quiz } = Astro.props;
+const total = quiz.questions.length;
+---
+
+<section
+  id="quiz-root"
+  data-quiz-id={quiz.id}
+  data-pass-pct={quiz.passPct}
+  class="border border-neutral-300"
+>
+  <!-- Quiz data, embedded for the client engine -->
+  <script type="application/json" id="quiz-data" set:html={JSON.stringify(quiz)} />
+
+  <!-- ===== START SCREEN ===== -->
+  <div id="screen-start" class="p-6 sm:p-8">
+    <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-2">
+      {quiz.session} · <span id="start-count">{total} questions</span> · pass at {quiz.passPct}%
+    </p>
+    <h2 class="text-2xl font-bold tracking-tight mb-2">{quiz.title}</h2>
+    <p class="text-neutral-700 text-sm leading-relaxed mb-5">{quiz.excerpt}</p>
+
+    <!-- difficulty picker -->
+    <div class="mb-5">
+      <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-2">Difficulty</p>
+      <div class="grid grid-cols-3 gap-px bg-neutral-200 border border-neutral-200">
+        <button type="button" data-diff="easy" class="diff-btn bg-white px-3 py-2.5 text-center hover:bg-neutral-50">
+          <span class="block text-sm font-semibold">Easy</span>
+          <span class="block text-[10px] font-mono text-neutral-500">Recognize</span>
+        </button>
+        <button type="button" data-diff="medium" class="diff-btn bg-white px-3 py-2.5 text-center hover:bg-neutral-50">
+          <span class="block text-sm font-semibold">Medium</span>
+          <span class="block text-[10px] font-mono text-neutral-500">Recall</span>
+        </button>
+        <button type="button" data-diff="hard" class="diff-btn bg-white px-3 py-2.5 text-center hover:bg-neutral-50">
+          <span class="block text-sm font-semibold">Hard</span>
+          <span class="block text-[10px] font-mono text-neutral-500">Reproduce</span>
+        </button>
+      </div>
+      <p id="diff-desc" class="mt-2 text-xs text-neutral-600"></p>
+    </div>
+
+    <!-- localStorage-hydrated stat row -->
+    <div id="start-stats" class="hidden grid grid-cols-3 gap-px bg-neutral-200 border border-neutral-200 mb-5 text-center">
+      <div class="bg-white py-3">
+        <div id="stat-best" class="text-xl font-bold tabular-nums">—</div>
+        <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-neutral-500">Best</div>
+      </div>
+      <div class="bg-white py-3">
+        <div id="stat-streak" class="text-xl font-bold tabular-nums">—</div>
+        <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-neutral-500">Streak</div>
+      </div>
+      <div class="bg-white py-3">
+        <div id="stat-attempts" class="text-xl font-bold tabular-nums">—</div>
+        <div class="text-[10px] font-mono uppercase tracking-[0.15em] text-neutral-500">Attempts</div>
+      </div>
+    </div>
+
+    <div id="due-badge" class="hidden mb-5">
+      <span class="inline-flex items-center gap-2 text-xs font-mono px-3 py-1.5 border border-amber-500 bg-amber-50 text-amber-800">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber-500 inline-block animate-pulse"></span>
+        <span id="due-text">Due today — keep the streak alive</span>
+      </span>
+    </div>
+
+    <button id="btn-start" class="w-full sm:w-auto px-6 py-3 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">
+      Start →
+    </button>
+    <p class="mt-3 text-[11px] font-mono text-neutral-400">
+      Tip: press <kbd class="border border-neutral-300 px-1">1</kbd>–<kbd class="border border-neutral-300 px-1">4</kbd> to answer,
+      <kbd class="border border-neutral-300 px-1">Enter</kbd> to continue.
+    </p>
+  </div>
+
+  <!-- ===== QUESTION SCREEN ===== -->
+  <div id="screen-quiz" class="hidden">
+    <!-- progress -->
+    <div class="px-6 sm:px-8 pt-6">
+      <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-2">
+        <span id="q-counter">Question 1 / {total}</span>
+        <span id="q-score">Score 0</span>
+      </div>
+      <div class="h-1.5 bg-neutral-200 overflow-hidden">
+        <div id="q-progress" class="h-full bg-black transition-all duration-300" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-8">
+      <p id="q-concept" class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-400 mb-2"></p>
+      <h3 id="q-prompt" class="text-lg font-semibold leading-snug mb-5"></h3>
+
+      <div id="q-options" class="space-y-2.5"></div>
+
+      <div class="mt-4 flex items-center gap-4">
+        <button id="btn-hint" class="text-xs font-mono text-neutral-500 underline hover:text-black">Reveal hint</button>
+      </div>
+      <p id="q-hint" class="hidden mt-2 text-sm text-neutral-600 italic border-l-2 border-neutral-300 pl-3"></p>
+
+      <!-- feedback -->
+      <div id="q-feedback" class="hidden mt-5 p-4 border-l-2">
+        <p id="q-verdict" class="font-semibold text-sm mb-1"></p>
+        <p id="q-explanation" class="text-sm text-neutral-700 leading-relaxed"></p>
+      </div>
+
+      <div class="mt-6 flex justify-end">
+        <button id="btn-next" class="hidden px-6 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULT SCREEN ===== -->
+  <div id="screen-result" class="hidden p-6 sm:p-8 text-center">
+    <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-2">Result</p>
+    <div id="result-grade" class="text-3xl font-bold tracking-tight mb-1"></div>
+    <div id="result-score" class="text-5xl font-black tabular-nums mb-1"></div>
+    <div id="result-pct" class="text-sm font-mono text-neutral-500 mb-6"></div>
+
+    <!-- per-concept mastery -->
+    <div class="text-left max-w-md mx-auto mb-6">
+      <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-2">By concept</p>
+      <div id="result-concepts" class="space-y-1.5"></div>
+    </div>
+
+    <!-- best/streak roundup -->
+    <p id="result-meta" class="text-xs font-mono text-neutral-500 mb-6"></p>
+
+    <div class="flex flex-col sm:flex-row gap-2.5 justify-center">
+      <button id="btn-retry" class="px-6 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">Retake</button>
+      <button id="btn-review" class="px-6 py-2.5 border border-neutral-300 font-semibold text-sm hover:border-black transition-colors">Retry missed only</button>
+      <button id="btn-share" class="px-6 py-2.5 border border-neutral-300 font-semibold text-sm hover:border-black transition-colors">Copy score card</button>
+    </div>
+    <p id="share-status" class="hidden mt-3 text-xs font-mono text-green-700">Copied to clipboard ✓</p>
+  </div>
+</section>
+
+<script>
+  // ---- engine ----------------------------------------------------------------
+  type Q = { id: string; type?: 'mcq' | 'written'; concept: string; prompt: string; options?: string[]; answer: number | string; keywords?: string[]; explanation: string; hint?: string };
+  type QuizT = { id: string; title: string; session: string; course: string; passPct: number; questions: Q[] };
+  type Diff = 'easy' | 'medium' | 'hard';
+  type Store = {
+    bestScore: number; bestPct: number; attempts: number;
+    lastDate: string | null; streak: number;
+    boxes: Record<string, number>; // Leitner box per question id (1=weak … 3=mastered)
+    difficulty?: Diff;
+  };
+
+  const root = document.getElementById('quiz-root');
+  if (root) {
+    const quiz: QuizT = JSON.parse(document.getElementById('quiz-data')!.textContent || '{}');
+    const KEY = `lll-hw-${quiz.id}`;
+    const $ = (id: string) => document.getElementById(id)!;
+    const todayStr = () => new Date().toISOString().slice(0, 10);
+    const daysBetween = (a: string, b: string) =>
+      Math.round((new Date(b).getTime() - new Date(a).getTime()) / 86400000);
+
+    const load = (): Store => {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) return JSON.parse(raw);
+      } catch {}
+      return { bestScore: 0, bestPct: 0, attempts: 0, lastDate: null, streak: 0, boxes: {} };
+    };
+    const save = (s: Store) => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
+
+    const shuffle = <T,>(arr: T[]): T[] => {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+      return a;
+    };
+
+    // Build the order for an attempt: weakest Leitner boxes first, shuffled within a box.
+    const buildOrder = (store: Store, onlyMissed = false): Q[] => {
+      let pool = poolFor(difficulty);
+      if (onlyMissed) pool = pool.filter((q) => (store.boxes[q.id] ?? 1) <= 1);
+      if (pool.length === 0) pool = poolFor(difficulty);
+      const byBox: Record<number, Q[]> = {};
+      for (const q of pool) { const b = store.boxes[q.id] ?? 1; (byBox[b] = byBox[b] || []).push(q); }
+      const order: Q[] = [];
+      for (const box of Object.keys(byBox).map(Number).sort((a, b) => a - b)) order.push(...shuffle(byBox[box]));
+      return order;
+    };
+
+    // ---- attempt state -------------------------------------------------------
+    let order: Q[] = [];
+    let idx = 0;
+    let score = 0;
+    let answered = false;
+    let optionOrder: number[] = [];        // shuffled option indices for the current Q
+    let difficulty: Diff = 'medium';
+    const conceptStat: Record<string, { right: number; total: number }> = {};
+    const sessionBoxes: Record<string, number> = {}; // box updates this attempt
+
+    // Difficulty = retrieval strength. Easy: MCQ-only recognition. Medium: authored mix.
+    // Hard: every question becomes type-from-memory (even MCQs), no hints.
+    const DIFFS: Record<Diff, string> = {
+      easy: 'Multiple choice only — recognition. Hints on.',
+      medium: 'Mixed multiple-choice and typed recall. Hints on.',
+      hard: 'Type every answer from memory. No hints. Self-graded.',
+    };
+    const poolFor = (d: Diff): Q[] =>
+      d === 'easy' ? quiz.questions.filter((q) => q.type !== 'written') : quiz.questions.slice();
+    const effType = (q: Q): 'mcq' | 'written' =>
+      difficulty === 'hard' ? 'written' : q.type === 'written' ? 'written' : 'mcq';
+    const modelAnswer = (q: Q): string =>
+      q.type === 'written' ? String(q.answer) : (q.options || [])[q.answer as number] ?? '';
+
+    // ---- start screen hydration ---------------------------------------------
+    const hydrateStart = () => {
+      const s = load();
+      setDifficulty(s.difficulty || 'medium', false);
+      if (s.attempts > 0) {
+        $('start-stats').classList.remove('hidden');
+        $('start-stats').classList.add('grid');
+        $('stat-best').textContent = `${fmt(s.bestScore)}/${quiz.questions.length}`;
+        $('stat-streak').textContent = String(s.streak);
+        $('stat-attempts').textContent = String(s.attempts);
+        // due today?
+        if (s.lastDate !== todayStr()) {
+          $('due-badge').classList.remove('hidden');
+          const gap = s.lastDate ? daysBetween(s.lastDate, todayStr()) : 0;
+          $('due-text').textContent = gap >= 2
+            ? `Last taken ${gap} days ago — streak reset risk`
+            : 'Due today — keep the streak alive';
+        }
+      }
+    };
+
+    const fmt = (n: number) => (Math.round(n * 10) / 10).toString();
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+
+    // Shared scorer: credit (0, 0.5, 1), and whether it counts as mastered (box up).
+    const tally = (credit: number, q: Q, mastered: boolean) => {
+      answered = true;
+      score += credit;
+      const cs = conceptStat[q.concept] || { right: 0, total: 0 };
+      cs.total++; cs.right += credit; conceptStat[q.concept] = cs;
+      const prevBox = load().boxes[q.id] ?? 1;
+      sessionBoxes[q.id] = mastered ? Math.min(3, prevBox + 1) : credit > 0 ? prevBox : 1;
+      $('q-score').textContent = `Score ${fmt(score)}`;
+      $('btn-next').classList.remove('hidden');
+      $('btn-next').textContent = idx + 1 < order.length ? 'Next →' : 'See result →';
+      $('btn-next').focus();
+    };
+
+    // ---- render a question ---------------------------------------------------
+    const renderQuestion = () => {
+      const q = order[idx];
+      answered = false;
+      $('q-counter').textContent = `Question ${idx + 1} / ${order.length}`;
+      $('q-score').textContent = `Score ${fmt(score)}`;
+      $('q-progress').style.width = `${(idx / order.length) * 100}%`;
+      $('q-concept').textContent = q.concept;
+      $('q-prompt').textContent = q.prompt;
+
+      // hint (hidden entirely on Hard)
+      const hintBtn = $('btn-hint'), hintP = $('q-hint');
+      hintP.classList.add('hidden'); hintP.textContent = q.hint || '';
+      hintBtn.style.display = q.hint && difficulty !== 'hard' ? '' : 'none';
+      hintBtn.textContent = 'Reveal hint';
+
+      // reset feedback + next
+      $('q-feedback').classList.add('hidden');
+      $('btn-next').classList.add('hidden');
+      $('q-options').innerHTML = '';
+
+      if (effType(q) === 'written') renderWritten(q);
+      else renderMCQ(q);
+    };
+
+    const renderMCQ = (q: Q) => {
+      optionOrder = shuffle((q.options || []).map((_, i) => i));
+      const wrap = $('q-options');
+      optionOrder.forEach((origIdx, displayIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'q-opt w-full text-left px-4 py-3 border border-neutral-300 text-sm hover:border-black hover:bg-neutral-50 transition-colors flex items-start gap-3';
+        btn.dataset.orig = String(origIdx);
+        btn.innerHTML = `<span class="font-mono text-xs text-neutral-400 mt-0.5">${displayIdx + 1}</span><span>${esc((q.options || [])[origIdx])}</span>`;
+        btn.addEventListener('click', () => choose(origIdx, btn));
+        wrap.appendChild(btn);
+      });
+    };
+
+    const choose = (origIdx: number, _btn: HTMLButtonElement) => {
+      if (answered) return;
+      const q = order[idx];
+      const correct = origIdx === (q.answer as number);
+
+      document.querySelectorAll<HTMLButtonElement>('.q-opt').forEach((b) => {
+        const oi = Number(b.dataset.orig);
+        b.classList.remove('hover:border-black', 'hover:bg-neutral-50');
+        b.disabled = true;
+        if (oi === (q.answer as number)) b.classList.add('border-green-600', 'bg-green-50', 'text-green-900');
+        else if (oi === origIdx) b.classList.add('border-red-500', 'bg-red-50', 'text-red-900');
+        else b.classList.add('opacity-50');
+      });
+
+      const fb = $('q-feedback'), verdict = $('q-verdict');
+      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'bg-green-50', 'bg-red-50');
+      if (correct) { fb.classList.add('border-green-600', 'bg-green-50'); verdict.textContent = '✓ Correct'; verdict.className = 'font-semibold text-sm mb-1 text-green-800'; }
+      else { fb.classList.add('border-red-500', 'bg-red-50'); verdict.textContent = '✗ Not quite'; verdict.className = 'font-semibold text-sm mb-1 text-red-800'; }
+      $('q-explanation').textContent = q.explanation;
+
+      tally(correct ? 1 : 0, q, correct);
+    };
+
+    // ---- written (typed recall → reveal → self-grade) ------------------------
+    const renderWritten = (q: Q) => {
+      const wrap = $('q-options');
+      wrap.innerHTML = `
+        <textarea id="q-input" rows="4" placeholder="Type your answer from memory…"
+          class="w-full p-3 border border-neutral-300 text-sm focus:border-black focus:outline-none resize-y"></textarea>
+        <button id="btn-reveal" class="mt-3 px-5 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">Reveal answer →</button>`;
+      const reveal = () => revealWritten(q);
+      $('btn-reveal').addEventListener('click', reveal);
+      const ta = document.getElementById('q-input') as HTMLTextAreaElement | null;
+      ta?.focus();
+      // Ctrl/Cmd+Enter reveals (plain Enter makes a newline in the textarea).
+      ta?.addEventListener('keydown', (e) => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); reveal(); } });
+    };
+
+    const revealWritten = (q: Q) => {
+      if (answered) return;
+      const ta = document.getElementById('q-input') as HTMLTextAreaElement | null;
+      const typed = (ta?.value || '').toLowerCase();
+      if (ta) ta.disabled = true;
+      const rb = document.getElementById('btn-reveal'); if (rb) rb.remove();
+
+      // keyword-assist: which key terms did they actually write?
+      const kws = q.keywords || [];
+      const chips = kws.map((k) => {
+        const hit = typed.includes(k.toLowerCase());
+        return `<span class="inline-block text-[11px] font-mono px-2 py-0.5 mr-1.5 mb-1.5 border ${hit ? 'border-green-600 text-green-700' : 'border-neutral-300 text-neutral-400'}">${hit ? '✓' : '○'} ${esc(k)}</span>`;
+      }).join('');
+
+      const fb = $('q-feedback'), verdict = $('q-verdict');
+      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'bg-green-50', 'bg-red-50');
+      fb.classList.add('border-neutral-400', 'bg-neutral-50');
+      verdict.textContent = 'Model answer'; verdict.className = 'font-semibold text-sm mb-2 text-neutral-900';
+      $('q-explanation').innerHTML =
+        `<span class="block text-neutral-900 mb-2">${esc(modelAnswer(q))}</span>` +
+        (chips ? `<span class="block mb-2">${chips}</span>` : '') +
+        `<span class="block text-neutral-600">${esc(q.explanation)}</span>` +
+        `<span class="block mt-3 text-[11px] font-mono uppercase tracking-[0.15em] text-neutral-500">Grade yourself honestly</span>`;
+
+      // self-grade buttons
+      const grades: Array<[string, number, boolean, string]> = [
+        ['Missed', 0, false, 'border-red-400 text-red-700 hover:bg-red-50'],
+        ['Partial', 0.5, false, 'border-amber-400 text-amber-700 hover:bg-amber-50'],
+        ['Got it', 1, true, 'border-green-600 text-green-700 hover:bg-green-50'],
+      ];
+      const row = document.createElement('div');
+      row.id = 'q-grade';
+      row.className = 'mt-2 flex gap-2';
+      grades.forEach(([label, credit, mastered, cls]) => {
+        const b = document.createElement('button');
+        b.className = `flex-1 px-3 py-2 border text-sm font-semibold transition-colors ${cls}`;
+        b.textContent = label;
+        b.addEventListener('click', () => {
+          if (answered) return;
+          row.querySelectorAll('button').forEach((x) => ((x as HTMLButtonElement).disabled = true));
+          b.classList.add('ring-2', 'ring-offset-1', 'ring-black');
+          fb.classList.remove('border-neutral-400');
+          fb.classList.add(credit === 1 ? 'border-green-600' : credit > 0 ? 'border-amber-400' : 'border-red-400');
+          tally(credit, q, mastered);
+        });
+        row.appendChild(b);
+      });
+      fb.appendChild(row);
+    };
+
+    const next = () => {
+      if (!answered) return;
+      const stale = document.getElementById('q-grade'); if (stale) stale.remove();
+      if (idx + 1 < order.length) { idx++; renderQuestion(); }
+      else finish();
+    };
+
+    // ---- finish + persist ----------------------------------------------------
+    const finish = () => {
+      $('q-progress').style.width = '100%';
+      const s = load();
+      const pct = Math.round((score / order.length) * 100);
+
+      // streak: +1 if last completion was yesterday, reset to 1 if a gap, hold if today
+      let streak = s.streak;
+      const today = todayStr();
+      if (s.lastDate === today) streak = s.streak || 1;
+      else if (s.lastDate && daysBetween(s.lastDate, today) === 1) streak = s.streak + 1;
+      else streak = 1;
+
+      const next: Store = {
+        bestScore: Math.max(s.bestScore, score),
+        bestPct: Math.max(s.bestPct, pct),
+        attempts: s.attempts + 1,
+        lastDate: today,
+        streak,
+        boxes: { ...s.boxes, ...sessionBoxes },
+      };
+      save(next);
+
+      // grade tiers
+      const grade =
+        pct === 100 ? 'Sealed 🔒' :
+        pct >= quiz.passPct ? 'Locked ✓' :
+        pct >= 60 ? 'Wobbly' : 'Rebuild';
+
+      $('result-grade').textContent = grade;
+      $('result-score').textContent = `${fmt(score)}/${order.length}`;
+      $('result-pct').textContent = `${pct}%`;
+
+      // per-concept
+      const cwrap = $('result-concepts'); cwrap.innerHTML = '';
+      Object.entries(conceptStat).forEach(([concept, st]) => {
+        const ok = st.right === st.total;
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between text-sm border-b border-neutral-100 pb-1.5';
+        row.innerHTML = `<span class="${ok ? 'text-neutral-800' : 'text-red-700 font-medium'}">${concept}</span><span class="font-mono text-xs ${ok ? 'text-green-700' : 'text-red-600'}">${fmt(st.right)}/${st.total} ${ok ? '✓' : '↻'}</span>`;
+        cwrap.appendChild(row);
+      });
+
+      $('result-meta').textContent = `Best ${fmt(next.bestScore)}/${quiz.questions.length} · streak ${next.streak} · attempt #${next.attempts}`;
+
+      show('result');
+    };
+
+    // ---- share card ----------------------------------------------------------
+    const shareText = () => {
+      const pct = Math.round((score / order.length) * 100);
+      const grade = pct === 100 ? 'Sealed 🔒' : pct >= quiz.passPct ? 'Locked ✓' : pct >= 60 ? 'Wobbly' : 'Rebuild';
+      const bar = '█'.repeat(Math.round(pct / 10)) + '░'.repeat(10 - Math.round(pct / 10));
+      return `📚 ${quiz.title} (${quiz.session})\n${fmt(score)}/${order.length} · ${pct}% · ${grade}\n${bar}\nlovelearnlift.com/encode/homework`;
+    };
+
+    // ---- screens -------------------------------------------------------------
+    const show = (which: 'start' | 'quiz' | 'result') => {
+      $('screen-start').classList.toggle('hidden', which !== 'start');
+      $('screen-quiz').classList.toggle('hidden', which !== 'quiz');
+      $('screen-result').classList.toggle('hidden', which !== 'result');
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    const begin = (onlyMissed = false) => {
+      order = buildOrder(load(), onlyMissed);
+      idx = 0; score = 0;
+      Object.keys(conceptStat).forEach((k) => delete conceptStat[k]);
+      Object.keys(sessionBoxes).forEach((k) => delete sessionBoxes[k]);
+      show('quiz');
+      renderQuestion();
+    };
+
+    // ---- wire up -------------------------------------------------------------
+    $('btn-start').addEventListener('click', () => begin(false));
+    $('btn-retry').addEventListener('click', () => begin(false));
+    $('btn-review').addEventListener('click', () => begin(true));
+    $('btn-next').addEventListener('click', next);
+    $('btn-hint').addEventListener('click', () => {
+      const h = $('q-hint');
+      h.classList.toggle('hidden');
+      $('btn-hint').textContent = h.classList.contains('hidden') ? 'Reveal hint' : 'Hide hint';
+    });
+    $('btn-share').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(shareText()); $('share-status').classList.remove('hidden'); }
+      catch { /* clipboard blocked — no-op */ }
+    });
+
+    // difficulty picker
+    const diffButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.diff-btn'));
+    const setDifficulty = (d: Diff, persist = true) => {
+      difficulty = d;
+      diffButtons.forEach((b) => {
+        const on = b.dataset.diff === d;
+        b.classList.toggle('bg-black', on);
+        b.classList.toggle('text-white', on);
+        b.classList.toggle('bg-white', !on);
+        const sub = b.querySelector('span:last-child');
+        if (sub) { sub.classList.toggle('text-neutral-300', on); sub.classList.toggle('text-neutral-500', !on); }
+      });
+      $('diff-desc').textContent = DIFFS[d];
+      const n = poolFor(d).length;
+      $('start-count').textContent = `${n} question${n === 1 ? '' : 's'}`;
+      if (persist) { const s = load(); s.difficulty = d; save(s); }
+    };
+    diffButtons.forEach((b) => b.addEventListener('click', () => setDifficulty(b.dataset.diff as Diff)));
+
+    // keyboard: 1-4 to answer, Enter to advance/start
+    document.addEventListener('keydown', (e) => {
+      // Don't hijack keys while typing a written answer.
+      const ae = document.activeElement as HTMLElement | null;
+      if (ae && (ae.tagName === 'TEXTAREA' || ae.tagName === 'INPUT')) return;
+      if (!$('screen-quiz') || $('screen-quiz').classList.contains('hidden')) {
+        if (e.key === 'Enter' && !$('screen-start').classList.contains('hidden')) { e.preventDefault(); begin(false); }
+        return;
+      }
+      if (!answered && /^[1-9]$/.test(e.key)) {
+        const n = Number(e.key) - 1;
+        const btns = document.querySelectorAll<HTMLButtonElement>('.q-opt');
+        if (n < btns.length) { e.preventDefault(); btns[n].click(); }
+      } else if (answered && e.key === 'Enter') {
+        // If the Next button is focused, let its native activation advance (avoid double-advance).
+        if (document.activeElement && (document.activeElement as HTMLElement).id === 'btn-next') return;
+        e.preventDefault(); next();
+      }
+    });
+
+    hydrateStart();
+  }
+</script>

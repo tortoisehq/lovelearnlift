@@ -33,6 +33,7 @@ const year = new Date().getFullYear();
             {categoryList.map((c) => (
               <li><a class="hover:text-white" href={`/${c.slug}`}>{c.name}</a></li>
             ))}
+            <li><a class="text-gold hover:text-white" href="/encode/homework">Homework</a></li>
           </ul>
         </nav>
       </div>
@@ -55,6 +56,23 @@ const year = new Date().getFullYear();
 
     <!-- Daily completion calendar — neutral-900 band -->
     <Calendar />
+
+    <!-- Homework CTA — gold band, marketable, high on the page -->
+    <section class="border-b border-neutral-800 bg-gold text-black">
+      <div class="max-w-6xl mx-auto px-6 py-12 md:py-16 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+        <div class="max-w-2xl">
+          <p class="text-xs font-mono uppercase tracking-[0.3em] mb-3">// New — Test yourself</p>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight mb-4 leading-[0.95]">Don't just read it.<br/>Lock it in.</h2>
+          <p class="text-base md:text-lg leading-relaxed">
+            Quiz yourself on what I'm learning — scoreable, with instant feedback and three difficulty levels,
+            from multiple choice to type-it-from-memory. Free, no signup, your scores stay in your browser.
+          </p>
+        </div>
+        <a href="/encode/homework" class="shrink-0 inline-flex items-center gap-2 bg-black text-gold font-mono uppercase tracking-wider text-sm px-7 py-4 no-underline hover:bg-neutral-900 transition-colors">
+          Start a quiz →
+        </a>
+      </div>
+    </section>
 
     <!-- The Split — Encode (I) | Forge (II) | Beacon (III) -->
     <section class="grid grid-cols-1 md:grid-cols-3 border-b border-neutral-800">

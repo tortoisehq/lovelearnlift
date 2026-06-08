@@ -1,0 +1,182 @@
+[
+  {
+    "id": "e27-data-analytics-ladder",
+    "title": "The Foundations Ladder",
+    "session": "E27",
+    "course": "Google Data Analytics — Course 1, Module 1",
+    "excerpt": "Six rungs from the ground up: what data is, what analysis does, and where analytics actually sits. Built and cold-walked in one session.",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "q-data",
+        "concept": "What data is",
+        "prompt": "At the very bottom of the ladder: what is data?",
+        "options": [
+          "A collection of facts",
+          "A chart or graph that explains something",
+          "Any conclusion you draw from research",
+          "Information stored in a database"
+        ],
+        "answer": 0,
+        "explanation": "Data = a collection of facts. One fact is a single true thing (\"it rained Tuesday\"); pile facts together and you have data. A chart is an artifact built FROM data, not data itself.",
+        "hint": "It's the rawest thing on the ladder — before any chart, conclusion, or insight exists."
+      },
+      {
+        "id": "q-analysis",
+        "concept": "What analysis does",
+        "prompt": "Data analysis turns data into ___.",
+        "options": [
+          "Insights",
+          "Artifacts",
+          "Databases",
+          "Decisions, directly"
+        ],
+        "answer": 0,
+        "explanation": "Analysis turns data into INSIGHTS — the understanding itself (\"long hiring processes cause new hires to quit\"). An artifact (a chart, a report) can carry an insight, but the insight is the point. Decisions come after the insight.",
+        "hint": "An artifact only carries it. The thing itself is the understanding."
+      },
+      {
+        "id": "q-mechanism-order",
+        "concept": "The everyday mechanism",
+        "prompt": "The everyday mechanism of analysis, in order:",
+        "options": [
+          "Pattern → Relationship → Prediction → Action",
+          "Process → Relationship → Prediction → Action",
+          "Pattern → Prediction → Relationship → Action",
+          "Relationship → Pattern → Action → Prediction"
+        ],
+        "answer": 0,
+        "explanation": "Pattern → Relationship → Prediction → Action. The first move is spotting a PATTERN — not Process (that lives up in the six-step lifecycle). Watch the two-P trap.",
+        "hint": "Pure Reform Pushes Action. First P = Pattern, NOT Process."
+      },
+      {
+        "id": "q-umbrella",
+        "concept": "Cassie's map — the umbrella",
+        "prompt": "Data science is the umbrella. Which three disciplines sit under it?",
+        "options": [
+          "Statistics, Machine Learning, Analytics",
+          "Statistics, Analytics, Visualization",
+          "Analytics, Engineering, Machine Learning",
+          "Statistics, LLMs, Analytics"
+        ],
+        "answer": 0,
+        "explanation": "Data science = \"the discipline of making data useful,\" with three children: Statistics, Machine Learning/AI, and Analytics. (LLMs aren't a co-equal bucket — they're one tool inside ML.)",
+        "hint": "One of them is the bucket that an LLM lives INSIDE of."
+      },
+      {
+        "id": "q-splitter-analytics",
+        "concept": "Cassie's map — the splitter (analytics)",
+        "prompt": "The three are split by how many decisions you know you want to make up front. Which one is \"I don't know yet — I'm exploring\"?",
+        "options": [
+          "Analytics",
+          "Statistics",
+          "Machine Learning",
+          "Data engineering"
+        ],
+        "answer": 0,
+        "explanation": "Analytics = you DON'T know how many decisions yet; you're exploring for inspiration, hunting unknown unknowns. The analyst is the explorer/detective. (Statistics = a FEW known decisions; ML = MANY, automated.)",
+        "hint": "Explorer = don't-know. \"Here's data nobody's looked at — go find something.\""
+      },
+      {
+        "id": "q-splitter-stats",
+        "concept": "Cassie's map — the splitter (statistics)",
+        "prompt": "In Cassie's split, statistics is for making ___ decisions under uncertainty.",
+        "options": [
+          "A few important",
+          "Many, automated",
+          "Zero — it's just exploration",
+          "Only financial"
+        ],
+        "answer": 0,
+        "explanation": "Statistics = a FEW important decisions under uncertainty, made carefully (its excellence is rigor — the careful philosopher). Many automated decisions = Machine Learning.",
+        "hint": "The careful philosopher protecting a small number of high-stakes calls."
+      },
+      {
+        "id": "q-process-order",
+        "concept": "The six-step process",
+        "prompt": "In Ask → Prepare → Process → Analyze → Share → Act, which step comes immediately BEFORE Process?",
+        "options": [
+          "Prepare",
+          "Analyze",
+          "Ask",
+          "Share"
+        ],
+        "answer": 0,
+        "explanation": "Prepare comes before Process — you plan (Prepare) before you clean (Process). Your mnemonic encodes it: PUPPIES (Prepare) before PICK (Process).",
+        "hint": "All Puppies Pick Another Short Ally. PUPPIES before PICK."
+      },
+      {
+        "id": "q-process-vs-analyze",
+        "concept": "The six-step process",
+        "prompt": "Which best describes the Process step (not Analyze)?",
+        "options": [
+          "Clean the data and handle it ethically — consent, restrict access, store securely",
+          "Run the data through lenses to find the insights",
+          "Share the findings with managers in the right context",
+          "Define the business question and what success looks like"
+        ],
+        "answer": 0,
+        "explanation": "Process = wash and prep: clean the data, get consent, restrict access, aggregate to protect individuals, store securely. Finding the insights is Analyze (the cooking). Defining the question is Ask; sharing is Share.",
+        "hint": "Food: Process = wash & prep the ingredients. Analyze = cook."
+      },
+      {
+        "id": "q-four-types",
+        "concept": "The four types",
+        "prompt": "Diagnostic analytics answers which question?",
+        "options": [
+          "Why did it happen?",
+          "What happened?",
+          "What will happen?",
+          "What should we do?"
+        ],
+        "answer": 0,
+        "explanation": "Descriptive = what happened · Diagnostic = WHY it happened · Predictive = what will happen · Prescriptive = what should we do. They climb: what → why → what-next → what-to-do.",
+        "hint": "It's the doctor's word — diagnosing the cause."
+      },
+      {
+        "id": "q-four-types-prescriptive",
+        "concept": "The four types",
+        "prompt": "You want the analysis to recommend the best action to take. Which type?",
+        "options": [
+          "Prescriptive",
+          "Predictive",
+          "Descriptive",
+          "Diagnostic"
+        ],
+        "answer": 0,
+        "explanation": "Prescriptive = what should we do — it prescribes the best action (like a prescription). Predictive only forecasts what will happen; it doesn't tell you what to do about it.",
+        "hint": "Like a prescription from a doctor — it tells you what to DO."
+      },
+      {
+        "id": "q-w-analysis-voice",
+        "type": "written",
+        "concept": "What analysis does",
+        "prompt": "In your own words: what does data analysis do to data, and what's the difference between an insight and an artifact?",
+        "answer": "Data analysis turns data (a collection of facts) into INSIGHTS — the understanding itself, e.g. \"long, complicated hiring makes new hires quit.\" An ARTIFACT (a chart, a report) is just a thing that carries the insight; the insight is the point, the artifact is the delivery.",
+        "keywords": ["insight", "artifact", "fact"],
+        "explanation": "The key distinction you sharpened in E27: analysis produces understanding (insight), not just objects (artifacts). Artifacts only carry insights.",
+        "hint": "One is the understanding itself; the other just carries it."
+      },
+      {
+        "id": "q-w-six-steps",
+        "type": "written",
+        "concept": "The six-step process",
+        "prompt": "From memory, name the six steps of the data analysis process — in order.",
+        "answer": "Ask → Prepare → Process → Analyze → Share → Act",
+        "keywords": ["ask", "prepare", "process", "analyze", "share", "act"],
+        "explanation": "The spine of the whole certificate. Prepare before Process (plan before clean); Analyze before Share before Act.",
+        "hint": "All Puppies Pick Another Short Ally."
+      },
+      {
+        "id": "q-w-cassie",
+        "type": "written",
+        "concept": "Cassie's map — the splitter",
+        "prompt": "Explain what separates statistics, machine learning, and analytics in Cassie's map.",
+        "answer": "How many decisions you know you want to make before you begin. Statistics = a FEW important decisions under uncertainty (rigor). Machine learning = MANY decisions, automated, under uncertainty (performance). Analytics = you DON'T know how many yet — you're exploring for inspiration (speed). All three sit under the data-science umbrella.",
+        "keywords": ["decision", "few", "many", "explor"],
+        "explanation": "The dividing axis is the number of decisions known up front — the framing that finally untied the analytics-vs-science knot.",
+        "hint": "It's about how many decisions you know about up front."
+      }
+    ]
+  }
+]
