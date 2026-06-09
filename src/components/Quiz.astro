@@ -3,23 +3,28 @@
  * Quiz.astro — client-side, scoreable homework engine.
  *
  * Static site = no backend. All scoring/progress lives in localStorage (per device).
- * Features: auto-scored MCQ, instant feedback + explanation, shuffled options each
- * attempt, per-concept mastery, Leitner-box resurfacing (missed items come back first),
- * best-score + attempts, daily streak + "due today", mnemonic hints, shareable card,
- * keyboard nav (1-4 to answer, Enter to advance).
+ * Question types: mcq, truefalse, fillblank, multi (select-all), order (sequence),
+ * written (typed recall). Auto-graded except written (self-grade).
+ * Features: instant feedback + explanation, shuffled options each attempt, per-concept
+ * mastery, Leitner-box resurfacing (missed + trap-spots come back first), best-score +
+ * attempts, daily streak + "due today", mnemonic hints, shareable card, keyboard nav.
  *
  * Pure vanilla JS — matches the site's no-framework convention (see Calendar.astro).
  */
 type Question = {
   id: string;
-  type?: 'mcq' | 'written';
+  type?: 'mcq' | 'written' | 'truefalse' | 'fillblank' | 'multi' | 'order';
   concept: string;
   prompt: string;
   options?: string[];
-  answer: number | string;
-  keywords?: string[];
+  answer?: number | string | boolean;
+  answers?: number[];       // multi: indices of correct options
+  items?: string[];         // order: items in CORRECT order
+  accept?: string[];        // fillblank: extra accepted spellings
+  keywords?: string[];      // written: keyword-assist chips
   explanation: string;
   hint?: string;
+  trap?: boolean;           // known slip-spot — resurfaces first
 };
 type Quiz = {
   id: string;
@@ -168,7 +173,13 @@ const total = quiz.questions.length;
 
 <script>
   // ---- engine ----------------------------------------------------------------
-  type Q = { id: string; type?: 'mcq' | 'written'; concept: string; prompt: string; options?: string[]; answer: number | string; keywords?: string[]; explanation: string; hint?: string };
+  type QType = 'mcq' | 'written' | 'truefalse' | 'fillblank' | 'multi' | 'order';
+  type Q = {
+    id: string; type?: QType; concept: string; prompt: string;
+    options?: string[]; answer?: number | string | boolean; answers?: number[];
+    items?: string[]; accept?: string[]; keywords?: string[];
+    explanation: string; hint?: string; trap?: boolean;
+  };
   type QuizT = { id: string; title: string; session: string; course: string; passPct: number; questions: Q[] };
   type Diff = 'easy' | 'medium' | 'hard';
   type Store = {
@@ -202,13 +213,17 @@ const total = quiz.questions.length;
       return a;
     };
 
-    // Build the order for an attempt: weakest Leitner boxes first, shuffled within a box.
+    // Build the order for an attempt: trap-spots + weakest Leitner boxes first.
     const buildOrder = (store: Store, onlyMissed = false): Q[] => {
       let pool = poolFor(difficulty);
       if (onlyMissed) pool = pool.filter((q) => (store.boxes[q.id] ?? 1) <= 1);
       if (pool.length === 0) pool = poolFor(difficulty);
       const byBox: Record<number, Q[]> = {};
-      for (const q of pool) { const b = store.boxes[q.id] ?? 1; (byBox[b] = byBox[b] || []).push(q); }
+      for (const q of pool) {
+        let b = store.boxes[q.id] ?? 1;
+        if (q.trap && b <= 1) b = 0; // unmastered trap-spots surface before everything
+        (byBox[b] = byBox[b] || []).push(q);
+      }
       const order: Q[] = [];
       for (const box of Object.keys(byBox).map(Number).sort((a, b) => a - b)) order.push(...shuffle(byBox[box]));
       return order;
@@ -220,23 +235,38 @@ const total = quiz.questions.length;
     let score = 0;
     let answered = false;
     let optionOrder: number[] = [];        // shuffled option indices for the current Q
+    let orderState: number[] = [];         // current arrangement for an `order` question
     let difficulty: Diff = 'medium';
     const conceptStat: Record<string, { right: number; total: number }> = {};
     const sessionBoxes: Record<string, number> = {}; // box updates this attempt
 
-    // Difficulty = retrieval strength. Easy: MCQ-only recognition. Medium: authored mix.
-    // Hard: every question becomes type-from-memory (even MCQs), no hints.
+    // Difficulty = retrieval strength.
+    // Easy: recognition types only (pick/arrange). Medium: authored mix. Hard: type everything from memory.
     const DIFFS: Record<Diff, string> = {
-      easy: 'Multiple choice only — recognition. Hints on.',
-      medium: 'Mixed multiple-choice and typed recall. Hints on.',
+      easy: 'Recognition only — pick, select, or arrange. Hints on.',
+      medium: 'The authored mix — multiple choice, fill-in, true/false, ordering, recall. Hints on.',
       hard: 'Type every answer from memory. No hints. Self-graded.',
     };
+    const RECOGNITION = new Set<QType>(['mcq', 'truefalse', 'multi', 'order']);
     const poolFor = (d: Diff): Q[] =>
-      d === 'easy' ? quiz.questions.filter((q) => q.type !== 'written') : quiz.questions.slice();
-    const effType = (q: Q): 'mcq' | 'written' =>
-      difficulty === 'hard' ? 'written' : q.type === 'written' ? 'written' : 'mcq';
-    const modelAnswer = (q: Q): string =>
-      q.type === 'written' ? String(q.answer) : (q.options || [])[q.answer as number] ?? '';
+      d === 'easy' ? quiz.questions.filter((q) => RECOGNITION.has((q.type || 'mcq') as QType)) : quiz.questions.slice();
+    const effType = (q: Q): QType =>
+      difficulty === 'hard' ? 'written' : ((q.type || 'mcq') as QType);
+
+    // Model answer (used for written/hard reveal).
+    const modelAnswer = (q: Q): string => {
+      switch (q.type) {
+        case 'written':
+        case 'fillblank': return String(q.answer ?? '');
+        case 'truefalse': return q.answer ? 'True' : 'False';
+        case 'multi': return (q.answers || []).map((i) => (q.options || [])[i]).join('; ');
+        case 'order': return (q.items || []).join('  →  ');
+        default: return (q.options || [])[q.answer as number] ?? '';
+      }
+    };
+
+    const norm = (s: string) =>
+      s.toLowerCase().trim().replace(/[.,!?;:'"()]/g, '').replace(/\s+/g, ' ');
 
     // ---- start screen hydration ---------------------------------------------
     const hydrateStart = () => {
@@ -276,6 +306,16 @@ const total = quiz.questions.length;
       $('btn-next').focus();
     };
 
+    // Shared verdict box (credit-aware: green / amber / red) + explanation HTML.
+    const verdictBox = (credit: number, q: Q, extraTop = '') => {
+      const fb = $('q-feedback'), verdict = $('q-verdict');
+      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'border-amber-400', 'bg-green-50', 'bg-red-50', 'bg-amber-50', 'border-neutral-400', 'bg-neutral-50');
+      if (credit >= 1) { fb.classList.add('border-green-600', 'bg-green-50'); verdict.textContent = '✓ Correct'; verdict.className = 'font-semibold text-sm mb-1 text-green-800'; }
+      else if (credit > 0) { fb.classList.add('border-amber-400', 'bg-amber-50'); verdict.textContent = '◐ Partly right'; verdict.className = 'font-semibold text-sm mb-1 text-amber-800'; }
+      else { fb.classList.add('border-red-500', 'bg-red-50'); verdict.textContent = '✗ Not quite'; verdict.className = 'font-semibold text-sm mb-1 text-red-800'; }
+      $('q-explanation').innerHTML = extraTop + `<span class="block text-neutral-700">${esc(q.explanation)}</span>`;
+    };
+
     // ---- render a question ---------------------------------------------------
     const renderQuestion = () => {
       const q = order[idx];
@@ -283,7 +323,8 @@ const total = quiz.questions.length;
       $('q-counter').textContent = `Question ${idx + 1} / ${order.length}`;
       $('q-score').textContent = `Score ${fmt(score)}`;
       $('q-progress').style.width = `${(idx / order.length) * 100}%`;
-      $('q-concept').textContent = q.concept;
+      $('q-concept').innerHTML = esc(q.concept) +
+        (q.trap ? ' <span class="text-amber-600 font-semibold">⚠ trap-spot</span>' : '');
       $('q-prompt').textContent = q.prompt;
 
       // hint (hidden entirely on Hard)
@@ -297,10 +338,16 @@ const total = quiz.questions.length;
       $('btn-next').classList.add('hidden');
       $('q-options').innerHTML = '';
 
-      if (effType(q) === 'written') renderWritten(q);
+      const t = effType(q);
+      if (t === 'written') renderWritten(q);
+      else if (t === 'truefalse') renderTrueFalse(q);
+      else if (t === 'fillblank') renderFillBlank(q);
+      else if (t === 'multi') renderMulti(q);
+      else if (t === 'order') renderOrder(q);
       else renderMCQ(q);
     };
 
+    // ---- MCQ -----------------------------------------------------------------
     const renderMCQ = (q: Q) => {
       optionOrder = shuffle((q.options || []).map((_, i) => i));
       const wrap = $('q-options');
@@ -328,13 +375,166 @@ const total = quiz.questions.length;
         else b.classList.add('opacity-50');
       });
 
-      const fb = $('q-feedback'), verdict = $('q-verdict');
-      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'bg-green-50', 'bg-red-50');
-      if (correct) { fb.classList.add('border-green-600', 'bg-green-50'); verdict.textContent = '✓ Correct'; verdict.className = 'font-semibold text-sm mb-1 text-green-800'; }
-      else { fb.classList.add('border-red-500', 'bg-red-50'); verdict.textContent = '✗ Not quite'; verdict.className = 'font-semibold text-sm mb-1 text-red-800'; }
-      $('q-explanation').textContent = q.explanation;
-
+      verdictBox(correct ? 1 : 0, q);
       tally(correct ? 1 : 0, q, correct);
+    };
+
+    // ---- True / False --------------------------------------------------------
+    const renderTrueFalse = (q: Q) => {
+      const wrap = $('q-options');
+      ([['True', true], ['False', false]] as Array<[string, boolean]>).forEach(([label, val], displayIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'q-opt w-full text-left px-4 py-3 border border-neutral-300 text-sm hover:border-black hover:bg-neutral-50 transition-colors flex items-start gap-3';
+        btn.dataset.val = String(val);
+        btn.innerHTML = `<span class="font-mono text-xs text-neutral-400 mt-0.5">${displayIdx + 1}</span><span>${label}</span>`;
+        btn.addEventListener('click', () => {
+          if (answered) return;
+          const correct = val === Boolean(q.answer);
+          document.querySelectorAll<HTMLButtonElement>('.q-opt').forEach((b) => {
+            b.classList.remove('hover:border-black', 'hover:bg-neutral-50');
+            b.disabled = true;
+            const bv = b.dataset.val === 'true';
+            if (bv === Boolean(q.answer)) b.classList.add('border-green-600', 'bg-green-50', 'text-green-900');
+            else if (bv === val) b.classList.add('border-red-500', 'bg-red-50', 'text-red-900');
+            else b.classList.add('opacity-50');
+          });
+          verdictBox(correct ? 1 : 0, q);
+          tally(correct ? 1 : 0, q, correct);
+        });
+        wrap.appendChild(btn);
+      });
+    };
+
+    // ---- Fill in the blank (auto-graded) -------------------------------------
+    const renderFillBlank = (q: Q) => {
+      const wrap = $('q-options');
+      wrap.innerHTML = `
+        <input id="q-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+          placeholder="Type the missing word(s)…"
+          class="w-full p-3 border border-neutral-300 text-sm focus:border-black focus:outline-none" />
+        <button id="btn-check" class="mt-3 px-5 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">Check →</button>`;
+      const input = document.getElementById('q-input') as HTMLInputElement | null;
+      input?.focus();
+      const check = () => {
+        if (answered) return;
+        const raw = input?.value || '';
+        const val = norm(raw);
+        const accept = [String(q.answer ?? ''), ...(q.accept || [])].map(norm).filter(Boolean);
+        const correct = !!val && accept.includes(val);
+        if (input) input.disabled = true;
+        const cb = document.getElementById('btn-check'); if (cb) cb.remove();
+        const top = correct
+          ? ''
+          : `<span class="block text-neutral-900 mb-2">Answer: <strong>${esc(String(q.answer ?? ''))}</strong></span>`;
+        verdictBox(correct ? 1 : 0, q, top);
+        tally(correct ? 1 : 0, q, correct);
+      };
+      document.getElementById('btn-check')?.addEventListener('click', check);
+      input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+    };
+
+    // ---- Multi-select (select all that apply) --------------------------------
+    const renderMulti = (q: Q) => {
+      optionOrder = shuffle((q.options || []).map((_, i) => i));
+      const wrap = $('q-options');
+      const list = document.createElement('div');
+      list.className = 'space-y-2.5';
+      optionOrder.forEach((origIdx) => {
+        const btn = document.createElement('button');
+        btn.className = 'q-multi w-full text-left px-4 py-3 border border-neutral-300 text-sm hover:border-black transition-colors flex items-start gap-3';
+        btn.dataset.orig = String(origIdx);
+        btn.dataset.sel = '0';
+        btn.innerHTML = `<span class="q-box mt-0.5 inline-flex h-4 w-4 items-center justify-center border border-neutral-400 text-[10px]"></span><span>${esc((q.options || [])[origIdx])}</span>`;
+        btn.addEventListener('click', () => {
+          if (answered) return;
+          const on = btn.dataset.sel === '1';
+          btn.dataset.sel = on ? '0' : '1';
+          btn.classList.toggle('border-black', !on);
+          btn.classList.toggle('bg-neutral-50', !on);
+          const box = btn.querySelector('.q-box')!;
+          box.textContent = on ? '' : '✓';
+          box.classList.toggle('bg-black', !on);
+          box.classList.toggle('text-white', !on);
+          box.classList.toggle('border-black', !on);
+        });
+        list.appendChild(btn);
+      });
+      wrap.appendChild(list);
+      const submit = document.createElement('button');
+      submit.id = 'btn-multi';
+      submit.className = 'mt-3 px-5 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors';
+      submit.textContent = 'Submit selection →';
+      submit.addEventListener('click', () => gradeMulti(q));
+      wrap.appendChild(submit);
+    };
+
+    const gradeMulti = (q: Q) => {
+      if (answered) return;
+      const correctSet = new Set(q.answers || []);
+      const picked = Array.from(document.querySelectorAll<HTMLButtonElement>('.q-multi'))
+        .filter((b) => b.dataset.sel === '1').map((b) => Number(b.dataset.orig));
+      const pickedSet = new Set(picked);
+      const wrongPicks = picked.filter((i) => !correctSet.has(i)).length;
+      const rightPicks = picked.filter((i) => correctSet.has(i)).length;
+      let credit = 0;
+      if (wrongPicks === 0 && rightPicks === correctSet.size && rightPicks > 0) credit = 1;
+      else if (wrongPicks === 0 && rightPicks > 0) credit = 0.5; // some right, none wrong
+
+      document.querySelectorAll<HTMLButtonElement>('.q-multi').forEach((b) => {
+        const oi = Number(b.dataset.orig);
+        b.disabled = true;
+        b.classList.remove('hover:border-black');
+        if (correctSet.has(oi)) b.classList.add('border-green-600', 'bg-green-50', 'text-green-900');
+        else if (pickedSet.has(oi)) b.classList.add('border-red-500', 'bg-red-50', 'text-red-900');
+        else b.classList.add('opacity-50');
+      });
+      const mb = document.getElementById('btn-multi'); if (mb) mb.remove();
+      const top = `<span class="block text-neutral-900 mb-2">Correct: <strong>${esc((q.answers || []).map((i) => (q.options || [])[i]).join(', '))}</strong></span>`;
+      verdictBox(credit, q, top);
+      tally(credit, q, credit === 1);
+    };
+
+    // ---- Ordering (arrange the sequence) -------------------------------------
+    const renderOrder = (q: Q) => {
+      orderState = shuffle((q.items || []).map((_, i) => i));
+      const wrap = $('q-options');
+      wrap.innerHTML = `<div id="order-list" class="space-y-2"></div>
+        <button id="btn-order" class="mt-3 px-5 py-2.5 bg-black text-white font-semibold text-sm hover:bg-neutral-800 transition-colors">Check order →</button>`;
+      drawOrder(q);
+      document.getElementById('btn-order')?.addEventListener('click', () => gradeOrder(q));
+    };
+
+    const drawOrder = (q: Q) => {
+      const list = document.getElementById('order-list'); if (!list) return;
+      list.innerHTML = '';
+      orderState.forEach((itemIdx, pos) => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2 border border-neutral-300 px-3 py-2 text-sm bg-white';
+        row.innerHTML = `<span class="font-mono text-xs text-neutral-400 w-5">${pos + 1}</span><span class="flex-1">${esc((q.items || [])[itemIdx])}</span>`;
+        const up = document.createElement('button');
+        up.textContent = '▲'; up.className = 'px-2 text-neutral-500 hover:text-black disabled:opacity-20'; up.disabled = pos === 0;
+        up.addEventListener('click', () => { if (answered) return; [orderState[pos - 1], orderState[pos]] = [orderState[pos], orderState[pos - 1]]; drawOrder(q); });
+        const dn = document.createElement('button');
+        dn.textContent = '▼'; dn.className = 'px-2 text-neutral-500 hover:text-black disabled:opacity-20'; dn.disabled = pos === orderState.length - 1;
+        dn.addEventListener('click', () => { if (answered) return; [orderState[pos + 1], orderState[pos]] = [orderState[pos], orderState[pos + 1]]; drawOrder(q); });
+        row.appendChild(up); row.appendChild(dn);
+        list.appendChild(row);
+      });
+    };
+
+    const gradeOrder = (q: Q) => {
+      if (answered) return;
+      const n = (q.items || []).length;
+      // q.items is the CORRECT order, so item with original index i belongs at position i.
+      const rightPos = orderState.filter((itemIdx, pos) => itemIdx === pos).length;
+      const credit = rightPos === n ? 1 : rightPos >= Math.ceil(n / 2) ? 0.5 : 0;
+      document.querySelectorAll<HTMLButtonElement>('#order-list button').forEach((b) => (b.disabled = true));
+      const ob = document.getElementById('btn-order'); if (ob) ob.remove();
+      const top = credit >= 1
+        ? ''
+        : `<span class="block text-neutral-900 mb-2">Correct order: <strong>${esc((q.items || []).join('  →  '))}</strong></span>`;
+      verdictBox(credit, q, top);
+      tally(credit, q, credit === 1);
     };
 
     // ---- written (typed recall → reveal → self-grade) ------------------------
@@ -367,7 +567,7 @@ const total = quiz.questions.length;
       }).join('');
 
       const fb = $('q-feedback'), verdict = $('q-verdict');
-      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'bg-green-50', 'bg-red-50');
+      fb.classList.remove('hidden', 'border-green-600', 'border-red-500', 'border-amber-400', 'bg-green-50', 'bg-red-50', 'bg-amber-50');
       fb.classList.add('border-neutral-400', 'bg-neutral-50');
       verdict.textContent = 'Model answer'; verdict.className = 'font-semibold text-sm mb-2 text-neutral-900';
       $('q-explanation').innerHTML =
@@ -429,6 +629,7 @@ const total = quiz.questions.length;
         lastDate: today,
         streak,
         boxes: { ...s.boxes, ...sessionBoxes },
+        difficulty: s.difficulty,
       };
       save(next);
 
@@ -448,7 +649,7 @@ const total = quiz.questions.length;
         const ok = st.right === st.total;
         const row = document.createElement('div');
         row.className = 'flex items-center justify-between text-sm border-b border-neutral-100 pb-1.5';
-        row.innerHTML = `<span class="${ok ? 'text-neutral-800' : 'text-red-700 font-medium'}">${concept}</span><span class="font-mono text-xs ${ok ? 'text-green-700' : 'text-red-600'}">${fmt(st.right)}/${st.total} ${ok ? '✓' : '↻'}</span>`;
+        row.innerHTML = `<span class="${ok ? 'text-neutral-800' : 'text-red-700 font-medium'}">${esc(concept)}</span><span class="font-mono text-xs ${ok ? 'text-green-700' : 'text-red-600'}">${fmt(st.right)}/${st.total} ${ok ? '✓' : '↻'}</span>`;
         cwrap.appendChild(row);
       });
 
@@ -516,9 +717,9 @@ const total = quiz.questions.length;
     };
     diffButtons.forEach((b) => b.addEventListener('click', () => setDifficulty(b.dataset.diff as Diff)));
 
-    // keyboard: 1-4 to answer, Enter to advance/start
+    // keyboard: 1-9 to answer (mcq/tf/multi), Enter to advance/start
     document.addEventListener('keydown', (e) => {
-      // Don't hijack keys while typing a written answer.
+      // Don't hijack keys while typing a written / fill-in answer.
       const ae = document.activeElement as HTMLElement | null;
       if (ae && (ae.tagName === 'TEXTAREA' || ae.tagName === 'INPUT')) return;
       if (!$('screen-quiz') || $('screen-quiz').classList.contains('hidden')) {
@@ -527,7 +728,7 @@ const total = quiz.questions.length;
       }
       if (!answered && /^[1-9]$/.test(e.key)) {
         const n = Number(e.key) - 1;
-        const btns = document.querySelectorAll<HTMLButtonElement>('.q-opt');
+        const btns = document.querySelectorAll<HTMLButtonElement>('.q-opt, .q-multi');
         if (n < btns.length) { e.preventDefault(); btns[n].click(); }
       } else if (answered && e.key === 'Enter') {
         // If the Next button is focused, let its native activation advance (avoid double-advance).

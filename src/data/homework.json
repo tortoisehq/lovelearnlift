@@ -178,5 +178,188 @@
         "hint": "It's about how many decisions you know about up front."
       }
     ]
+  },
+  {
+    "id": "e28-data-ecosystem",
+    "title": "The Data Ecosystem",
+    "session": "E28",
+    "course": "Google Data Analytics — Course 1, Module 1",
+    "excerpt": "Where data lives and the words that get mixed up: the six-verb ecosystem, the cloud, analysis vs. analytics, scientist vs. analyst, and when to trust your gut. Five question types, trap-spots first.",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "q-ecosystem-def",
+        "type": "mcq",
+        "concept": "What a data ecosystem is",
+        "trap": true,
+        "prompt": "What is a data ecosystem?",
+        "options": [
+          "The group of elements — hardware, software, and the people who use them — that interact to produce, manage, store, organize, analyze, and share data",
+          "A single database where a company keeps all its records",
+          "The cloud servers that store a company's data online",
+          "The team of data analysts inside a company"
+        ],
+        "answer": 0,
+        "explanation": "A data ecosystem = various elements (hardware + software tools + the people who use them) interacting to produce, manage, store, organize, analyze, and share data. It's the whole environment data lives in — not one database, not just the cloud, not just people.",
+        "hint": "Think 'environment data lives in' — tools AND people, doing six things."
+      },
+      {
+        "id": "q-six-verbs-blank",
+        "type": "fillblank",
+        "concept": "The six purpose verbs",
+        "trap": true,
+        "prompt": "Fill the blank: a data ecosystem's elements interact to produce, manage, store, ___, analyze, and share data.",
+        "answer": "organize",
+        "accept": ["organise"],
+        "explanation": "Produce · Manage · Store · ORGANIZE · Analyze · Share. Your mnemonic: Penguins Make Soggy Omelettes And Sugar (P-M-S-O-A-S). 'Organize' is the O.",
+        "hint": "Penguins Make Soggy Omelettes And Sugar — what's the O?"
+      },
+      {
+        "id": "q-six-verbs-multi",
+        "type": "multi",
+        "concept": "The six purpose verbs",
+        "trap": true,
+        "prompt": "Select ALL six things a data ecosystem's elements interact to do with data.",
+        "options": ["Produce", "Manage", "Store", "Organize", "Analyze", "Share", "Delete", "Sell", "Encrypt"],
+        "answers": [0, 1, 2, 3, 4, 5],
+        "explanation": "The six: Produce, Manage, Store, Organize, Analyze, Share (P-M-S-O-A-S). Delete, Sell, and Encrypt are not on the list — watch the plausible distractors.",
+        "hint": "Penguins Make Soggy Omelettes And Sugar — six words, six verbs."
+      },
+      {
+        "id": "q-cloud-tf",
+        "type": "truefalse",
+        "concept": "The cloud",
+        "prompt": "True or False: 'the cloud' means storing data on your own computer's hard drive.",
+        "answer": false,
+        "explanation": "False. The cloud is the opposite — data kept ONLINE and accessed over the internet, rather than on a local hard drive or inside your own network. It's a virtual location.",
+        "hint": "Cloud = online / over the internet, not on your machine."
+      },
+      {
+        "id": "q-cloud-blank",
+        "type": "fillblank",
+        "concept": "The cloud",
+        "prompt": "Fill the blank: the cloud is a place to keep data ___, rather than on a computer hard drive.",
+        "answer": "online",
+        "accept": ["on the internet", "over the internet", "virtually"],
+        "explanation": "The cloud keeps data ONLINE — accessed over the internet instead of stored locally. It's just a term for the virtual location.",
+        "hint": "The opposite of 'on a hard drive' — where data is reached over the internet."
+      },
+      {
+        "id": "q-analytics-science",
+        "type": "mcq",
+        "concept": "Analysis vs. analytics",
+        "trap": true,
+        "prompt": "Which term does this course define as 'the science of data' — the broad umbrella over data, data analysis, and the ecosystem?",
+        "options": ["Data analytics", "Data analysis", "Data science", "Data engineering"],
+        "answer": 0,
+        "explanation": "Data ANALYTICS = 'the science of data' — the broad umbrella (in this course's framing) over data, data analysis, and the ecosystem. Data analysis is the hands-on activity inside it. (Cassie's video made data SCIENCE the umbrella — different author; for THIS course, analytics is the umbrella.)",
+        "hint": "The '-ics' word — the big tent, the science of data."
+      },
+      {
+        "id": "q-analysis-analytics-tf",
+        "type": "truefalse",
+        "concept": "Analysis vs. analytics",
+        "trap": true,
+        "prompt": "True or False: data analysis is the broad umbrella, and data analytics is the hands-on activity.",
+        "answer": false,
+        "explanation": "False — it's reversed. Data ANALYSIS is the hands-on activity (collect, transform, organize → conclusions). Data ANALYTICS is the umbrella, 'the science of data.' analy-SIS = the step you do; analy-TICS = the big tent.",
+        "hint": "Which suffix is the small hands-on one? -sis or -tics?"
+      },
+      {
+        "id": "q-scientist-analyst",
+        "type": "mcq",
+        "concept": "Scientist vs. analyst",
+        "trap": true,
+        "prompt": "What's the key difference between a data scientist and a data analyst?",
+        "options": [
+          "Scientists create new questions using data; analysts find answers to existing questions",
+          "Analysts create new questions; scientists answer the existing ones",
+          "They do the same job under different titles",
+          "Scientists clean the data; analysts build the dashboards"
+        ],
+        "answer": 0,
+        "explanation": "Data scientists CREATE NEW QUESTIONS using data (the explorer — 'what should we even ask?'). Data analysts FIND ANSWERS to existing questions by creating insights. The hinge word on both sides is questions.",
+        "hint": "One makes the questions, one answers them. Which way round?"
+      },
+      {
+        "id": "q-scientist-questions-blank",
+        "type": "fillblank",
+        "concept": "Scientist vs. analyst",
+        "trap": true,
+        "prompt": "Fill the blank: data scientists create new ___ using data, while analysts find answers to existing ones.",
+        "answer": "questions",
+        "accept": ["question"],
+        "explanation": "QUESTIONS — the same word fills both sides. Scientists make new questions; analysts answer existing questions. (Not 'artifacts' — that's the word we killed at E27. Analysis makes insights, not artifacts.)",
+        "hint": "Same word both sides — and it is NOT 'artifacts.'"
+      },
+      {
+        "id": "q-six-steps-order",
+        "type": "order",
+        "concept": "The six-step process",
+        "prompt": "Arrange the six steps of the data analysis process in the correct order.",
+        "items": ["Ask", "Prepare", "Process", "Analyze", "Share", "Act"],
+        "explanation": "Ask → Prepare → Process → Analyze → Share → Act. Mnemonic: All Puppies Pick Another Short Ally. Prepare BEFORE Process — you plan/collect before you clean.",
+        "hint": "All Puppies Pick Another Short Ally."
+      },
+      {
+        "id": "q-dddm-def",
+        "type": "mcq",
+        "concept": "Data-driven decision-making",
+        "prompt": "Data-driven decision-making is defined as using ___ to guide business strategy.",
+        "options": ["Facts", "Intuition", "Past experience", "Expert opinions"],
+        "answer": 0,
+        "explanation": "DDDM = using FACTS to guide business strategy. The other options matter (experience and intuition help) — but the definition itself is fact-led.",
+        "hint": "The definition's exact word — the thing data is made of."
+      },
+      {
+        "id": "q-sme-multi",
+        "type": "multi",
+        "concept": "Subject-matter experts",
+        "prompt": "Why include subject-matter experts when building data into business strategy? Select all that apply.",
+        "options": [
+          "Their experience and intuition add value to data-driven decisions",
+          "They're familiar with the business problem",
+          "They can review the results and spot inconsistencies or make sense of gray areas",
+          "They are the ones responsible for finding and analyzing the data"
+        ],
+        "answers": [0, 1, 2],
+        "explanation": "SMEs bring human experience/intuition, know the business problem, and validate results / catch inconsistencies / make sense of gray areas. The last option is the ANALYST'S job, not the SME's — that's the trap.",
+        "hint": "Three are about business judgment; one is actually the analyst's job."
+      },
+      {
+        "id": "q-data-alone-tf",
+        "type": "truefalse",
+        "concept": "Data + human experience",
+        "prompt": "True or False: data on its own is more powerful than data combined with human experience and intuition.",
+        "answer": false,
+        "explanation": "False. The video is explicit: 'data alone will never be as powerful as data combined with human experience, observation, and sometimes even intuition.' Data + people beats data alone.",
+        "hint": "Data + experience > data alone. Always."
+      },
+      {
+        "id": "q-gut-instinct-blank",
+        "type": "fillblank",
+        "concept": "Gut instinct",
+        "prompt": "Fill the blank: gut instinct is an intuitive understanding of something with little or no ___.",
+        "answer": "explanation",
+        "accept": ["explanations"],
+        "explanation": "Gut instinct = an intuitive understanding with little or no EXPLANATION — you 'just know,' often picking up signals without realizing it.",
+        "hint": "You can't ___ why you know it — you just do."
+      },
+      {
+        "id": "q-gut-vs-data-time",
+        "type": "mcq",
+        "concept": "Balancing gut and data",
+        "prompt": "The 'Data and gut instinct' reading says the right mix of data vs. gut depends mostly on one factor. On a RUSH project with little time, you should lean more on:",
+        "options": [
+          "Your own knowledge and experience (gut)",
+          "Thoroughly analyzing all the available data",
+          "Asking more subject-matter experts",
+          "Collecting more data before deciding"
+        ],
+        "answer": 0,
+        "explanation": "The factor is TIME (and resources). Rush / little time → lean more on your own knowledge and experience. Plenty of time + resources → be more data-driven. The ideal is always a blend.",
+        "hint": "Little time = no time to analyze everything, so you lean on…"
+      }
+    ]
   }
 ]

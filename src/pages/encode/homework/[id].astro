@@ -3,7 +3,21 @@ import Layout from '../../../layouts/Layout.astro';
 import Quiz from '../../../components/Quiz.astro';
 import homework from '../../../data/homework.json';
 
-type Question = { id: string; concept: string; prompt: string; options: string[]; answer: number; explanation: string; hint?: string };
+type Question = {
+  id: string;
+  type?: 'mcq' | 'written' | 'truefalse' | 'fillblank' | 'multi' | 'order';
+  concept: string;
+  prompt: string;
+  options?: string[];
+  answer?: number | string | boolean;
+  answers?: number[];
+  items?: string[];
+  accept?: string[];
+  keywords?: string[];
+  explanation: string;
+  hint?: string;
+  trap?: boolean;
+};
 type Quiz = { id: string; title: string; session: string; course: string; excerpt: string; passPct: number; questions: Question[] };
 
 export async function getStaticPaths() {
