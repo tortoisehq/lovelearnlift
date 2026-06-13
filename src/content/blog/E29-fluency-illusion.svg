@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="800" height="460" fill="#faf7f0"/>
+  <text x="400" y="50" text-anchor="middle" font-size="28" font-weight="bold" fill="#2b2b2b">The Fluency Illusion</text>
+  <text x="400" y="78" text-anchor="middle" font-size="15" fill="#777" font-style="italic">a true story, told in two bars</text>
+
+  <!-- axis -->
+  <line x1="120" y1="380" x2="700" y2="380" stroke="#cbb" stroke-width="2"/>
+
+  <!-- Bar 1: understanding while watching -->
+  <rect x="200" y="120" width="120" height="260" rx="6" fill="#6a9a78"/>
+  <text x="260" y="110" text-anchor="middle" font-size="34" font-weight="bold" fill="#3c6b4a">100%</text>
+  <text x="260" y="405" text-anchor="middle" font-size="15" fill="#333">Understood</text>
+  <text x="260" y="424" text-anchor="middle" font-size="15" fill="#333">while watching</text>
+
+  <!-- Bar 2: recall 30s later -->
+  <rect x="480" y="368" width="120" height="12" rx="6" fill="#b5564e"/>
+  <text x="540" y="358" text-anchor="middle" font-size="30" font-weight="bold" fill="#b5564e">no clue</text>
+  <text x="540" y="405" text-anchor="middle" font-size="15" fill="#333">Recalled</text>
+  <text x="540" y="424" text-anchor="middle" font-size="15" fill="#333">30 seconds later</text>
+
+  <!-- little brain emoji-ish doodle -->
+  <text x="540" y="330" text-anchor="middle" font-size="40">🧠</text>
+  <text x="540" y="300" text-anchor="middle" font-size="22">💨</text>
+</svg>
