@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <radialGradient id="g" cx="30%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#1d2747"/>
+      <stop offset="100%" stop-color="#0f1322"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#13182a"/>
+  <rect width="1200" height="630" fill="url(#g)" opacity="0.6"/>
+
+  <text x="80" y="110" fill="#f4f1ea" font-size="58" font-weight="bold">Too early to tell.</text>
+  <text x="80" y="158" fill="#9aa6c4" font-size="26" font-style="italic">An engine that won&#39;t call noise a pattern.</text>
+
+  <!-- Panel 1: a real correlation -->
+  <g transform="translate(80,230)">
+    <rect width="480" height="300" rx="14" fill="#0c1020" stroke="#2a3454" stroke-width="1.5"/>
+    <line x1="40" y1="260" x2="440" y2="260" stroke="#3a4566" stroke-width="1.5"/>
+    <line x1="40" y1="40" x2="40" y2="260" stroke="#3a4566" stroke-width="1.5"/>
+    <line x1="55" y1="245" x2="425" y2="70" stroke="#7fd1a6" stroke-width="3"/>
+    <g fill="#a7e8c6">
+      <circle cx="80" cy="232" r="7"/><circle cx="130" cy="208" r="7"/><circle cx="175" cy="200" r="7"/>
+      <circle cx="220" cy="170" r="7"/><circle cx="265" cy="158" r="7"/><circle cx="310" cy="128" r="7"/>
+      <circle cx="355" cy="110" r="7"/><circle cx="400" cy="82" r="7"/>
+    </g>
+    <text x="40" y="292" fill="#7fd1a6" font-size="22" font-style="italic">recovery &#8596; energy &#183; clear</text>
+  </g>
+
+  <!-- Panel 2: too early to tell -->
+  <g transform="translate(640,230)">
+    <rect width="480" height="300" rx="14" fill="#0c1020" stroke="#2a3454" stroke-width="1.5"/>
+    <line x1="40" y1="260" x2="440" y2="260" stroke="#3a4566" stroke-width="1.5"/>
+    <line x1="40" y1="40" x2="40" y2="260" stroke="#3a4566" stroke-width="1.5"/>
+    <g fill="#717d9e">
+      <circle cx="90" cy="120" r="7"/><circle cx="140" cy="220" r="7"/><circle cx="190" cy="90" r="7"/>
+      <circle cx="240" cy="190" r="7"/><circle cx="290" cy="140" r="7"/><circle cx="340" cy="230" r="7"/>
+      <circle cx="385" cy="110" r="7"/><circle cx="415" cy="180" r="7"/>
+    </g>
+    <text x="40" y="292" fill="#717d9e" font-size="22" font-style="italic">sleep &#8596; energy &#183; too early to tell</text>
+  </g>
+
+  <text x="80" y="592" fill="#5e6a8a" font-size="20">lovelearnlift.com &#183; forge &#183; n-of-1</text>
+</svg>
