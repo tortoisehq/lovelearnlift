@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" role="img" aria-label="A rail line collapsing from sixteen cluttered ties down to six clean, named stations: Open, Scope, Plan, Review, Ship, Close.">
+  <rect width="760" height="360" fill="#0f1115"/>
+  <text x="40" y="58" fill="#e8e8e8" font-family="Georgia, serif" font-size="30" font-weight="bold">Sixteen steps became six.</text>
+  <text x="40" y="86" fill="#8a8f98" font-family="Georgia, serif" font-size="16">Lighter. And stricter. Every safety gate kept.</text>
+
+  <!-- LEFT: the old tangle — 16 faint ties, crowded -->
+  <text x="40" y="150" fill="#5a5f68" font-family="Georgia, serif" font-size="14">before — 16</text>
+  <g stroke="#3a3f48" stroke-width="3">
+    <line x1="46" y1="170" x2="46" y2="300"/><line x1="58" y1="170" x2="58" y2="300"/>
+    <line x1="70" y1="170" x2="70" y2="300"/><line x1="82" y1="170" x2="82" y2="300"/>
+    <line x1="94" y1="170" x2="94" y2="300"/><line x1="106" y1="170" x2="106" y2="300"/>
+    <line x1="118" y1="170" x2="118" y2="300"/><line x1="130" y1="170" x2="130" y2="300"/>
+    <line x1="142" y1="170" x2="142" y2="300"/><line x1="154" y1="170" x2="154" y2="300"/>
+    <line x1="166" y1="170" x2="166" y2="300"/><line x1="178" y1="170" x2="178" y2="300"/>
+    <line x1="190" y1="170" x2="190" y2="300"/><line x1="202" y1="170" x2="202" y2="300"/>
+    <line x1="214" y1="170" x2="214" y2="300"/><line x1="226" y1="170" x2="226" y2="300"/>
+  </g>
+
+  <!-- arrow -->
+  <text x="262" y="240" fill="#d6a93b" font-family="Georgia, serif" font-size="34">→</text>
+
+  <!-- RIGHT: the clean spine — two rails + 6 named stations -->
+  <text x="320" y="150" fill="#7fae6b" font-family="Georgia, serif" font-size="14">after — 6</text>
+  <line x1="330" y1="222" x2="724" y2="222" stroke="#7fae6b" stroke-width="3"/>
+  <line x1="330" y1="236" x2="724" y2="236" stroke="#7fae6b" stroke-width="3"/>
+  <g font-family="Georgia, serif" font-size="13" fill="#e8e8e8" text-anchor="middle">
+    <g>
+      <circle cx="355" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="355" y="276">OPEN</text>
+    </g>
+    <g>
+      <circle cx="427" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="427" y="276">SCOPE</text>
+    </g>
+    <g>
+      <circle cx="499" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="499" y="276">PLAN</text>
+    </g>
+    <g>
+      <circle cx="571" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="571" y="276">REVIEW</text>
+    </g>
+    <g>
+      <circle cx="643" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="643" y="276">SHIP</text>
+    </g>
+    <g>
+      <circle cx="710" cy="229" r="9" fill="#0f1115" stroke="#7fae6b" stroke-width="3"/>
+      <text x="710" y="276">CLOSE</text>
+    </g>
+  </g>
+
+  <text x="40" y="334" fill="#8a8f98" font-family="Georgia, serif" font-size="13" font-style="italic">A check that lies is worse than no check. So I moved them whole, and made the line prove it ran.</text>
+</svg>
