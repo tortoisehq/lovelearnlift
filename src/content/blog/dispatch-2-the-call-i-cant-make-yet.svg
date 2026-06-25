@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img" aria-labelledby="t d" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <title id="t">From iron filings to a phone call</title>
+  <desc id="d">Scattered iron filings on the left snap into magnetic field lines that flow right and resolve into a voice waveform reaching a phone-call glyph — the path from barely-awake tokens to a real conversation.</desc>
+
+  <rect width="800" height="360" fill="#0b0b0c"/>
+
+  <!-- stage labels -->
+  <text x="44" y="44" fill="#6b7280" font-size="12" letter-spacing="2">SCATTERED</text>
+  <text x="300" y="44" fill="#9ca3af" font-size="12" letter-spacing="2">ALIGNED — THE FIELD</text>
+  <text x="588" y="44" fill="#f87171" font-size="12" letter-spacing="2">A VOICE</text>
+
+  <!-- LEFT: iron filings, short strokes at random angles (barely-awake tokens) -->
+  <g stroke="#6b7280" stroke-width="2" stroke-linecap="round" opacity="0.9">
+    <line x1="54" y1="120" x2="70" y2="128" transform="rotate(20 62 124)"/>
+    <line x1="86" y1="96" x2="102" y2="100" transform="rotate(-35 94 98)"/>
+    <line x1="60" y1="170" x2="78" y2="172" transform="rotate(60 69 171)"/>
+    <line x1="110" y1="140" x2="128" y2="146" transform="rotate(10 119 143)"/>
+    <line x1="92" y1="210" x2="108" y2="214" transform="rotate(-50 100 212)"/>
+    <line x1="138" y1="108" x2="154" y2="116" transform="rotate(40 146 112)"/>
+    <line x1="150" y1="190" x2="168" y2="192" transform="rotate(-15 159 191)"/>
+    <line x1="74" y1="250" x2="92" y2="252" transform="rotate(75 83 251)"/>
+    <line x1="124" y1="244" x2="142" y2="248" transform="rotate(25 133 246)"/>
+    <line x1="178" y1="150" x2="196" y2="152" transform="rotate(-8 187 151)"/>
+    <line x1="170" y1="232" x2="188" y2="234" transform="rotate(18 179 233)"/>
+    <line x1="116" y1="180" x2="134" y2="183" transform="rotate(-28 125 181)"/>
+    <line x1="200" y1="120" x2="220" y2="124" transform="rotate(12 210 122)"/>
+    <line x1="206" y1="200" x2="226" y2="201" transform="rotate(-6 216 200)"/>
+    <line x1="158" y1="270" x2="176" y2="270" transform="rotate(8 167 270)"/>
+  </g>
+
+  <!-- the magnet: a small bar that turns dust into lines -->
+  <rect x="232" y="166" width="20" height="28" rx="3" fill="#dc2626"/>
+  <rect x="232" y="166" width="20" height="14" rx="3" fill="#ef4444"/>
+
+  <!-- MIDDLE: field lines sweeping right, filings now in order -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M256,158 C350,118 470,126 560,166" stroke="#ffffff" stroke-width="2" opacity="0.85"/>
+    <path d="M256,180 C360,172 470,176 560,180" stroke="#ef4444" stroke-width="2.5"/>
+    <path d="M256,202 C350,242 470,234 560,194" stroke="#ffffff" stroke-width="2" opacity="0.85"/>
+    <path d="M258,168 C362,140 482,150 560,173" stroke="#f87171" stroke-width="1.5" opacity="0.7"/>
+    <path d="M258,192 C362,224 482,214 560,187" stroke="#f87171" stroke-width="1.5" opacity="0.7"/>
+  </g>
+
+  <!-- RIGHT: voice waveform (the lines become a voice) -->
+  <g>
+    <rect x="582" y="160" width="6" height="40" rx="3" fill="#9ca3af"/>
+    <rect x="596" y="144" width="6" height="72" rx="3" fill="#f87171"/>
+    <rect x="610" y="166" width="6" height="28" rx="3" fill="#ffffff"/>
+    <rect x="624" y="132" width="6" height="96" rx="3" fill="#ef4444"/>
+    <rect x="638" y="152" width="6" height="56" rx="3" fill="#ffffff"/>
+    <rect x="652" y="125" width="6" height="110" rx="3" fill="#ef4444"/>
+    <rect x="666" y="156" width="6" height="48" rx="3" fill="#f87171"/>
+    <rect x="680" y="140" width="6" height="80" rx="3" fill="#ffffff"/>
+  </g>
+
+  <!-- the call glyph -->
+  <g transform="translate(736,180)">
+    <circle r="26" fill="none" stroke="#ef4444" stroke-width="2"/>
+    <path d="M-9,-9 c-2,0 -4,2 -4,4 c0,12 9,21 21,21 c2,0 4,-2 4,-4 l0,-6 c0,-2 -1,-3 -3,-3 l-5,-1 c-2,0 -3,1 -4,2 c-4,-2 -7,-5 -9,-9 c1,-1 2,-2 2,-4 l-1,-5 c0,-2 -1,-3 -3,-3 z" fill="#ffffff"/>
+  </g>
+
+  <!-- caption -->
+  <text x="400" y="332" text-anchor="middle" fill="#71717a" font-size="13" letter-spacing="1.5">filings → field → voice → the call i can't make yet</text>
+</svg>
