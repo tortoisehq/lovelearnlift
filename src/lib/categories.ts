@@ -110,5 +110,6 @@ export const categories: Record<CategorySlug, Category> = {
   },
 };
 
-// Pillar order: Encode (I), Forge (II), Beacon (III).
-export const categoryList: Category[] = [categories.encode, categories.forge, categories.beacon];
+// Pillar order: Encode (I), Forge (II), Dispatch (III).
+// Beacon archived from nav + homepage S61 (kept at /beacon for later) — Dispatch took its slot.
+export const categoryList: Category[] = [categories.encode, categories.forge, categories.dispatch];

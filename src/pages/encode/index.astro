@@ -3,29 +3,27 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostListItem from '../../components/PostListItem.astro';
 import { categories } from '../../lib/categories';
-import definitions from '../../data/definitions.json';
-import methodVersions from '../../data/method-versions.json';
+// ARCHIVED S61 — Method + Definitions apparatus pulled from the live page (data files kept on disk).
+// import definitions from '../../data/definitions.json';
+// import methodVersions from '../../data/method-versions.json';
 
 const meta = categories.encode;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'encode'))
   .sort((a, b) => (b.data.date.getTime() - a.data.date.getTime()) || b.slug.localeCompare(a.slug, undefined, { numeric: true }));
 
-type Definition = { term: string; category: string; definition: string; session: string };
-
-const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
-  (acc[def.category] = acc[def.category] || []).push(def);
-  return acc;
-}, {} as Record<string, Definition[]>);
-
-const categoryOrder = ['data-analytics', 'python', 'memory', 'learning'];
-const orderedCategories = categoryOrder.filter((c) => defsByCat[c]);
-
-// Latest method version (sorted newest first by codifiedAt).
-type MethodVersion = { version: string; codifiedAt: string; codifiedSession: string; nextEvolutionAt: string; summary: string };
-const sortedMethod = (methodVersions as MethodVersion[]).slice()
-  .sort((a, b) => b.codifiedAt.localeCompare(a.codifiedAt));
-const currentMethod = sortedMethod[0];
+// ARCHIVED S61 — restore alongside the Method/Definitions blocks below to bring them back.
+// type Definition = { term: string; category: string; definition: string; session: string };
+// const defsByCat = (definitions as Definition[]).reduce((acc, def) => {
+//   (acc[def.category] = acc[def.category] || []).push(def);
+//   return acc;
+// }, {} as Record<string, Definition[]>);
+// const categoryOrder = ['data-analytics', 'python', 'memory', 'learning'];
+// const orderedCategories = categoryOrder.filter((c) => defsByCat[c]);
+// type MethodVersion = { version: string; codifiedAt: string; codifiedSession: string; nextEvolutionAt: string; summary: string };
+// const sortedMethod = (methodVersions as MethodVersion[]).slice()
+//   .sort((a, b) => b.codifiedAt.localeCompare(a.codifiedAt));
+// const currentMethod = sortedMethod[0];
 ---
 
 <Layout title={meta.name} description={meta.description} palette="encode">
@@ -35,6 +33,7 @@ const currentMethod = sortedMethod[0];
     <p class="text-lg text-neutral-700 max-w-xl">Learning in public. Sessions where I sit down at zero and try to leave with one thing locked. The misses are part of the data.</p>
   </header>
 
+  {/* ARCHIVED S61 — Homework/Quiz CTA pulled from the live page (page still lives at /encode/homework).
   <a href="/encode/homework" class="block mb-4 border border-black p-5 hover:bg-neutral-50 transition-colors group">
     <div class="flex items-center justify-between gap-4">
       <div>
@@ -45,7 +44,9 @@ const currentMethod = sortedMethod[0];
       <span class="text-neutral-400 text-lg font-mono group-hover:translate-x-1 transition-transform">→</span>
     </div>
   </a>
+  */}
 
+  {/* ARCHIVED S61 — Method apparatus block (data kept in method-versions.json; page still at /encode/method).
   <details class="mb-4 border border-neutral-200 group">
     <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
       <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
@@ -64,6 +65,7 @@ const currentMethod = sortedMethod[0];
       </p>
     </div>
   </details>
+  */}
 
   <details class="mb-4 border border-neutral-200 group">
     <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
@@ -84,6 +86,7 @@ const currentMethod = sortedMethod[0];
     </div>
   </details>
 
+  {/* ARCHIVED S61 — Definitions apparatus block (the 47 terms incl. the "memory" category; data kept in definitions.json).
   <details class="mb-12 border border-neutral-200 group">
     <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
       <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
@@ -108,6 +111,7 @@ const currentMethod = sortedMethod[0];
       ))}
     </div>
   </details>
+  */}
 
   {posts.length === 0 ? (
     <p class="text-neutral-600">No posts in this category yet.</p>
