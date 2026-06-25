@@ -30,7 +30,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
   <header class="mb-12">
     <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-3">// Pillar I — Learn</p>
     <h1 class="text-5xl font-bold tracking-tight mb-3">Encode</h1>
-    <p class="text-lg text-neutral-700 max-w-xl">Learning in public. Sessions where I sit down at zero and try to leave with one thing locked. The misses are part of the data.</p>
+    <p class="text-lg text-neutral-300 max-w-xl">Learning in public. Sessions where I sit down at zero and try to leave with one thing locked. The misses are part of the data.</p>
   </header>
 
   {/* ARCHIVED S61 — Homework/Quiz CTA pulled from the live page (page still lives at /encode/homework).
@@ -67,21 +67,21 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
   </details>
   */}
 
-  <details class="mb-4 border border-neutral-200 group">
-    <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-50" style="list-style:none;">
+  <details class="mb-12 border border-neutral-800 group">
+    <summary class="cursor-pointer p-4 flex items-center justify-between hover:bg-neutral-900" style="list-style:none;">
       <span class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">Currently studying</span>
-        <span class="text-black font-semibold">Google Data Analytics Certificate — Coursera</span>
+        <span class="text-white font-semibold">Google Data Analytics Certificate — Coursera</span>
       </span>
       <span class="text-neutral-400 text-xs font-mono ml-3 group-open:rotate-90 transition-transform">▶</span>
     </summary>
-    <div class="px-4 pb-5 pt-3 border-t border-neutral-200 bg-neutral-50 space-y-3 text-sm">
-      <p class="text-neutral-700 leading-relaxed">
+    <div class="px-4 pb-5 pt-3 border-t border-neutral-800 bg-neutral-900 space-y-3 text-sm">
+      <p class="text-neutral-300 leading-relaxed">
         The exact skill behind the product: reading the patterns out of real data — asking the question, cleaning the mess, finding what's true, telling the story. Learning it in the open and pointing it at my own logged life, not a textbook's sample set. CS50 Python is paused for now.
       </p>
       <p class="pt-2 text-xs font-mono">
         {/* AFFILIATE: swap the href below for the Coursera/Impact affiliate link once approved */}
-        <a href="https://www.coursera.org/professional-certificates/google-data-analytics" rel="noopener noreferrer sponsored" target="_blank" class="underline hover:text-black">The certificate on Coursera ↗ <span class="text-neutral-400">(affiliate)</span></a>
+        <a href="https://www.coursera.org/professional-certificates/google-data-analytics" rel="noopener noreferrer sponsored" target="_blank" class="underline hover:text-white">The certificate on Coursera ↗ <span class="text-neutral-400">(affiliate)</span></a>
       </p>
     </div>
   </details>
@@ -114,7 +114,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft && data.cat
   */}
 
   {posts.length === 0 ? (
-    <p class="text-neutral-600">No posts in this category yet.</p>
+    <p class="text-neutral-400">No posts in this category yet.</p>
   ) : (
     <div>
       {posts.map((post) => <PostListItem post={post} palette="encode" />)}

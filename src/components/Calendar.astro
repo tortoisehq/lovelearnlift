@@ -24,7 +24,9 @@ const postedDates = new Set(posts.map((p) => p.date));
 const doneDays = postedDates.size;
 const forgeCount = posts.filter((p) => p.cat === 'forge').length;
 const encodeCount = posts.filter((p) => p.cat === 'encode').length;
-const beaconCount = posts.filter((p) => p.cat === 'beacon').length;
+// S61 — Beacon archived; Dispatch is the third pillar now. Beacon posts still count toward
+// doneDays (any pillar lights a day gold), but the breakdown shows the live pillars: F · E · D.
+const dispatchCount = posts.filter((p) => p.cat === 'dispatch').length;
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -93,7 +95,7 @@ const currentMonthId = `cal-${tY}-${pad2(tM)}`;
       <div class="flex items-center gap-x-6 gap-y-2 text-sm font-mono text-neutral-400 flex-wrap">
         <span><span class="text-white font-semibold">{doneDays}</span> days shipped</span>
         <span class="text-neutral-600 hidden md:inline">|</span>
-        <span><span class="text-white">F</span> {forgeCount} · <span class="text-white">E</span> {encodeCount} · <span class="text-white">B</span> {beaconCount}</span>
+        <span><span class="text-white">F</span> {forgeCount} · <span class="text-white">E</span> {encodeCount} · <span class="text-white">D</span> {dispatchCount}</span>
         <span class="text-neutral-600 hidden md:inline">|</span>
         <span class="flex items-center gap-2"><span class="inline-block w-3 h-3 bg-gold"></span> a post shipped</span>
       </div>

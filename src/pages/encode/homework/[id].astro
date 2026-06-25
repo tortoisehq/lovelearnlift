@@ -30,8 +30,8 @@ const { quiz } = Astro.props as { quiz: Quiz };
 <Layout title={`${quiz.title} — Homework`} description={quiz.excerpt} palette="encode">
   <header class="mb-8">
     <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-3">
-      <a href="/encode" class="hover:text-black">// Encode</a> /
-      <a href="/encode/homework" class="hover:text-black">Homework</a>
+      <a href="/encode" class="hover:text-white">// Encode</a> /
+      <a href="/encode/homework" class="hover:text-white">Homework</a>
     </p>
     <p class="text-sm font-mono text-neutral-500">{quiz.course}</p>
   </header>
@@ -42,6 +42,6 @@ const { quiz } = Astro.props as { quiz: Quiz };
     Scores are saved in this browser only — no account, no tracking. Clear your site data and they reset.
   </p>
   <p class="mt-2 text-xs font-mono">
-    <a href="/encode/homework" class="underline hover:text-black">← All homework</a>
+    <a href="/encode/homework" class="underline hover:text-white">← All homework</a>
   </p>
 </Layout>

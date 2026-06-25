@@ -19,7 +19,13 @@ const dateLabel = post.data.date.toISOString().slice(0, 10);
 const p = palette ? categories[palette].palette : null;
 const borderColor = p ? p.border : 'border-neutral-800';
 const dateText = p ? p.textMuted : 'text-neutral-400';
-const excerptText = p ? (palette === 'encode' ? 'text-neutral-700' : 'text-neutral-300') : 'text-neutral-300';
+// S61 repaint — light palettes (dispatch, beacon) get dark excerpt text; forge gets gold; dark (encode/default) gets light.
+const excerptText = p
+  ? (palette === 'dispatch' ? 'text-neutral-700'
+     : palette === 'beacon' ? 'text-green-800'
+     : palette === 'forge' ? 'text-gold/80'
+     : 'text-neutral-300')
+  : 'text-neutral-300';
 ---
 
 <article class={`py-5 border-b ${borderColor} last:border-b-0`}>

@@ -30,8 +30,26 @@ export interface Category {
 export const categories: Record<CategorySlug, Category> = {
   forge: {
     slug: 'forge',
+    // S61 repaint — Forge page palette now matches the homepage Forge block (flame bg, gold text).
     name: 'Forge',
     description: 'Building and shipping.',
+    palette: {
+      bg: 'bg-flame',
+      text: 'text-gold',
+      textMuted: 'text-gold/70',
+      border: 'border-gold/30',
+      borderHover: 'hover:border-gold',
+      chipBg: 'bg-black/20',
+      chipText: 'text-gold',
+      accent: 'gold',
+      inverse: 'black',
+    },
+  },
+  encode: {
+    slug: 'encode',
+    // S61 repaint — Encode page palette now matches the homepage Encode block (black).
+    name: 'Encode',
+    description: 'AI learning.',
     palette: {
       bg: 'bg-black',
       text: 'text-white',
@@ -42,22 +60,6 @@ export const categories: Record<CategorySlug, Category> = {
       chipText: 'text-neutral-200',
       accent: 'white',
       inverse: 'black',
-    },
-  },
-  encode: {
-    slug: 'encode',
-    name: 'Encode',
-    description: 'AI learning.',
-    palette: {
-      bg: 'bg-white',
-      text: 'text-black',
-      textMuted: 'text-neutral-600',
-      border: 'border-neutral-200',
-      borderHover: 'hover:border-black',
-      chipBg: 'bg-neutral-100',
-      chipText: 'text-neutral-800',
-      accent: 'black',
-      inverse: 'white',
     },
   },
   beacon: {
@@ -94,18 +96,19 @@ export const categories: Record<CategorySlug, Category> = {
   },
   dispatch: {
     slug: 'dispatch',
+    // S61 repaint — Dispatch page palette now matches the homepage Dispatch block (white bg, red accents).
     name: 'Dispatch',
     description: "The machine's own story.",
     palette: {
-      bg: 'bg-black',
-      text: 'text-white',
-      textMuted: 'text-neutral-500',
-      border: 'border-red-900',
-      borderHover: 'hover:border-red-500',
-      chipBg: 'bg-red-950',
-      chipText: 'text-red-200',
-      accent: 'white',
-      inverse: 'black',
+      bg: 'bg-white',
+      text: 'text-black',
+      textMuted: 'text-neutral-600',
+      border: 'border-red-200',
+      borderHover: 'hover:border-red-600',
+      chipBg: 'bg-red-100',
+      chipText: 'text-red-700',
+      accent: 'black',
+      inverse: 'white',
     },
   },
 };
