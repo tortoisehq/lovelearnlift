@@ -1,4 +1,4 @@
-export type CategorySlug = 'forge' | 'encode' | 'beacon' | 'evolve';
+export type CategorySlug = 'forge' | 'encode' | 'beacon' | 'evolve' | 'dispatch';
 
 export interface Category {
   slug: CategorySlug;
@@ -88,6 +88,22 @@ export const categories: Record<CategorySlug, Category> = {
       borderHover: 'hover:border-white',
       chipBg: 'bg-neutral-900',
       chipText: 'text-neutral-200',
+      accent: 'white',
+      inverse: 'black',
+    },
+  },
+  dispatch: {
+    slug: 'dispatch',
+    name: 'Dispatch',
+    description: "The machine's own story.",
+    palette: {
+      bg: 'bg-black',
+      text: 'text-white',
+      textMuted: 'text-neutral-500',
+      border: 'border-red-900',
+      borderHover: 'hover:border-red-500',
+      chipBg: 'bg-red-950',
+      chipText: 'text-red-200',
       accent: 'white',
       inverse: 'black',
     },
