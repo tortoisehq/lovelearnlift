@@ -361,5 +361,131 @@
         "hint": "Little time = no time to analyze everything, so you lean on…"
       }
     ]
+  },
+  {
+    "id": "meet-claude",
+    "title": "Meet Claude",
+    "session": "E31",
+    "course": "Anthropic Academy — Claude 101, Module 1",
+    "excerpt": "Module 1 of Anthropic's own course: what Claude is, how to talk to it, and the three desktop modes. Constitutional AI, the Stage→Task→Rules prompt recipe, the 4D framework, and the Cowork-vs-Chat trap I fell into myself.",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "q-hhh",
+        "type": "mcq",
+        "concept": "Claude's design principles",
+        "prompt": "Claude is built on three guiding principles. What are they?",
+        "options": [
+          "Helpful, harmless, honest",
+          "Fast, cheap, accurate",
+          "Helpful, harmless, humble",
+          "Honest, harmless, hardworking"
+        ],
+        "answer": 0,
+        "explanation": "The three H's: helpful, harmless, honest. They're trained in via Constitutional AI — Claude follows a written set of principles rather than just imitating its training data.",
+        "hint": "Three H's — and 'humble' and 'hardworking' aren't two of them."
+      },
+      {
+        "id": "q-constitutional",
+        "type": "fillblank",
+        "concept": "Constitutional AI",
+        "prompt": "Fill the blank: the training approach that aligns Claude to a written set of principles is called ___ AI.",
+        "answer": "Constitutional",
+        "accept": ["constitutional"],
+        "explanation": "Constitutional AI: Claude is trained to follow a 'constitution' — a written set of principles — so it aligns with human values and behaves transparently, instead of just mimicking whatever was in its training data.",
+        "hint": "Like a country's founding document — a written set of rules to live by."
+      },
+      {
+        "id": "q-generate-retrieve",
+        "type": "truefalse",
+        "concept": "How Claude produces answers",
+        "trap": true,
+        "prompt": "True or False: Claude answers by looking up stored answers from a database.",
+        "answer": false,
+        "explanation": "False. Claude GENERATES answers word-by-word from patterns it learned — it doesn't RETRIEVE them from a database. That's why it can write and reason freely, but can also be confidently wrong. Generate, not retrieve.",
+        "hint": "It's not a search engine. It makes the answer; it doesn't fetch it."
+      },
+      {
+        "id": "q-context-window",
+        "type": "written",
+        "concept": "The context window",
+        "prompt": "In your own words: what is the context window, and why does a big one matter?",
+        "answer": "The context window is how much Claude can hold in mind at once — like short-term memory for AI (~200K tokens by default, up to 1M on paid plans). A bigger window means more information held at once, so Claude can synthesize, analyze, and reason over more in a single conversation — like a whole document or project.",
+        "keywords": ["memory", "hold", "at once", "token"],
+        "explanation": "Context window = the AI's short-term memory. The more it holds at once, the more it can synthesize and use. ~200K default / 1M on paid plans.",
+        "hint": "Think short-term memory — and what you can do with more of it at once."
+      },
+      {
+        "id": "q-prompt-framework",
+        "type": "written",
+        "concept": "The prompt framework",
+        "prompt": "Name the three parts of a strong prompt (the Lesson 2 recipe).",
+        "answer": "Set the stage (your role, objective, context), define the task (the specific action you want — write/analyze/build), and specify the rules (style, tone, format, examples).",
+        "keywords": ["stage", "task", "rules"],
+        "explanation": "Stage → Task → Rules. Each layer removes a guess: who/why, what action, and how you want it. Talk to Claude like a coworker — naturally and specifically.",
+        "hint": "Three steps — the first is something a theatre crew does before a show."
+      },
+      {
+        "id": "q-description-competency",
+        "type": "mcq",
+        "concept": "The 4D framework",
+        "trap": true,
+        "prompt": "The Stage/Task/Rules prompt framework is an expression of which AI Fluency competency?",
+        "options": ["Description", "Delegation", "Discernment", "Diligence"],
+        "answer": 0,
+        "explanation": "Description = communicating clearly with AI (defining outputs, guiding the process). Stage/Task/Rules lives here. Delegation = deciding who does what; Discernment = judging the output; Diligence = using it responsibly.",
+        "hint": "It's the D about how you DESCRIBE what you want."
+      },
+      {
+        "id": "q-4d-multi",
+        "type": "multi",
+        "concept": "The 4D framework",
+        "prompt": "Select ALL four competencies of the AI Fluency 4D framework.",
+        "options": ["Delegation", "Description", "Discernment", "Diligence", "Deployment", "Debugging"],
+        "answers": [0, 1, 2, 3],
+        "explanation": "The four D's: Delegation (who does what), Description (communicate clearly), Discernment (judge the output), Diligence (use responsibly). Deployment and Debugging are plausible-sounding distractors — not part of the framework.",
+        "hint": "Four D's — and neither shipping code nor fixing it is one of them."
+      },
+      {
+        "id": "q-cowork-trap",
+        "type": "mcq",
+        "concept": "Chat vs Cowork vs Code",
+        "trap": true,
+        "prompt": "\"Read this folder of 50 contracts and write me a summary memo.\" Which desktop mode fits best?",
+        "options": ["Cowork", "Chat", "Code", "Quick entry"],
+        "answer": 0,
+        "explanation": "Cowork — sustained, multi-source work that produces a finished deliverable ('review fifty like you'd review five'). The trap is that a big job FEELS like 'just chatting.' The signal is the SIZE of the job, not the topic: lots of sources + a deliverable + runs on its own = Cowork. Quick back-and-forth = Chat.",
+        "hint": "It's not coding, so not Code. But 50 docs into a memo is too big for a quick chat…"
+      },
+      {
+        "id": "q-cowork-code-engine",
+        "type": "truefalse",
+        "concept": "Chat vs Cowork vs Code",
+        "prompt": "True or False: Cowork and Code both run on Claude Code underneath.",
+        "answer": true,
+        "explanation": "True. Cowork and Code share the same engine — both are Claude Code under the hood (local, capable of independent work, can spin up subagents and sustain long tasks). Chat is the quick-exchange mode.",
+        "hint": "Two of the three modes share one engine — the one with 'Code' in its name."
+      },
+      {
+        "id": "q-delegation-diligence",
+        "type": "written",
+        "concept": "Evals / the delegation–diligence loop",
+        "prompt": "Why should you test Claude on a task where you already know the right answer?",
+        "answer": "Because you need a concrete, objective target to compare against. Testing on known-good data lets you validate whether Claude reproduces your result — if it matches, you can trust it for similar future tasks; if it can't after several refinements, you've learned not to delegate that task. It builds trust through evidence instead of guesswork.",
+        "keywords": ["known", "trust", "compare", "validate", "answer"],
+        "explanation": "The delegation–diligence loop (and 'evals'): test on data you've already analyzed, compare, refine. Calibrates trust against a real target. Validation builds confidence — but never removes your responsibility to check.",
+        "hint": "You can't grade an answer if you don't already know what 'correct' looks like."
+      },
+      {
+        "id": "q-responsibility",
+        "type": "truefalse",
+        "concept": "Diligence",
+        "trap": true,
+        "prompt": "True or False: once you've validated Claude on a task, you're no longer responsible for checking its results.",
+        "answer": false,
+        "explanation": "False. 'Validation builds confidence, but it doesn't eliminate responsibility.' You still own checking that the numbers make sense and being transparent about AI's role. That's the Diligence competency.",
+        "hint": "Confidence ≠ a free pass. Who still owns the final result?"
+      }
+    ]
   }
 ]
