@@ -1,0 +1,171 @@
+{
+  "id": "organize-work",
+  "title": "Organize Your Work",
+  "session": "E33",
+  "course": "Anthropic Academy — Claude 101, Module 2",
+  "promise": "Stop re-explaining yourself every chat. Module 2 is the three tools that let you set context up once and reuse it — Projects hold your knowledge, Skills run your processes, Artifacts hand you outputs you can use and share. A question before every answer, and a quiz that remembers what you missed.",
+  "quizId": "organize-work",
+  "loop": [
+    { "step": "Study", "blurb": "Read each idea after you've tried to predict it." },
+    { "step": "Retrieve", "blurb": "Say it back in your own words before moving on." },
+    { "step": "Prove", "blurb": "Take the quiz — Easy, Medium, or Hard." },
+    { "step": "Return", "blurb": "Come back; the misses resurface first." }
+  ],
+  "map": [
+    { "stop": "Projects", "blurb": "Self-contained workspaces with their own knowledge base, instructions, and chat history — for ongoing work, not one-offs." },
+    { "stop": "Artifacts", "blurb": "Standalone interactive outputs in a window beside the chat — docs, code, diagrams, mini-apps you can edit and share." },
+    { "stop": "Skills", "blurb": "Expertise packages that teach Claude HOW to do a repeatable task the same way every time." }
+  ],
+  "intro": [
+    "Module 1 was about steering a single conversation — frame the ask, feed it context, pick the right mode. The catch is that every new chat starts from zero. You paste the same brand guide, re-explain the same rules, re-describe the same project, again and again. Module 2 fixes that. It's three tools for organizing context on purpose so you set it up once and Claude carries it for you.",
+    "Here's the shape to hold in your head before the details: Projects store the WHAT — the knowledge Claude should always have. Skills store the HOW — the processes Claude should run the same way every time. Artifacts are the OUTPUT — the thing you walk away with, ready to use and share. Knowledge, process, output. Everything in this module is one of those three."
+  ],
+  "sections": [
+    {
+      "n": 1,
+      "lesson": "L5",
+      "heading": "A Project is a workspace, not a chat",
+      "challenge": "What is a Claude Project, and what kind of work is it actually for?",
+      "body": [
+        "A Project is a self-contained workspace with its own memory, chat histories, knowledge base, and custom instructions. It's a dedicated environment for one work stream — everything you do inside it shares the same context and follows the same rules, so you stop setting the scene from scratch in every chat.",
+        "The signal for when to reach for one is ongoing, not one-off. Create a project when you have reference materials you'll use repeatedly (meeting notes, reports, historical data), consistent requirements for how Claude should respond (always cite sources, always follow our template), or a team that needs to work from the same foundation. A quick question doesn't need a project; a recurring workflow does."
+      ],
+      "plain": "A Project is a room you furnish once — the files, the house rules, the history all stay in the room — instead of rebuilding the room every time you walk in.",
+      "lockIt": "Define a Project — a self-contained workspace with its own knowledge base, instructions, memory, and chats — and say when to use one: ongoing work with reusable materials or consistent requirements, not a one-off question."
+    },
+    {
+      "n": 2,
+      "lesson": "L5",
+      "heading": "Three things you set when you create one",
+      "challenge": "Walk the three things you set when creating a project — and which one Claude never actually reads.",
+      "body": [
+        "Creating a project is three quick choices. A descriptive name (e.g. 'Q4 Marketing Campaign'). A brief description — and here's the catch most people miss: Claude doesn't see the description directly; it's there to orient you and your teammates, not Claude. Then visibility: private to you, or shared with your org.",
+        "Name and visibility do real work; the description is purely human-facing. Knowing that keeps you from wasting effort writing a 'description' you think is steering Claude — the steering happens in the instructions, which come next."
+      ],
+      "plain": "Name it, describe it for humans, decide who sees it — and remember the description is a label for you, not an instruction Claude reads.",
+      "lockIt": "Name the three setup choices — name, description, visibility — and flag that the description is for you and your teammates, not something Claude reads directly."
+    },
+    {
+      "n": 3,
+      "lesson": "L5",
+      "heading": "The knowledge base: upload once, referenced everywhere",
+      "challenge": "How is project knowledge different from just pasting a file into one chat?",
+      "body": [
+        "The knowledge base is the files menu on the project. Add PDFs, DOCX, CSVs, text, HTML, or connect Google Drive, and every chat inside the project automatically considers that content alongside your prompt. No more re-uploading the same brand guide to each new conversation — upload it once, it's there for all of them. Name files descriptively, because Claude uses the filename to decide what to retrieve ('Q4-2024-Brand-Guidelines.pdf' beats 'document1.pdf').",
+        "One sharp nuance that trips people up: context is NOT shared across separate chats in a project unless it lives in the knowledge base. Two chats in the same project don't see each other's contents. The knowledge base is the shared layer; the individual chats are still siloed from one another."
+      ],
+      "plain": "The knowledge base is the project's shared shelf — every chat can read from it — but two chats are still separate desks that can't see each other's scratch paper.",
+      "lockIt": "Explain project knowledge — files uploaded once and referenced automatically across every chat in the project — and the siloing nuance: separate chats don't share context unless it's in the knowledge base."
+    },
+    {
+      "n": 4,
+      "lesson": "L5",
+      "heading": "Instructions are programming Claude's behavior",
+      "challenge": "What four ingredients make a strong set of project instructions?",
+      "body": [
+        "Project instructions tell Claude how to behave across every conversation in the project, and good ones have four ingredients: context ('this project is for B2B marketing content'), process ('first outline a structure, then write the draft'), tone and style ('professional but conversational, avoid jargon'), and specific requirements ('always include a call-to-action'). They work alongside your user preferences and selected style, and they can even automate workflows ('when I upload a meeting transcript, summarize it with this template').",
+        "The course's framing is the part to keep: think of instructions as programming Claude's behavior for this project. That's the same skill as writing a system prompt — you're not asking nicely each time, you're setting standing behavior once."
+      ],
+      "plain": "Instructions are the house rules posted on the wall — context, process, tone, requirements — that every conversation in the room follows without being told again.",
+      "lockIt": "Name the four ingredients of project instructions — context, process, tone/style, requirements — and the framing: instructions are 'programming Claude's behavior' for the whole project."
+    },
+    {
+      "n": 5,
+      "lesson": "L5",
+      "heading": "RAG kicks in automatically when the base gets big",
+      "challenge": "What happens when a project's knowledge base grows past the context window?",
+      "body": [
+        "Normally Claude loads the project's knowledge into its context window and reasons over all of it. But when the knowledge base approaches that limit, Claude seamlessly switches into Retrieval Augmented Generation (RAG) mode — instead of holding everything in memory at once, it searches and pulls only the most relevant pieces needed to answer. That expands capacity by up to 10x while keeping response quality, and a visual indicator shows when it's active. The experience feels the same.",
+        "Two things to lock about this RAG: it's automatic — you don't flip a switch — and it's per-project, scoped to that one knowledge base. It is not a global index across all your projects. Each project retrieves from its own shelf."
+      ],
+      "plain": "When the shelf gets too big to hold all at once, Claude stops carrying every book and starts grabbing just the right few — automatically, and only from that project's shelf.",
+      "lockIt": "Explain what happens at scale: Claude auto-enables RAG, retrieving only the most relevant knowledge (up to ~10x capacity) instead of loading it all — and note it's automatic and per-project, not a global cross-project index."
+    },
+    {
+      "n": 6,
+      "lesson": "L5",
+      "heading": "Sharing: view, edit, owner",
+      "challenge": "Name the three permission levels for a shared project.",
+      "body": [
+        "On Claude for Work (Team and Enterprise), you can share a project so everyone works from the same context and instructions. There are three permission levels. Can view: see the contents, use the knowledge, chat — but make no changes (read-only plus discussion). Can edit: modify instructions, update knowledge, manage members, fully contribute. Owner: control everything, including who else can see it.",
+        "Share by opening the project, choosing 'Share project', and adding people by name or email — or sharing with everyone at your org. Members get an email and find it under 'Shared with me'."
+      ],
+      "plain": "Three keys to the room: a visitor's key (look, don't touch), a resident's key (rearrange the furniture), and the owner's key (decide who gets keys).",
+      "lockIt": "Name the three project permission levels — Can view (read-only + discussion), Can edit (full collaboration), Owner (controls everything including access)."
+    },
+    {
+      "n": 7,
+      "lesson": "L6",
+      "heading": "An artifact is an output in its own window",
+      "challenge": "What is an artifact, and what makes Claude decide to create one?",
+      "body": [
+        "An artifact is a standalone, interactive output that Claude renders in a dedicated window beside the conversation — instead of a long block of code or text buried in the chat, you get the thing itself: a working web page, an interactive chart, a document ready to download. From that window you can switch between preview and underlying code, copy, or download.",
+        "Claude creates one automatically when the content meets certain criteria: it's significant and self-contained (typically over 15 lines), it's something you're likely to edit, iterate on, or reuse, it stands on its own without the surrounding chat, and it's something you'll want to reference later. If Claude doesn't auto-create one, you can just ask: 'show me this as an artifact.'"
+      ],
+      "plain": "An artifact is Claude handing you the finished object on a side table — editable and ready — rather than reading you the blueprint in the middle of the conversation.",
+      "lockIt": "Define an artifact — a standalone interactive output in a dedicated window beside the chat — and name the trigger: significant, self-contained content (usually >15 lines) you'll edit, reuse, or reference later."
+    },
+    {
+      "n": 8,
+      "lesson": "L6",
+      "heading": "The six kinds of artifact",
+      "challenge": "Name several types of thing Claude can render as an artifact.",
+      "body": [
+        "Artifacts span six common types. Documents (markdown, Word, PDF, PowerPoint, Excel) for text-heavy content you'll export or edit. Code snippets in any language, to view, copy, or download. HTML pages — a complete page in one file, good for landing pages and prototypes. SVG images for logos and icons that render right in the window. Mermaid diagrams for flowcharts, sequence and Gantt charts. And React components — interactive UI with real logic, like calculators, dashboards, and data viz.",
+        "The throughline: an artifact isn't just text, it's a usable object. The more specific you are about what you want and who it's for, the better the object you get back — describe the end user, and iterate one feature at a time."
+      ],
+      "plain": "Documents, code, web pages, SVGs, diagrams, React components — six flavors, but all the same idea: a finished thing you can use, not a paragraph describing it.",
+      "lockIt": "Name a handful of the six artifact types — documents, code snippets, HTML pages, SVG images, Mermaid diagrams, React components."
+    },
+    {
+      "n": 9,
+      "lesson": "L6",
+      "heading": "Publishing: the artifact goes public, the chat doesn't",
+      "challenge": "When you publish an artifact publicly, what becomes public — and what stays private?",
+      "body": [
+        "You can copy or download an artifact, share it inside your org (Team/Enterprise), or publish it publicly (available on Free, Pro, and Max). Publishing makes it accessible to anyone with the link — no Claude account needed to view or interact — and others can 'remix' it, opening it in their own Claude conversation to modify.",
+        "The line to hold: only the selected version of the artifact becomes public — your conversation stays private. You can unpublish anytime, and published artifacts are NOT indexed by search engines, so they won't show up in a Google search. Public link, private chat."
+      ],
+      "plain": "Publishing puts the painting in the gallery, not your sketchbook — viewers see the finished piece, never the messy conversation that made it, and it won't turn up in a web search.",
+      "lockIt": "Explain publishing an artifact: only the selected version becomes public (the chat stays private), anyone with the link can view/interact/remix without an account, you can unpublish anytime, and it's not indexed by search engines."
+    },
+    {
+      "n": 10,
+      "lesson": "L7",
+      "heading": "A Skill is an expertise package",
+      "challenge": "What is a Skill, and what's a Skill you've probably already used without knowing?",
+      "body": [
+        "A Skill is a folder of instructions, scripts, and resources that Claude loads dynamically to do a specialized task well — an expertise package that teaches Claude HOW to complete a specific task in a repeatable way. You've already used Skills if you've had Claude make an Excel sheet, a PowerPoint, a Word doc, or a PDF: those file-creation abilities are Skills running behind the scenes.",
+        "But Skills go past document creation. A custom Skill can codify a whole repeatable workflow — a quarterly variance analysis, a brand-voice review, a compliance checklist — so Claude follows the same rigorous steps every single time. Note the plan line: Skills are a feature preview for Pro, Max, Team, and Enterprise; Free can read along."
+      ],
+      "plain": "A Skill is a recipe card Claude pulls out for a specific job — the same steps, same way, every time — and the Excel/PowerPoint/PDF makers you've used are exactly that, working quietly in the background.",
+      "lockIt": "Define a Skill — a folder of instructions/scripts/resources Claude loads dynamically to perform a specialized task repeatably — and give the everyday example: document creation (Excel, PowerPoint, Word, PDF) is powered by Skills."
+    },
+    {
+      "n": 11,
+      "lesson": "L7",
+      "heading": "Built-in vs custom — and where to switch them on",
+      "challenge": "Name Anthropic's built-in Skills, and where in the app you enable Skills.",
+      "body": [
+        "There are two kinds. Anthropic Skills are built and maintained by Anthropic — the enhanced document creation for Excel, Word, PowerPoint, and PDF — available to paid users and invoked automatically when relevant. Custom Skills are ones you or your org create for specialized workflows, and the easiest way to build one is by talking to Claude: tell it what you want, answer its interview questions, upload reference materials, and save — Claude generates the structured skill file for you.",
+        "To turn them on: Settings > Capabilities, make sure Code execution and file creation is enabled (Skills need the secure sandbox), then scroll to Skills and toggle the ones you want. One security note worth keeping: Skills can run code, so only install custom Skills from trusted sources."
+      ],
+      "plain": "Two buckets — Anthropic's official document-makers, and custom ones you build by just chatting — and the on-switch lives under Settings > Capabilities, after Code execution is enabled.",
+      "lockIt": "Name Anthropic's built-in Skills (Excel, Word, PowerPoint, PDF document creation), distinguish them from custom Skills you build, and say where to enable them: Settings > Capabilities (with Code execution + file creation on)."
+    }
+  ],
+  "nugget": {
+    "title": "Knowledge, process, output — the one frame that organizes the whole module",
+    "challenge": "Projects, Skills, and Artifacts — match each to whether it's the WHAT, the HOW, or the OUTPUT.",
+    "body": [
+      "The course gives you the lock in one line: 'Projects store knowledge, skills perform tasks.' Projects are knowledge hubs — the WHAT, the information Claude draws on across every chat in that project. Skills are procedural machines — the HOW, the steps and methodology Claude runs the same way every time. And Artifacts are the OUTPUT — the finished, usable object you walk away with. Knowledge, process, output.",
+      "They complement each other rather than compete. A Skill can reference knowledge stored in a Project; a Project's instructions can lean on a Skill's process; either can produce an Artifact. The reason this frame is worth more than the rest of the module: the second you can sort any new Claude feature into what / how / output, you stop memorizing tools and start reaching for the right one. That's the difference between knowing the buttons and organizing your work on purpose."
+    ],
+    "whyItMatters": "Most people learn Projects, Artifacts, and Skills as three unrelated menus. The master-level move is seeing them as one system: you store the knowledge once (Project), encode the process once (Skill), and collect the output (Artifact). Miles already lives this — his CLAUDE.md is project instructions, his .encode/resources is a knowledge base, and his pipeline phases are Skills. The frame names what he's been hand-building.",
+    "lockIt": "Sort the three: Projects = knowledge (the what), Skills = process (the how), Artifacts = output (the thing you keep) — and state how they relate: they complement, e.g. a Skill can pull from a Project's knowledge and produce an Artifact."
+  },
+  "outro": [
+    "Step back and Module 2 is one system, not three menus. You set the knowledge up once in a Project, encode the repeatable process once as a Skill, and Claude hands you the work as an Artifact you can use and share. The re-explaining stops because the context now lives somewhere permanent instead of in your typing.",
+    "Carry the what/how/output frame into the rest of the course. When Module 3's connectors and enterprise search show up, you'll already have the question that places them: is this storing knowledge, running a process, or producing an output? Knowing which is the difference between collecting features and actually organizing how you work."
+  ]
+}

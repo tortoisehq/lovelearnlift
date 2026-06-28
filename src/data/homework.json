@@ -1,5 +1,273 @@
 [
   {
+    "id": "organize-work",
+    "title": "Organize Your Work",
+    "session": "E33",
+    "course": "Anthropic Academy — Claude 101, Module 2",
+    "excerpt": "Module 2, testable: Projects, Artifacts, and Skills — the three tools for setting context up once and reusing it. 19 questions across Easy, Medium, and Hard, with the four trap-spots built in on purpose (the description Claude never reads, chats that don't share context, RAG that isn't global, artifacts that aren't search-indexed).",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "mc-01-project-what",
+        "type": "mcq",
+        "concept": "Projects — what & when",
+        "prompt": "What best describes a Claude Project?",
+        "options": [
+          "A self-contained workspace with its own knowledge base, instructions, memory, and chats",
+          "A single long conversation that never resets",
+          "A folder of downloaded files on your computer",
+          "A paid plan tier with a larger context window"
+        ],
+        "answer": 0,
+        "explanation": "A Project is a self-contained workspace — its own knowledge base, custom instructions, memory, and chat histories — for one ongoing work stream. Not a single chat, not a plan tier.",
+        "hint": "A room you furnish once, not a single conversation."
+      },
+      {
+        "id": "mc-02-project-when",
+        "type": "mcq",
+        "concept": "Projects — what & when",
+        "prompt": "Which situation is the BEST reason to create a project rather than just starting a chat?",
+        "options": [
+          "An ongoing workflow with reference materials you'll reuse and consistent requirements",
+          "A single quick factual question",
+          "You want a faster response",
+          "You want Claude to forget previous chats"
+        ],
+        "answer": 0,
+        "explanation": "Projects pay off for ongoing work — repeated reference materials, consistent requirements, team collaboration. A one-off question doesn't need one.",
+        "hint": "Ongoing and reusable, not one-and-done."
+      },
+      {
+        "id": "tf-03-description-unread",
+        "type": "truefalse",
+        "concept": "Project setup — name/description/visibility",
+        "prompt": "The project description you write at setup is read by Claude and steers its responses.",
+        "answer": false,
+        "explanation": "Claude does NOT see the project description directly — it's there to orient you and your teammates. The steering happens in the project instructions, not the description.",
+        "hint": "The description is a label for humans; instructions do the steering.",
+        "trap": true
+      },
+      {
+        "id": "mu-04-setup-choices",
+        "type": "multi",
+        "concept": "Project setup — name/description/visibility",
+        "prompt": "Which of these do you set when creating a project? Select all that apply.",
+        "options": [
+          "A name",
+          "A description",
+          "Visibility (private or shared with your org)",
+          "The model version",
+          "A monthly budget"
+        ],
+        "answers": [0, 1, 2],
+        "explanation": "Creating a project is three choices: name, description, and visibility. Model version and budget aren't part of project setup.",
+        "hint": "Name it, describe it, decide who sees it."
+      },
+      {
+        "id": "tf-05-chat-siloing",
+        "type": "truefalse",
+        "concept": "Knowledge base — siloing",
+        "prompt": "Two separate chats inside the same project automatically share each other's full conversation context.",
+        "answer": false,
+        "explanation": "Context is NOT shared across separate chats unless it lives in the knowledge base. The knowledge base is the shared layer; individual chats stay siloed from one another.",
+        "hint": "Shared shelf, separate desks.",
+        "trap": true
+      },
+      {
+        "id": "mc-06-filenames",
+        "type": "mcq",
+        "concept": "Knowledge base — filenames",
+        "prompt": "Why does the lesson tell you to give knowledge-base files descriptive names?",
+        "options": [
+          "Claude uses the file name to decide what to retrieve",
+          "Long names upload faster",
+          "Claude can't read files with numbers in the name",
+          "It's required or the upload fails"
+        ],
+        "answer": 0,
+        "explanation": "Claude uses filenames (and file proximity) to retrieve the right material — 'Q4-2024-Brand-Guidelines.pdf' beats 'document1.pdf'.",
+        "hint": "The name is a retrieval cue."
+      },
+      {
+        "id": "mu-07-instruction-ingredients",
+        "type": "multi",
+        "concept": "Project instructions — 4 ingredients",
+        "prompt": "Which ingredients make up strong project instructions? Select all that apply.",
+        "options": [
+          "Context",
+          "Process",
+          "Tone & style",
+          "Specific requirements",
+          "Your billing details",
+          "The description field"
+        ],
+        "answers": [0, 1, 2, 3],
+        "explanation": "Good instructions have four ingredients: context, process, tone/style, and specific requirements. Billing and the description aren't part of them.",
+        "hint": "Context, process, tone, requirements."
+      },
+      {
+        "id": "fb-08-programming-behavior",
+        "type": "fillblank",
+        "concept": "Instructions = programming behavior",
+        "prompt": "The course says to think of project instructions as ___ Claude's behavior for the project.",
+        "answer": "programming",
+        "accept": ["programming", "program"],
+        "explanation": "'Think of instructions as programming Claude's behavior for this project' — you set standing behavior once instead of asking nicely each chat.",
+        "hint": "Same verb you'd use for code."
+      },
+      {
+        "id": "mc-09-rag-auto",
+        "type": "mcq",
+        "concept": "RAG — automatic at scale",
+        "prompt": "What does Claude do when a project's knowledge base grows past the context window limit?",
+        "options": [
+          "Automatically switches to RAG, retrieving only the most relevant content",
+          "Stops accepting new files",
+          "Deletes the oldest files to make room",
+          "Asks you to upgrade your plan"
+        ],
+        "answer": 0,
+        "explanation": "Claude seamlessly enables RAG mode — searching and retrieving only the most relevant pieces instead of loading everything — expanding capacity up to ~10x while keeping quality.",
+        "hint": "It stops carrying every book and grabs the right few."
+      },
+      {
+        "id": "tf-10-rag-perproject",
+        "type": "truefalse",
+        "concept": "RAG — per-project not global",
+        "prompt": "A project's RAG searches across all of your projects as one global index.",
+        "answer": false,
+        "explanation": "RAG is per-project — scoped to that one knowledge base, and automatic. It is NOT a global index across all your projects. Each project retrieves from its own shelf.",
+        "hint": "Each shelf is searched on its own.",
+        "trap": true
+      },
+      {
+        "id": "or-11-permissions",
+        "type": "order",
+        "concept": "Sharing — permission levels",
+        "prompt": "Put the three project permission levels in order from least to most control.",
+        "items": [
+          "Can view (read-only + discussion)",
+          "Can edit (full collaboration)",
+          "Owner (controls everything, including who sees it)"
+        ],
+        "explanation": "View → Edit → Owner, ascending capability: view is read-only, edit can change instructions/knowledge/members, owner controls everything including access.",
+        "hint": "Visitor's key, resident's key, owner's key."
+      },
+      {
+        "id": "mc-12-artifact-trigger",
+        "type": "mcq",
+        "concept": "Artifacts — what & trigger",
+        "prompt": "When does Claude automatically create an artifact?",
+        "options": [
+          "When content is significant and self-contained (typically >15 lines) and something you'll edit, reuse, or reference",
+          "Every time it writes more than one sentence",
+          "Only when you're on a paid plan",
+          "Only for images"
+        ],
+        "answer": 0,
+        "explanation": "Claude creates an artifact when content is significant, self-contained (usually >15 lines), likely to be edited/reused, stands on its own, and is worth referencing later.",
+        "hint": "Significant, self-contained, reusable."
+      },
+      {
+        "id": "mu-13-artifact-types",
+        "type": "multi",
+        "concept": "Artifact types",
+        "prompt": "Which of these can Claude render as an artifact? Select all that apply.",
+        "options": [
+          "Documents",
+          "Code snippets",
+          "HTML pages",
+          "SVG images",
+          "Mermaid diagrams",
+          "React components"
+        ],
+        "answers": [0, 1, 2, 3, 4, 5],
+        "explanation": "All six are named artifact types: documents, code snippets, HTML pages, SVG images, Mermaid diagrams, and React components.",
+        "hint": "All of them — it's the full list of six."
+      },
+      {
+        "id": "mc-14-publish-private-chat",
+        "type": "mcq",
+        "concept": "Publishing — public version, private chat",
+        "prompt": "When you publish an artifact publicly, what becomes visible to people with the link?",
+        "options": [
+          "Only the selected version of the artifact — your conversation stays private",
+          "The artifact and the full chat that produced it",
+          "Your whole project knowledge base",
+          "Nothing until they create a Claude account"
+        ],
+        "answer": 0,
+        "explanation": "Only the selected version becomes public; the chat stays private. Anyone with the link can view, interact, and remix — no account needed.",
+        "hint": "The painting goes in the gallery, not the sketchbook."
+      },
+      {
+        "id": "tf-15-not-indexed",
+        "type": "truefalse",
+        "concept": "Publishing — not search-indexed",
+        "prompt": "Published artifacts are indexed by search engines and can appear in Google results.",
+        "answer": false,
+        "explanation": "Published artifacts are NOT indexed by search engines — they won't show up in a Google search. Public link, but not crawlable.",
+        "hint": "Public link, but search engines can't find it.",
+        "trap": true
+      },
+      {
+        "id": "mc-16-skill-what",
+        "type": "mcq",
+        "concept": "Skills — what they are",
+        "prompt": "What is a Skill?",
+        "options": [
+          "A folder of instructions, scripts, and resources Claude loads to perform a specialized task repeatably",
+          "A premium subscription add-on",
+          "A saved chat you can replay",
+          "A larger context window"
+        ],
+        "answer": 0,
+        "explanation": "A Skill is an expertise package — instructions, scripts, and resources Claude loads dynamically to do a specific task the same rigorous way every time.",
+        "hint": "A recipe card for one job."
+      },
+      {
+        "id": "mc-17-skill-docs",
+        "type": "mcq",
+        "concept": "Built-in Skills — document creation",
+        "prompt": "Which everyday capability is actually powered by Skills running behind the scenes?",
+        "options": [
+          "Creating Excel, PowerPoint, Word, and PDF files",
+          "Starting a new chat",
+          "Changing the app theme",
+          "Logging in across devices"
+        ],
+        "answer": 0,
+        "explanation": "Anthropic's built-in Skills power document creation — Excel, Word, PowerPoint, PDF — invoked automatically when relevant.",
+        "hint": "The file-makers you've already used."
+      },
+      {
+        "id": "fb-18-skills-vs-projects",
+        "type": "fillblank",
+        "concept": "Skills vs Projects — what vs how",
+        "prompt": "Complete the course's one-liner: 'Projects store knowledge, skills ___ tasks.'",
+        "answer": "perform",
+        "accept": ["perform", "performs", "do", "execute"],
+        "explanation": "'Projects store knowledge, skills perform tasks.' Projects = the what (information); Skills = the how (process). They complement — a skill can reference a project's knowledge.",
+        "hint": "Projects hold; Skills _do_."
+      },
+      {
+        "id": "mc-19-enable-skills",
+        "type": "mcq",
+        "concept": "Enabling Skills",
+        "prompt": "Where do you enable Skills, and what must be on first?",
+        "options": [
+          "Settings > Capabilities — with Code execution and file creation enabled",
+          "Settings > Billing — with auto-renew on",
+          "The Projects menu — with sharing enabled",
+          "They're always on for everyone"
+        ],
+        "answer": 0,
+        "explanation": "Settings > Capabilities: make sure Code execution and file creation is on (Skills need the secure sandbox), then toggle individual Skills. It's a preview for Pro, Max, Team, Enterprise.",
+        "hint": "Capabilities — and Code execution has to be on."
+      }
+    ]
+  },
+  {
     "id": "e27-data-analytics-ladder",
     "title": "The Foundations Ladder",
     "session": "E27",

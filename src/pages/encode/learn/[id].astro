@@ -43,7 +43,7 @@ const passPct = quiz?.passPct ?? 80;
 
   <!-- the map -->
   <section class="mb-12">
-    <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-3">// The Meet Claude map</p>
+    <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mb-3">// The {data.title} map</p>
     <ol class="space-y-2">
       {data.map.map((stop: any, i: number) => (
         <li class="flex gap-3 border-l-2 border-neutral-700 pl-4 py-1">
@@ -61,7 +61,7 @@ const passPct = quiz?.passPct ?? 80;
 
   <!-- study sections -->
   <section class="mb-14">
-    <h2 class="text-2xl font-bold tracking-tight mb-6 border-b border-neutral-700 pb-2">Study — 13 objectives, one at a time</h2>
+    <h2 class="text-2xl font-bold tracking-tight mb-6 border-b border-neutral-700 pb-2">Study — {data.sections.length} objectives, one at a time</h2>
     <div class="space-y-8">
       {data.sections.map((s: any) => (
         <article class="border-l-2 border-neutral-800 pl-5">
