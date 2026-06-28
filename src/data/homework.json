@@ -1,5 +1,654 @@
 [
   {
+    "id": "claude-101-capstone",
+    "title": "Claude 101 — Capstone Final",
+    "session": "E33",
+    "course": "Anthropic Academy — Claude 101, Module 5 (Conclusion)",
+    "excerpt": "The certificate exam: 16 questions mixed across all five modules of Claude 101 — what Claude is, prompting, Projects/Artifacts/Skills, Connectors/Enterprise Search/Research, and the specialized surfaces. The trap-spots from every module return here. Pass at 80% and the foundation is proven, not just covered.",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "cap-01-generate",
+        "type": "truefalse",
+        "concept": "M1 — Generate vs. retrieve",
+        "prompt": "Claude answers by looking up pre-written answers from a database.",
+        "answer": false,
+        "explanation": "Claude generates a fresh response every time from learned patterns — it does not retrieve canned answers. That generative ability is why context matters so much.",
+        "hint": "Composer, not librarian.",
+        "trap": true
+      },
+      {
+        "id": "cap-02-str-order",
+        "type": "order",
+        "concept": "M1 — Prompt framework",
+        "prompt": "Put the three parts of a strong prompt in order.",
+        "items": [
+          "Set the stage (role, objective, context)",
+          "Define the task (the action you want)",
+          "Specify the rules (tone, length, format)"
+        ],
+        "explanation": "Stage → Task → Rules: set the scene, say what to do, then constrain how.",
+        "hint": "Scene, order, rules."
+      },
+      {
+        "id": "cap-03-4ds",
+        "type": "multi",
+        "concept": "M1 — AI Fluency 4 D's",
+        "prompt": "Which are the four competencies of AI Fluency? Select all that apply.",
+        "options": [
+          "Delegation",
+          "Description",
+          "Discernment",
+          "Diligence",
+          "Documentation",
+          "Deployment"
+        ],
+        "answers": [0, 1, 2, 3],
+        "explanation": "The four D's: Delegation, Description, Discernment, Diligence. Stage/Task/Rules lives under Description.",
+        "hint": "Four words, all start with D — not Documentation or Deployment."
+      },
+      {
+        "id": "cap-04-mode-pick",
+        "type": "mcq",
+        "concept": "M1 — Pick the mode",
+        "prompt": "'Read 50 contracts and write a memo.' Which desktop mode, and why?",
+        "options": [
+          "Cowork — a large autonomous deliverable, judged by job size not topic",
+          "Chat — it's just reading",
+          "Code — it involves documents",
+          "None — Claude can't do this"
+        ],
+        "answer": 0,
+        "explanation": "Pick by the size of the job, not the subject. 50 contracts into a memo is a big multi-step deliverable that runs while you do something else — Cowork.",
+        "hint": "Big autonomous job, even with no code.",
+        "trap": true
+      },
+      {
+        "id": "cap-05-skills-projects",
+        "type": "fillblank",
+        "concept": "M2 — Skills vs Projects",
+        "prompt": "Complete the line: 'Projects store knowledge, skills ___ tasks.'",
+        "answer": "perform",
+        "accept": ["perform", "performs", "do", "execute"],
+        "explanation": "Projects = the what (knowledge); Skills = the how (process). 'Projects store knowledge, skills perform tasks.'",
+        "hint": "Projects hold; Skills do."
+      },
+      {
+        "id": "cap-06-artifact",
+        "type": "mcq",
+        "concept": "M2 — Artifacts",
+        "prompt": "What is an artifact?",
+        "options": [
+          "A standalone interactive output in a window beside the chat — document, code, diagram, mini-app",
+          "A saved chat transcript",
+          "A type of subscription",
+          "A connector for cloud files"
+        ],
+        "answer": 0,
+        "explanation": "Artifacts are standalone, interactive outputs Claude renders in a dedicated window — the output you can edit, use, and share.",
+        "hint": "The finished object on the side table."
+      },
+      {
+        "id": "cap-07-rag",
+        "type": "truefalse",
+        "concept": "M2 — RAG per-project",
+        "prompt": "A project's automatic RAG searches across all of your projects as one global index.",
+        "answer": false,
+        "explanation": "RAG is automatic AND per-project — scoped to that one knowledge base, not a global cross-project index.",
+        "hint": "Each project searches its own shelf.",
+        "trap": true
+      },
+      {
+        "id": "cap-08-mcp",
+        "type": "mcq",
+        "concept": "M3 — MCP",
+        "prompt": "The protocol behind connectors is described as…",
+        "options": [
+          "MCP — 'USB-C for AI,' one open universal standard",
+          "A proprietary Claude-only cable",
+          "A type of spreadsheet formula",
+          "A paid add-on"
+        ],
+        "answer": 0,
+        "explanation": "The Model Context Protocol (MCP) is the open standard behind connectors — 'USB-C for AI,' one universal interface for any tool.",
+        "hint": "One universal port."
+      },
+      {
+        "id": "cap-09-sees-what-you-see",
+        "type": "truefalse",
+        "concept": "M3 — Permission floor",
+        "prompt": "Connecting your work email lets Claude read your CEO's inbox too.",
+        "answer": false,
+        "explanation": "Across connectors and Enterprise Search, Claude only sees what you already have permission to access — your inbox, never your CEO's.",
+        "hint": "Your keys, not a master key.",
+        "trap": true
+      },
+      {
+        "id": "cap-10-research-vs",
+        "type": "mcq",
+        "concept": "M3 — Research vs alternatives",
+        "prompt": "You need today's stock price for one company. Best tool?",
+        "options": [
+          "Web search — a quick fact from one or two sources",
+          "Research — a deep multi-source report",
+          "Enterprise search — internal org knowledge",
+          "Extended thinking — pure reasoning"
+        ],
+        "answer": 0,
+        "explanation": "A quick specific fact where speed matters is a web-search job; Research would be overkill.",
+        "hint": "Don't use the crane for a teaspoon."
+      },
+      {
+        "id": "cap-11-enterprise-search",
+        "type": "mcq",
+        "concept": "M3 — Enterprise Search",
+        "prompt": "Enterprise Search is best described as…",
+        "options": [
+          "A pre-built Project for your whole organization that searches connected tools and cites sources",
+          "A faster public web search",
+          "A personal project only you can see",
+          "A way to delete company data"
+        ],
+        "answer": 0,
+        "explanation": "Enterprise Search ('Ask {Your Org}') is a pre-built org-wide Project — searches across company tools, synthesizes, and cites sources.",
+        "hint": "The company-wide Project you didn't build."
+      },
+      {
+        "id": "cap-12-surface-rule",
+        "type": "fillblank",
+        "concept": "M4 — Pick the surface",
+        "prompt": "Choose a Claude surface by where the ___ already lives, not the topic.",
+        "answer": "work",
+        "accept": ["work", "task", "job"],
+        "explanation": "One intelligence, many surfaces — pick by where the work already happens.",
+        "hint": "The thing you're getting done."
+      },
+      {
+        "id": "cap-13-code-where",
+        "type": "mcq",
+        "concept": "M4 — Claude Code",
+        "prompt": "Claude Code runs where?",
+        "options": [
+          "In your terminal, IDE, browser, or Slack",
+          "Only in the claude.ai web app",
+          "Only inside Excel",
+          "Only on mobile"
+        ],
+        "answer": 0,
+        "explanation": "Claude Code is an agentic coding tool that works in your terminal, IDE, browser, or even Slack.",
+        "hint": "Where developers already work."
+      },
+      {
+        "id": "cap-14-chrome-preview",
+        "type": "truefalse",
+        "concept": "M4 — Chrome research preview",
+        "prompt": "Claude for Chrome is fully released and fine for high-risk tasks on any site.",
+        "answer": false,
+        "explanation": "Claude for Chrome is in research preview — best for low-risk tasks on trusted sites; it asks before high-risk actions and blocks some categories by default.",
+        "hint": "Still a preview.",
+        "trap": true
+      },
+      {
+        "id": "cap-15-throughline",
+        "type": "mcq",
+        "concept": "M5 — Course throughline",
+        "prompt": "What's the single idea that ties the whole course together?",
+        "options": [
+          "Claude generates from context, so every feature is about getting the right context in front of it and judging what comes back",
+          "Claude memorizes the internet, so you just ask it anything",
+          "The more you pay, the smarter it gets",
+          "Prompts don't matter if the model is good"
+        ],
+        "answer": 0,
+        "explanation": "Because Claude generates rather than retrieves, the context you provide is the whole game — and the delegation–diligence loop keeps you accountable for the output.",
+        "hint": "One idea: context in, judgment out."
+      },
+      {
+        "id": "cap-16-uploads",
+        "type": "mcq",
+        "concept": "M2 — Uploads as context",
+        "prompt": "Per the course, uploading a document to Claude is best described as…",
+        "options": [
+          "A shortcut that gives Claude context to consider in its response",
+          "A way to permanently train Claude on your data",
+          "Something required before Claude will answer anything",
+          "A trick to make Claude respond faster"
+        ],
+        "answer": 0,
+        "explanation": "Uploads are a context shortcut — Claude parses the file to understand your situation, but does not permanently train on your data.",
+        "hint": "A shortcut to context, not a training session."
+      }
+    ]
+  },
+  {
+    "id": "putting-together",
+    "title": "Putting It All Together",
+    "session": "E33",
+    "course": "Anthropic Academy — Claude 101, Module 4",
+    "excerpt": "Module 4, testable: use-cases by role and the specialized Claude surfaces — Code, Slack, Excel, PowerPoint, Chrome. 14 questions across Easy, Medium, and Hard, with the trap built in (Claude for Chrome is a research preview, not a fully released anything-goes tool) and the one rule that ties it together: pick the surface by where the work lives.",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "mc-01-use-case-gallery",
+        "type": "mcq",
+        "concept": "Use-cases by role / gallery",
+        "prompt": "Where does the course point you to find step-by-step guides and more use-case inspiration?",
+        "options": [
+          "The Use Case Gallery",
+          "The Windows Store",
+          "Your project's knowledge base",
+          "The Slack directory"
+        ],
+        "answer": 0,
+        "explanation": "Each role's use-cases link to step-by-step guides in the Use Case Gallery — the place to browse the full collection for your specific work.",
+        "hint": "A 'gallery' of use cases."
+      },
+      {
+        "id": "mc-02-code-where",
+        "type": "mcq",
+        "concept": "Claude Code — what & where",
+        "prompt": "What is Claude Code, and where does it run?",
+        "options": [
+          "An agentic coding tool that understands your codebase and runs commands — in your terminal, IDE, browser, or Slack",
+          "A web-only chatbot for coding questions",
+          "A spreadsheet plugin",
+          "A slide-deck builder"
+        ],
+        "answer": 0,
+        "explanation": "Claude Code is an agentic coding tool: it understands your codebase, executes commands, and handles whole dev workflows in natural language — running in the terminal, IDE, browser, or Slack.",
+        "hint": "Lives in the terminal, not a web chat."
+      },
+      {
+        "id": "mc-03-slack-handoff",
+        "type": "mcq",
+        "concept": "Claude in Slack",
+        "prompt": "What's a standout move Claude in Slack offers beyond summarizing threads?",
+        "options": [
+          "Tag @Claude to hand off a coding task and spin up a Claude Code session from the thread's context",
+          "Permanently delete a Slack channel",
+          "Replace your Slack admin",
+          "Disable other Slack apps"
+        ],
+        "answer": 0,
+        "explanation": "From a bug report or feature discussion, you can tag @Claude and it spins up a Claude Code session using the surrounding Slack context — the discussion becomes where the work begins.",
+        "hint": "From bug-report thread straight to code."
+      },
+      {
+        "id": "mc-04-excel-debug",
+        "type": "mcq",
+        "concept": "Claude for Excel",
+        "prompt": "Which problem is Claude for Excel especially built for?",
+        "options": [
+          "Tracing formula errors like #REF! and #VALUE! while preserving formula dependencies",
+          "Editing video files",
+          "Sending marketing emails",
+          "Running git commits"
+        ],
+        "answer": 0,
+        "explanation": "Claude for Excel is a sidebar that analyzes and modifies spreadsheets by conversation — understanding multi-tab workbooks, preserving formula dependencies, and debugging #REF!/#VALUE!/circular references.",
+        "hint": "Those spreadsheet error codes."
+      },
+      {
+        "id": "mc-05-ppt-template",
+        "type": "mcq",
+        "concept": "Claude for PowerPoint",
+        "prompt": "When Claude for PowerPoint drafts and restructures a deck, what does it preserve?",
+        "options": [
+          "Your existing template and brand styling",
+          "Nothing — it rebuilds from a blank theme",
+          "Only the title slide",
+          "Your Excel formulas"
+        ],
+        "answer": 0,
+        "explanation": "Claude for PowerPoint drafts, edits, and restructures presentations by conversation while keeping your existing template and brand styling intact.",
+        "hint": "Your brand stays put."
+      },
+      {
+        "id": "tf-06-chrome-preview",
+        "type": "truefalse",
+        "concept": "Claude for Chrome — research preview",
+        "prompt": "Claude for Chrome is fully released and recommended for high-risk tasks like purchasing on any website.",
+        "answer": false,
+        "explanation": "False — Claude for Chrome is in research preview. Anthropic recommends low-risk tasks on trusted sites; it asks permission before high-risk actions (purchasing, sharing personal data) and blocks some site categories by default.",
+        "hint": "It's still a preview — keep it low-risk.",
+        "trap": true
+      },
+      {
+        "id": "mu-07-chrome-blocked",
+        "type": "multi",
+        "concept": "Claude for Chrome — research preview",
+        "prompt": "Which site categories does Claude for Chrome block by default? Select all that apply.",
+        "options": [
+          "Financial services",
+          "Adult content",
+          "News sites",
+          "Search engines"
+        ],
+        "answers": [0, 1],
+        "explanation": "By default it blocks certain categories — financial services and adult content — and asks before high-risk actions elsewhere.",
+        "hint": "Money and NSFW."
+      },
+      {
+        "id": "mc-08-surface-dev",
+        "type": "mcq",
+        "concept": "Pick surface by where work lives",
+        "prompt": "You're building and committing software. Which surface fits?",
+        "options": [
+          "Claude Code",
+          "Claude for PowerPoint",
+          "Claude for Excel",
+          "claude.ai web chat only"
+        ],
+        "answer": 0,
+        "explanation": "Software development, codebase navigation, and git workflows are Claude Code's home — terminal, IDE, or browser.",
+        "hint": "Code → Code."
+      },
+      {
+        "id": "mc-09-surface-slides",
+        "type": "mcq",
+        "concept": "Pick surface by where work lives",
+        "prompt": "You need to turn an outline into a slide deck. Which surface fits?",
+        "options": [
+          "Claude for PowerPoint",
+          "Claude Code",
+          "Claude in Slack",
+          "Enterprise Search"
+        ],
+        "answer": 0,
+        "explanation": "Slide creation and presentation editing live in Claude for PowerPoint.",
+        "hint": "Slides → PowerPoint."
+      },
+      {
+        "id": "mc-10-cowork",
+        "type": "mcq",
+        "concept": "Pick surface by where work lives",
+        "prompt": "Per the summary table, Claude Cowork is best for…",
+        "options": [
+          "Complex, multi-step deliverables — research briefs, document creation, data analysis (desktop, and mobile via Dispatch)",
+          "Quick one-line factual questions",
+          "Editing a single spreadsheet cell",
+          "Replacing your terminal"
+        ],
+        "answer": 0,
+        "explanation": "Cowork handles complex multi-step deliverables (research briefs, document creation, file organization, data analysis), on desktop and on mobile via Dispatch.",
+        "hint": "Big autonomous deliverables."
+      },
+      {
+        "id": "fb-11-decision-rule",
+        "type": "fillblank",
+        "concept": "Pick surface by where work lives",
+        "prompt": "The rule for choosing a Claude surface: pick by where the ___ already lives, not the topic.",
+        "answer": "work",
+        "accept": ["work", "task", "job"],
+        "explanation": "One intelligence, many surfaces — choose the surface by where the work already happens (terminal, spreadsheet, slide deck, Slack), not by the subject.",
+        "hint": "The thing you're trying to get done."
+      },
+      {
+        "id": "mu-12-surfaces",
+        "type": "multi",
+        "concept": "Claude Code — what & where",
+        "prompt": "Which of these are specialized Claude surfaces named in this module? Select all that apply.",
+        "options": [
+          "Claude Code",
+          "Claude in Slack",
+          "Claude for Excel",
+          "Claude for PowerPoint",
+          "Claude for Chrome",
+          "Claude for TikTok"
+        ],
+        "answers": [0, 1, 2, 3, 4],
+        "explanation": "The five specialized surfaces are Claude Code, Slack, Excel, PowerPoint, and Chrome. 'Claude for TikTok' isn't a thing.",
+        "hint": "Five real ones; one invented."
+      },
+      {
+        "id": "mc-13-chrome-what",
+        "type": "mcq",
+        "concept": "Claude for Chrome — research preview",
+        "prompt": "What is Claude for Chrome?",
+        "options": [
+          "A browser-sidebar extension that observes pages and can take actions in your browser",
+          "A new web browser that replaces Chrome",
+          "A cloud storage service",
+          "A coding terminal"
+        ],
+        "answer": 0,
+        "explanation": "Claude for Chrome is a browser extension that adds Claude as a sidebar — it can summarize pages, draft emails, automate forms, and hold context across tabs.",
+        "hint": "A sidebar in the browser you already use."
+      },
+      {
+        "id": "mc-14-slack-what",
+        "type": "mcq",
+        "concept": "Claude in Slack",
+        "prompt": "What does Claude in Slack let you do?",
+        "options": [
+          "Get help in channels/threads — draft replies, summarize threads, prep for meetings — without leaving Slack",
+          "Run financial models in a sidebar",
+          "Edit PowerPoint slides",
+          "Replace the Slack app entirely"
+        ],
+        "answer": 0,
+        "explanation": "Claude integrates into Slack for in-context help: drafting replies, summarizing threads, meeting prep, onboarding via channel history — plus handing off coding tasks to Claude Code.",
+        "hint": "Help inside your team chat."
+      }
+    ]
+  },
+  {
+    "id": "expand-reach",
+    "title": "Expand Claude's Reach",
+    "session": "E33",
+    "course": "Anthropic Academy — Claude 101, Module 3",
+    "excerpt": "Module 3, testable: Connectors, Enterprise Search, and Research — the three rings of reach. 16 questions across Easy, Medium, and Hard, with the trap-spots built in (Claude can't read your CEO's inbox, Enterprise Search can't show what you can't access, Research won't run without web search).",
+    "passPct": 80,
+    "questions": [
+      {
+        "id": "mc-01-connector-what",
+        "type": "mcq",
+        "concept": "Connectors — what they do",
+        "prompt": "What does a connector let Claude do?",
+        "options": [
+          "Read information and perform actions across your connected apps, from inside the conversation",
+          "Permanently store your files on Anthropic's servers",
+          "Train a private model on your company data",
+          "Speed up Claude's responses"
+        ],
+        "answer": 0,
+        "explanation": "Connectors give Claude access to your everyday tools and data so it can search, retrieve, analyze, create, update, and execute tasks across connected apps — turning it from an assistant into an informed collaborator.",
+        "hint": "A door from the chat into the real tool."
+      },
+      {
+        "id": "fb-02-mcp-name",
+        "type": "fillblank",
+        "concept": "MCP — USB-C for AI",
+        "prompt": "Connectors are powered by the Model Context ___ (MCP).",
+        "answer": "Protocol",
+        "accept": ["Protocol", "protocol"],
+        "explanation": "The Model Context Protocol (MCP) is the open standard behind connectors — described as 'USB-C for AI,' one universal interface for connecting any tool.",
+        "hint": "The P in MCP."
+      },
+      {
+        "id": "mc-03-mcp-analogy",
+        "type": "mcq",
+        "concept": "MCP — USB-C for AI",
+        "prompt": "The course compares MCP to which everyday thing?",
+        "options": [
+          "USB-C — one universal port that fits everything",
+          "A padlock",
+          "A search engine",
+          "A spreadsheet"
+        ],
+        "answer": 0,
+        "explanation": "MCP is 'USB-C for AI' — a single universal standard so any developer can build a connector for any tool and it works seamlessly with Claude.",
+        "hint": "The one cable that replaced all the others."
+      },
+      {
+        "id": "mc-04-web-vs-desktop",
+        "type": "mcq",
+        "concept": "Web vs desktop connectors",
+        "prompt": "What's the difference between a web connector and a desktop extension?",
+        "options": [
+          "Web connectors link cloud services; desktop extensions run locally via the Claude Desktop app for local files and native apps",
+          "Web connectors are paid; desktop extensions are free",
+          "Web connectors are slower; desktop extensions are faster",
+          "There is no difference — they're two names for the same thing"
+        ],
+        "answer": 0,
+        "explanation": "Web connectors reach cloud services (Drive, Slack, Notion, Stripe…). Desktop extensions run locally through the Claude Desktop app, accessing local files and native applications.",
+        "hint": "Cloud reaches out; desktop reaches in."
+      },
+      {
+        "id": "tf-05-ceo-inbox",
+        "type": "truefalse",
+        "concept": "Connector security — sees what you see",
+        "prompt": "Connecting your work email gives Claude access to your CEO's inbox too.",
+        "answer": false,
+        "explanation": "Claude sees only what YOU see — it can access data you already have access to, never more. Connecting your work email gives Claude your inbox, not your CEO's.",
+        "hint": "Your keys, not a master key.",
+        "trap": true
+      },
+      {
+        "id": "mc-06-directory",
+        "type": "mcq",
+        "concept": "Connector setup",
+        "prompt": "Where does Anthropic maintain its directory of recommended connectors?",
+        "options": [
+          "claude.ai/directory",
+          "In the Windows registry",
+          "Inside each project's knowledge base",
+          "On the Skilljar course page"
+        ],
+        "answer": 0,
+        "explanation": "Browse connectors at claude.ai/directory (Web and Desktop-extension tabs), or click the + button > Connectors in any chat.",
+        "hint": "A /directory on the main site."
+      },
+      {
+        "id": "mc-07-es-what",
+        "type": "mcq",
+        "concept": "Enterprise Search — pre-built org Project",
+        "prompt": "Enterprise Search is best described as…",
+        "options": [
+          "A pre-built Project for your whole organization — 'Ask {Your Org}' in the sidebar",
+          "A faster version of Google",
+          "A way to delete company data",
+          "A personal Project only you can see"
+        ],
+        "answer": 0,
+        "explanation": "Enterprise Search adds 'Ask {Your Org}' to the sidebar — a pre-built Project with your company's knowledge already loaded, searching across connected tools and always citing sources.",
+        "hint": "The company-wide Project you didn't build."
+      },
+      {
+        "id": "tf-08-es-cites",
+        "type": "truefalse",
+        "concept": "Enterprise Search — pre-built org Project",
+        "prompt": "Enterprise Search synthesizes across your company's tools and always cites its sources.",
+        "answer": true,
+        "explanation": "True — it searches across SharePoint, Slack, Gmail, Drive, etc., synthesizes one unified answer, and always cites sources so you can get the full context.",
+        "hint": "Synthesis you can trace back."
+      },
+      {
+        "id": "or-09-es-setup",
+        "type": "order",
+        "concept": "Enterprise Search — setup roles",
+        "prompt": "Put the Enterprise Search setup in order.",
+        "items": [
+          "An admin (Owner) configures it for the org and connects the tools",
+          "Each user authenticates their own accounts with the services",
+          "Users start asking questions about the org's knowledge"
+        ],
+        "explanation": "Two-step: admin configures the org-wide project (required Documents + Chat connectors), then each user authenticates their own accounts, then they ask.",
+        "hint": "Admin wires the building; then you swipe your own keycard."
+      },
+      {
+        "id": "tf-10-es-permission",
+        "type": "truefalse",
+        "concept": "Enterprise Search — safety",
+        "prompt": "Enterprise Search can show you documents you don't already have permission to access.",
+        "answer": false,
+        "explanation": "False — it only shows what you already have permission to access in the original tool. Conversations stay private and connected data isn't indexed or stored separately.",
+        "hint": "Same permission floor as connectors, scaled up.",
+        "trap": true
+      },
+      {
+        "id": "mc-11-research-agentic",
+        "type": "mcq",
+        "concept": "Research — agentic multi-source",
+        "prompt": "How is Research different from a single web search?",
+        "options": [
+          "It runs many searches that build on each other, deciding what to investigate next, then synthesizes a cited report",
+          "It searches exactly once and returns the first result",
+          "It only searches your own files",
+          "It's the same thing with a different name"
+        ],
+        "answer": 0,
+        "explanation": "Research is agentic — multiple searches that build on each other, pursuing leads and filling gaps, then synthesizing a comprehensive cited report (5–45 min).",
+        "hint": "A chain of searches, not one."
+      },
+      {
+        "id": "tf-12-research-extended",
+        "type": "truefalse",
+        "concept": "Research — how it works / prereq",
+        "prompt": "Extended thinking is automatically enabled when you use Research.",
+        "answer": true,
+        "explanation": "True — extended thinking auto-activates so Claude can plan its approach and reason as it gathers, breaking the request into manageable pieces.",
+        "hint": "Planning needs thinking."
+      },
+      {
+        "id": "tf-13-research-websearch",
+        "type": "truefalse",
+        "concept": "Research — how it works / prereq",
+        "prompt": "Research works even if web search is turned off.",
+        "answer": false,
+        "explanation": "False — web search must be enabled for Research to function. (You can turn web search off only to deliberately do internal-only research across connected tools.)",
+        "hint": "It needs the web on to reach the web.",
+        "trap": true
+      },
+      {
+        "id": "mc-14-use-websearch",
+        "type": "mcq",
+        "concept": "Research vs alternatives",
+        "prompt": "You need today's stock price for one company. Which tool fits best?",
+        "options": [
+          "Web search — a quick, specific fact from one or two sources",
+          "Research — a deep multi-source investigation",
+          "Enterprise search — your org's internal knowledge",
+          "Extended thinking — pure reasoning, no external info"
+        ],
+        "answer": 0,
+        "explanation": "A quick specific fact from one or two sources where speed matters is a web-search job. Research would be overkill.",
+        "hint": "Don't use the heavy crane for a teaspoon."
+      },
+      {
+        "id": "mc-15-use-enterprise",
+        "type": "mcq",
+        "concept": "Research vs alternatives",
+        "prompt": "You want to know your company's remote-work policy. Which tool fits best?",
+        "options": [
+          "Enterprise search — it lives in your org's internal knowledge",
+          "Web search — it's a quick public fact",
+          "Research — it needs the open web",
+          "Extended thinking — it's a reasoning problem"
+        ],
+        "answer": 0,
+        "explanation": "A question specific to your company, answered from internal docs/Slack/policies, is an enterprise-search job — not the public web.",
+        "hint": "Internal knowledge, not the open web."
+      },
+      {
+        "id": "mc-16-research-prompt",
+        "type": "mcq",
+        "concept": "Research vs alternatives",
+        "prompt": "Which is the better Research prompt?",
+        "options": [
+          "Analyze the EV battery market — key players, technology trends, and supply-chain challenges affecting investment",
+          "Tell me about the EV market",
+          "EVs?",
+          "Is it worth researching EVs"
+        ],
+        "answer": 0,
+        "explanation": "Be specific about the goal and specify the structure/sections you want (and include constraints). Since Research runs for minutes, a specific, structured prompt pays off.",
+        "hint": "Specific goal + the sections you want back."
+      }
+    ]
+  },
+  {
     "id": "organize-work",
     "title": "Organize Your Work",
     "session": "E33",

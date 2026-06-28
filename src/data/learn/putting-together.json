@@ -1,0 +1,123 @@
+{
+  "id": "putting-together",
+  "title": "Putting It All Together",
+  "session": "E33",
+  "course": "Anthropic Academy — Claude 101, Module 4",
+  "promise": "Claude is one intelligence, and claude.ai is just one door to it. Module 4 lands the course: practical use-cases by role, and the specialized tools — Claude Code, Slack, Excel, PowerPoint, Chrome — that bring Claude into the exact place your work already happens. The skill is picking the surface by where the work lives. A question before every answer, and a quiz that remembers what you missed.",
+  "quizId": "putting-together",
+  "loop": [
+    { "step": "Study", "blurb": "Read each idea after you've tried to predict it." },
+    { "step": "Retrieve", "blurb": "Say it back in your own words before moving on." },
+    { "step": "Prove", "blurb": "Take the quiz — Easy, Medium, or Hard." },
+    { "step": "Return", "blurb": "Come back; the misses resurface first." }
+  ],
+  "map": [
+    { "stop": "Use-cases by role", "blurb": "Concrete starting points for sales, marketing, finance, HR, legal, research — plus the Use Case Gallery for more." },
+    { "stop": "The specialized tools", "blurb": "Claude Code, Slack, Excel, PowerPoint, Chrome — Claude inside the apps where your work already happens." },
+    { "stop": "Pick by where work lives", "blurb": "One intelligence, many surfaces — choose the surface by where the task already is." }
+  ],
+  "intro": [
+    "Everything so far has been about claude.ai — the web app. Module 4 ties the course together and then widens the frame: Claude is an intelligence, and the web app is just one way to reach it. The same Claude shows up inside your terminal, your Slack, your spreadsheet, your slide deck, and your browser.",
+    "Two moves here. First, concrete use-cases by role, so you can see Claude in your actual job and try something this week. Then the specialized surfaces, each tuned to a place work already happens. The skill to walk away with isn't memorizing the list — it's learning to pick the surface by where the work lives."
+  ],
+  "sections": [
+    {
+      "n": 1,
+      "lesson": "L11",
+      "heading": "Claude applies across every role",
+      "challenge": "Name a couple of concrete things Claude can do in your line of work — and where you'd go for more.",
+      "body": [
+        "No matter the job, Claude can streamline it, and the course organizes practical use-cases by role so you can see yourself in it. Sales: build a battle-card library, prep for deals, create pipeline reports. Marketing: analyze campaign performance, adapt content across platforms. Finance: build financial models, draft investment memos, decode an inherited spreadsheet. HR: create onboarding guides. Legal: track discovery timelines. Research: plan a literature review, verify statistics. And general moves anyone can use — project status reports, analyzing patterns in user feedback, packaging your brand guidelines into a reusable Skill.",
+        "These are starting points, not the whole list. Each links to a step-by-step guide in the Use Case Gallery — which is exactly where you go when you want inspiration for your own specific work."
+      ],
+      "plain": "Pick your role and there's already a concrete recipe or three — and the Use Case Gallery is the cookbook for the rest.",
+      "lockIt": "Name 2–3 concrete Claude use-cases (e.g. a sales battle-card library, a financial model, a project status report) and say where to find more: the Use Case Gallery."
+    },
+    {
+      "n": 2,
+      "lesson": "L12",
+      "heading": "Claude Code — agentic coding where you work",
+      "challenge": "What is Claude Code for, and where does it run?",
+      "body": [
+        "Claude Code is an agentic coding tool that works where you work — your terminal, IDE, browser, or even Slack. It understands your codebase, executes commands, and handles entire development workflows through natural language: describe a feature and it writes the code, runs tests, and creates commits; paste an error and it analyzes your codebase to fix it; ask how an unfamiliar codebase fits together; automate the tedious stuff like lint errors, merge conflicts, and release notes.",
+        "It's for people who'd rather stay in the terminal alongside their existing tools than switch to a separate chat window. (This is the surface you already live in.)"
+      ],
+      "plain": "Claude Code is Claude as a developer that lives in your terminal — it reads the codebase, runs commands, and ships commits, not just talks about code.",
+      "lockIt": "Say what Claude Code is — an agentic coding tool that understands your codebase, runs commands, and handles whole dev workflows in natural language — and where it runs: terminal, IDE, browser, or Slack."
+    },
+    {
+      "n": 3,
+      "lesson": "L12",
+      "heading": "Claude in Slack",
+      "challenge": "What does Claude in Slack add that a normal Claude chat doesn't?",
+      "body": [
+        "Claude integrates directly into Slack, so you get help in channels and threads and can pull Slack context into your conversations without leaving the app. Draft replies, summarize a long thread, break down a complex discussion, prep for a meeting by gathering relevant conversations and shared docs, or onboard to a new team by having Claude review channel history.",
+        "The standout move: you can hand off a coding task straight from a bug report or feature discussion — tag @Claude and it can spin up a Claude Code session using the surrounding Slack context. The conversation where the work was decided becomes the place the work begins."
+      ],
+      "plain": "Claude in Slack is Claude sitting in your team chat — summarizing threads, prepping meetings, and even kicking off a Claude Code job straight from a bug report.",
+      "lockIt": "Explain Claude in Slack: help inside channels/threads (summarize, draft, meeting prep, onboarding) plus the ability to hand off a coding task by tagging @Claude to spin up a Claude Code session from the thread's context."
+    },
+    {
+      "n": 4,
+      "lesson": "L12",
+      "heading": "Claude for Excel",
+      "challenge": "What kind of spreadsheet problem is Claude for Excel built for?",
+      "body": [
+        "Claude for Excel lives in a sidebar inside Microsoft Excel, letting you analyze, understand, and modify spreadsheets through conversation. It shines on the things that make spreadsheets painful: understanding a complex multi-tab workbook and how formulas flow across sheets, updating assumptions while preserving formula dependencies, and debugging errors like #REF!, #VALUE!, or circular references by tracing them to their source.",
+        "It can also build new spreadsheets or populate templates with proper formula structure, and spin up pivot tables and charts. The point is conversation over the spreadsheet, in the spreadsheet."
+      ],
+      "plain": "Claude for Excel is a sidebar that actually understands your workbook — tracing a #REF! to its source or updating a model without breaking the formula web.",
+      "lockIt": "Say what Claude for Excel is — a sidebar inside Excel to analyze/modify spreadsheets by conversation — and a signature job: debugging formula errors (#REF!, #VALUE!, circular references) while preserving formula dependencies."
+    },
+    {
+      "n": 5,
+      "lesson": "L12",
+      "heading": "Claude for PowerPoint",
+      "challenge": "What does Claude for PowerPoint help you do without wrecking your template?",
+      "body": [
+        "Claude for PowerPoint is a sidebar inside Microsoft PowerPoint for drafting, editing, and restructuring presentations through conversation — while keeping your existing template and brand styling intact. Turn an outline, document, or notes into a first-draft deck without building each slide by hand; rewrite or tighten slide copy (shorten bullets, add speaker notes, adjust tone); restructure an existing deck by reordering, splitting dense slides, or merging overlapping ones.",
+        "It also applies consistent formatting across the deck and can suggest which layout or chart type best fits a given point — all without you manually fixing every slide."
+      ],
+      "plain": "Claude for PowerPoint drafts and restructures your deck by conversation, inside your own template — outline in, first-draft slides out, brand styling untouched.",
+      "lockIt": "Explain Claude for PowerPoint: a sidebar that drafts, edits, and restructures decks by conversation while keeping your template and brand styling intact (e.g. outline → first-draft deck, consistent formatting)."
+    },
+    {
+      "n": 6,
+      "lesson": "L12",
+      "heading": "Claude for Chrome — and its research-preview caveat",
+      "challenge": "What is Claude for Chrome, and what's the important safety caveat?",
+      "body": [
+        "Claude for Chrome is a browser extension that adds Claude as a sidebar in Google Chrome. It can observe what you're working on and take actions directly in your browser: summarize articles and pages, draft email replies and manage your inbox, automate repetitive form-filling, test website features, and maintain context as you move between tabs — which makes it handy for pulling context from niche internal tools, CRMs, and dashboards.",
+        "The caveat is the part to lock. Claude for Chrome is currently in research preview — Anthropic recommends using it for low-risk tasks on trusted websites. The extension asks permission before high-risk actions like purchasing or sharing personal data, and certain categories of sites (financial services, adult content) are blocked by default."
+      ],
+      "plain": "Claude for Chrome is Claude in a browser sidebar that can act on pages — but it's a research preview, so keep it to low-risk tasks on sites you trust.",
+      "lockIt": "Describe Claude for Chrome — a browser-sidebar extension that observes pages and takes actions (summarize, draft email, automate forms, hold context across tabs) — and its caveat: it's in research preview, best for low-risk tasks on trusted sites, asks before high-risk actions, and blocks some site categories by default."
+    },
+    {
+      "n": 7,
+      "lesson": "L12",
+      "heading": "Pick the surface by where the work lives",
+      "challenge": "A teammate asks 'which Claude should I use?' — what's the one question that answers it?",
+      "body": [
+        "The course closes with a summary table, and the lesson underneath it is a single decision rule: pick the surface by where the work already lives. General tasks, research, writing, file creation → claude.ai (web, desktop, mobile). Software development → Claude Code (terminal, IDE, browser). Complex multi-step deliverables — research briefs, document creation, data analysis → Claude Cowork (desktop, and mobile via Dispatch). Team collaboration and meeting prep → Claude in Slack. Spreadsheets → Excel. Slides → PowerPoint. Web research and browser automation → Chrome.",
+        "Don't memorize the grid; internalize the question. 'Where does this task already happen?' points you straight at the surface, because each tool exists to meet you where you already work."
+      ],
+      "plain": "Don't ask 'which Claude is best' — ask 'where does this work already live?' The place is the answer: code in the terminal, slides in PowerPoint, threads in Slack.",
+      "lockIt": "State the decision rule for choosing a Claude surface — pick by where the work already lives — and map a few: dev → Claude Code, spreadsheets → Excel, slides → PowerPoint, team threads → Slack, general → claude.ai."
+    }
+  ],
+  "nugget": {
+    "title": "One intelligence, many surfaces — the door is set by the room",
+    "challenge": "What's the single principle that ties claude.ai, Claude Code, Slack, Excel, PowerPoint, and Chrome together?",
+    "body": [
+      "Back in Module 1 the idea was 'one Claude, many doors' — web, desktop, mobile, all reaching the same assistant. Module 4 is the grown-up version of that: it's not just many doors to the same chat, it's the same intelligence embedded into the specific rooms where work happens. Claude Code is Claude in your terminal. Claude for Excel is Claude in your workbook. Claude for Chrome is Claude on the page you're reading. Same mind, fitted to the place.",
+      "So the master move isn't learning six products — it's holding one principle: the surface is chosen by the room, not the topic. This is the same lesson as Module 1's mode-pick ('pick by the size of the job, not the subject'), now extended to the whole toolkit. When someone asks which Claude to use, you don't list features — you ask where the work already lives, and the answer falls out. That's what 'putting it all together' actually means: one intelligence you steer to wherever you happen to be working."
+    ],
+    "whyItMatters": "People try to memorize a menu of products and freeze when a new one appears. The durable skill is the principle underneath: it's all one Claude, and you pick the surface by where the work lives. That instantly places any future tool — Claude in your IDE, your email, your design app — without re-learning anything. It's also the same 'pick by the job, not the topic' rule from the mode lesson, which is why the course ends here: every choice you've learned is one judgment wearing different hats.",
+    "lockIt": "State the unifying principle — Claude is one intelligence available across many surfaces, and you choose the surface by where the work already lives (not the topic) — and connect it back to Module 1's mode-pick rule (pick by the job, not the subject)."
+  },
+  "outro": [
+    "That's Claude 101. You started not knowing why your chatbot gave you junk; you're ending able to frame an ask, organize context into Projects and Skills, extend Claude's reach to your tools and the web, and pick the right surface for any job. The tool was never the hard part — steering it is the skill, and you now have the bar to clear.",
+    "The real next step is the course's own advice: just get started. Pick one recurring task this week and run it through Claude on whichever surface fits. Claude is a collaborator, not a replacement — the best results come when you bring your expertise, context, and judgment. You have the foundation; the rest comes from doing the work."
+  ]
+}

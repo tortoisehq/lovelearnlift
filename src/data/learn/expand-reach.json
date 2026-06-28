@@ -1,0 +1,147 @@
+{
+  "id": "expand-reach",
+  "title": "Expand Claude's Reach",
+  "session": "E33",
+  "course": "Anthropic Academy — Claude 101, Module 3",
+  "promise": "Claude stops being a closed box and starts working with your actual stuff. Module 3 is the three rings of reach — Connectors plug in your tools, Enterprise Search reads your whole org, Research investigates the open web — with one rule holding it all safe: Claude only ever sees what you can see. A question before every answer, and a quiz that remembers what you missed.",
+  "quizId": "expand-reach",
+  "loop": [
+    { "step": "Study", "blurb": "Read each idea after you've tried to predict it." },
+    { "step": "Retrieve", "blurb": "Say it back in your own words before moving on." },
+    { "step": "Prove", "blurb": "Take the quiz — Easy, Medium, or Hard." },
+    { "step": "Return", "blurb": "Come back; the misses resurface first." }
+  ],
+  "map": [
+    { "stop": "Connectors", "blurb": "Plug your everyday tools (Drive, Slack, Notion, Stripe) into Claude via MCP so it works with your real data." },
+    { "stop": "Enterprise Search", "blurb": "A pre-built Project for your whole org — 'Ask {Your Org}' searches across all your company's tools and cites sources." },
+    { "stop": "Research", "blurb": "Agentic, multi-source investigation — many searches that build on each other into a cited report, in minutes." }
+  ],
+  "intro": [
+    "Up to now Claude has worked with whatever you typed or pasted into the chat. Module 3 opens the walls. These three features let Claude reach out to where your information actually lives — your tools, your organization, and the open web — and bring it back into the conversation, with citations you can check.",
+    "Hold the shape as three rings of reach. Connectors plug in the tools on your desk. Enterprise Search reads across your whole company. Research goes out and investigates the world. Different ranges, but one rule runs through all of them: Claude only ever sees what you already have permission to see. Keep that rule in view and the whole module stays honest."
+  ],
+  "sections": [
+    {
+      "n": 1,
+      "lesson": "L8",
+      "heading": "Connectors turn Claude into an informed collaborator",
+      "challenge": "What does a connector actually let Claude do that a plain chat can't?",
+      "body": [
+        "A connector gives Claude access to the same tools, data, and context you use every day, so it stops starting every conversation from scratch. Instead of you describing your situation, Claude can read your information and act on it directly. Depending on the connector and the permissions you grant, it can search your files, retrieve documents, analyze data, create content, update records, and execute tasks across your connected apps — all from inside the conversation.",
+        "That's the jump from 'assistant' to 'informed collaborator': the difference between Claude answering from what you told it and Claude working from your actual Drive, inbox, or task board."
+      ],
+      "plain": "A connector is a door from the chat into a tool you already use — Claude walks through and works with the real thing instead of your description of it.",
+      "lockIt": "Explain what a connector does: it gives Claude access to your everyday tools and data so it can read information and perform actions (search, retrieve, analyze, create, update, execute) on your behalf, right inside the conversation."
+    },
+    {
+      "n": 2,
+      "lesson": "L8",
+      "heading": "MCP is USB-C for AI",
+      "challenge": "What's the protocol behind connectors, and what's the analogy that explains it?",
+      "body": [
+        "Connectors are powered by the Model Context Protocol (MCP). The course's analogy is the one to keep: MCP is like USB-C for AI — a single universal standard that lets Claude connect to many different applications through one consistent interface. Before a universal port, every device needed its own special cable; MCP is the one port that fits everything.",
+        "Because it's an open standard, any developer can build a connector for any tool, and it works seamlessly with Claude. That's why the directory keeps growing — the protocol is shared, not proprietary."
+      ],
+      "plain": "MCP is the one universal plug: build to it once and any tool can talk to Claude, instead of a different custom cable for every app.",
+      "lockIt": "Name the protocol behind connectors — the Model Context Protocol (MCP) — and the analogy: it's 'USB-C for AI,' one open universal standard that lets any tool connect to Claude through a single consistent interface."
+    },
+    {
+      "n": 3,
+      "lesson": "L8",
+      "heading": "Two kinds: web connectors and desktop extensions",
+      "challenge": "What's the difference between a web connector and a desktop extension?",
+      "body": [
+        "Web connectors link Claude to cloud services — Google Drive, Notion, Slack, Asana, Linear, Stripe, and many more. They live in the cloud, so Claude reaches them over the web. Desktop extensions are different: they run locally on your computer through the Claude Desktop app, giving Claude access to your local files and native applications (local file access, browser control, native app integration like Figma).",
+        "The split is about where the thing lives. Cloud service → web connector. Something on your own machine → desktop extension through the desktop app."
+      ],
+      "plain": "Web connectors reach out to the cloud; desktop extensions reach into your own computer — same idea, opposite directions.",
+      "lockIt": "Distinguish the two connector types: web connectors link Claude to cloud services (Drive, Slack, Notion…); desktop extensions run locally through the Claude Desktop app for local files and native apps."
+    },
+    {
+      "n": 4,
+      "lesson": "L8",
+      "heading": "Setting up — and the security model",
+      "challenge": "If you connect your work email, can Claude read your CEO's inbox? Why or why not?",
+      "body": [
+        "You find connectors in the directory at claude.ai/directory (or the + button > Connectors in any chat), click Connect, authenticate on the service's own login page, grant the specific permissions Claude requests, and test it. The security model has three parts worth locking. Scoped access: permissions are specific to what the connector needs, and you can toggle them on and off. Revocable at any time: disconnect through Claude's settings or the service itself.",
+        "The third part is the one that answers the trap. Claude sees what you see — it can only access data you already have access to. Connecting your work email does NOT give Claude your CEO's inbox, only your own. And just like Skills, only install connectors from trusted sources."
+      ],
+      "plain": "Connecting a tool hands Claude your keys to it, not a master key — it reaches exactly as far as you already can, and no further.",
+      "lockIt": "State the connector security rule: Claude sees only what you see — it can access data you already have access to, never more (your work email ≠ your CEO's inbox). Permissions are scoped, revocable anytime, and only install from trusted sources."
+    },
+    {
+      "n": 5,
+      "lesson": "L9",
+      "heading": "Enterprise Search is a pre-built Project for your whole org",
+      "challenge": "What is Enterprise Search, and how is it different from just turning on connectors in a normal chat?",
+      "body": [
+        "Enterprise Search adds an 'Ask {Your Org Name}' option to your sidebar. Think of it as a pre-built Project for your entire organization — your company's knowledge base is already loaded, so you jump straight to context-aware answers. When you ask, Claude searches across your connected tools (SharePoint, Slack, Gmail, Google Drive) and synthesizes one unified response, and it always cites its sources.",
+        "The difference from a normal chat with connectors: Enterprise Search is built specifically for information-gathering, using custom instructions configured by the Anthropic team for that purpose. It's available on Team and Enterprise plans and must be enabled by an admin."
+      ],
+      "plain": "Enterprise Search is the company-wide Project you didn't have to build — your whole org's knowledge pre-loaded behind one 'Ask {Org}' button, with citations.",
+      "lockIt": "Define Enterprise Search: an 'Ask {Your Org}' sidebar option that acts as a pre-built Project for your whole organization — it searches and synthesizes across your company's connected tools and always cites sources (Team/Enterprise, admin-enabled)."
+    },
+    {
+      "n": 6,
+      "lesson": "L9",
+      "heading": "Two-step setup, and why it's safe",
+      "challenge": "Enterprise Search reaches across your whole company's data — what stops you seeing things you shouldn't?",
+      "body": [
+        "Setup is two steps. First an admin (Owner) configures it for the org — it's on by default for Team/Enterprise, but the Owner connects the tools (a Documents connector like Drive or SharePoint and a Chat connector like Slack or Teams are required; email optional), names it, and finishes setup. Then each user authenticates their own accounts with the services they want to search.",
+        "The safety answer is the same rule as connectors, scaled up: Enterprise Search only shows what you already have permission to access in the original tool. Your conversations stay private, and your connected data isn't indexed or stored separately. The org-wide search never becomes an org-wide leak."
+      ],
+      "plain": "The admin wires up the building; your own keycard still only opens the doors you were already allowed through.",
+      "lockIt": "Walk the two-step setup (admin configures org tools → each user authenticates their own accounts) and the safety rule: it only shows what you already have permission to access, conversations stay private, and data isn't indexed or stored separately."
+    },
+    {
+      "n": 7,
+      "lesson": "L10",
+      "heading": "Research is agentic, multi-source investigation",
+      "challenge": "How is Research different from Claude running a single web search?",
+      "body": [
+        "Research turns Claude from a conversational assistant into a systematic investigator. Instead of one search, it operates agentically — running multiple searches that build on each other, deciding what to investigate next based on what it just found, pursuing leads and filling gaps on its own. Extended thinking is automatically enabled, so Claude plans its approach and reasons as it goes. Most reports finish in 5–15 minutes (complex ones up to 45) — work that would take hours by hand.",
+        "And every claim links back to its source. The citations aren't decoration; they're what lets you trust a report you didn't watch get assembled."
+      ],
+      "plain": "Research isn't one Google search — it's Claude doing a chain of searches, following its own leads like a research assistant, then handing you a cited report.",
+      "lockIt": "Explain Research: an agentic, multi-step investigation — Claude runs many searches that build on each other (with extended thinking auto-enabled), synthesizes them into a comprehensive report in minutes, and cites every source."
+    },
+    {
+      "n": 8,
+      "lesson": "L10",
+      "heading": "When to use Research vs the alternatives",
+      "challenge": "You need a quick stock price. Research, web search, extended thinking, or enterprise search — and why?",
+      "body": [
+        "Research is the right tool when you need a comprehensive report synthesizing multiple sources, comparative analysis, or a thorough investigation that would take hours. But it's overkill for a lot of things, and knowing when NOT to use it is the real skill. Use web search instead for a quick, specific fact from one or two sources where speed matters (the stock price). Use extended thinking instead when the answer comes from reasoning, not gathering — math, code debugging, logical analysis with no external info needed.",
+        "Use enterprise search instead when the answer lives in your organization's internal knowledge — policies, processes, Slack threads, past decisions — rather than the public web. Match the tool to the shape of the question: quick fact, pure reasoning, internal knowledge, or deep external investigation."
+      ],
+      "plain": "Research is the heavy crane — don't use it to lift a teaspoon. A quick fact is web search; pure thinking is extended thinking; 'how does my company do X' is enterprise search.",
+      "lockIt": "Match the tool to the question: Research = deep multi-source reports; web search = a quick fact from 1–2 sources where speed wins; extended thinking = reasoning with no external info needed; enterprise search = your org's internal knowledge."
+    },
+    {
+      "n": 9,
+      "lesson": "L10",
+      "heading": "How Research works, and how to prompt it",
+      "challenge": "What has to be turned on for Research, and what makes a good Research prompt?",
+      "body": [
+        "Under the hood it's four steps: Claude plans (extended thinking activates), conducts multiple building searches, synthesizes findings from the web and your connected integrations, and provides citations for every claim. You enable it from the + button on the bottom left of the chat, then submit your prompt — but web search must be on for Research to function.",
+        "Because a run can take 5–45 minutes, the prompt is worth the effort. Be specific about your goal (not 'tell me about EVs' but 'analyze the EV battery market — key players, technology trends, supply-chain challenges'), specify the sections or structure you want, include constraints (budget, timeline, geography), and if you're stuck, ask Claude to help you write a better Research prompt before you run it."
+      ],
+      "plain": "Research plans, searches in a chain, synthesizes, and cites — but only with web search on; and since it runs for minutes, a specific, structured prompt pays for itself.",
+      "lockIt": "Name the four steps (plan → multiple searches → synthesize → cite), the prerequisite (web search must be enabled), and a couple prompt tips: be specific about the goal, specify the structure/sections, and include constraints."
+    }
+  ],
+  "nugget": {
+    "title": "Three rings of reach — and the one rule that keeps them safe",
+    "challenge": "Connectors, Enterprise Search, Research — what's the single rule that's true across all three?",
+    "body": [
+      "Stack the module's three features by range. Connectors plug in the tools on your desk — your Drive, your Slack, your inbox. Enterprise Search reads across your whole organization — every connected company tool behind one 'Ask {Org}' button. Research goes furthest, out into the open web, investigating a question from many angles. Inner ring, middle ring, outer ring — your tools, your org, the world.",
+      "Now the rule that runs through every ring: Claude only ever sees what you already have permission to see, and it shows its sources. A connector reaches exactly as far as your own access. Enterprise Search only surfaces what your keycard already opens. Research cites every claim so you can verify it. The reach expands ring by ring, but the permission floor never moves — which is exactly why extending Claude's reach doesn't mean handing it the keys to things you were never allowed to touch."
+    ],
+    "whyItMatters": "It's tempting to learn these as three separate buttons. The master-level move is seeing them as concentric rings governed by one invariant: access follows your permissions, and trust follows citations. Once you hold that, you reach for the right ring by range — desk, org, or world — without ever worrying you've opened a door you shouldn't. That's the difference between using the features and trusting them.",
+    "lockIt": "Lay out the three rings by range — Connectors (your tools) → Enterprise Search (your org) → Research (the open web) — and state the invariant across all three: Claude only accesses what you already have permission to access, and it cites its sources."
+  },
+  "outro": [
+    "Module 3 is the moment Claude stops being sealed off from your real work. Connectors bring your tools into the conversation, Enterprise Search turns your whole organization into something you can ask, and Research sends Claude out to investigate the world and come back with citations. Three ranges of reach, one permission floor under all of them.",
+    "Carry the range question forward: when you need information, ask where it lives. On my desk? Connect the tool. Inside my company? Enterprise Search. Out in the world? Research. Knowing which ring to reach for — and trusting that none of them exceed your own access — is what turns a sealed assistant into a genuine collaborator."
+  ]
+}

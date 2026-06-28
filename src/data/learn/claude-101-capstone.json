@@ -1,0 +1,101 @@
+{
+  "id": "claude-101-capstone",
+  "title": "Claude 101 — Capstone",
+  "session": "E33",
+  "course": "Anthropic Academy — Claude 101, Module 5 (Conclusion)",
+  "promise": "The whole course in one place to retrieve. Five modules recapped as five things you should be able to say back — then a cumulative final quiz that mixes every module together. This is the certificate exam: prove the foundation holds before you go do the work.",
+  "quizId": "claude-101-capstone",
+  "loop": [
+    { "step": "Study", "blurb": "Read each idea after you've tried to predict it." },
+    { "step": "Retrieve", "blurb": "Say it back in your own words before moving on." },
+    { "step": "Prove", "blurb": "Take the final — Easy, Medium, or Hard." },
+    { "step": "Return", "blurb": "Come back; the misses resurface first." }
+  ],
+  "map": [
+    { "stop": "Getting started", "blurb": "What Claude is, how to reach it, and the Stage/Task/Rules prompt." },
+    { "stop": "Getting better results", "blurb": "Iterate, fix common failures with context, and the 4 D's of AI Fluency." },
+    { "stop": "Organizing your work", "blurb": "Projects, Artifacts, Skills — knowledge, output, process." },
+    { "stop": "Expanding Claude's reach", "blurb": "Connectors, Enterprise Search, Research — your tools, your org, the world." },
+    { "stop": "Putting it together", "blurb": "Claude across roles, and the specialized surfaces — pick by where work lives." }
+  ],
+  "intro": [
+    "Congratulations on reaching the end of Claude 101. This page isn't new material — it's the retrieval pass. Each section below is a whole module compressed into the sentence you should be able to say back. Read the challenge, try to answer it cold, then check yourself.",
+    "When the five lock, take the cumulative final. It mixes questions from every module — exactly the test of whether the foundation actually holds, not just whether each piece made sense in isolation. Then go do the course's real assignment: pick one recurring task this week and run it through Claude."
+  ],
+  "sections": [
+    {
+      "n": 1,
+      "lesson": "M1",
+      "heading": "Getting started with Claude",
+      "challenge": "What is Claude, how do you reach it, and what's the shape of a strong prompt?",
+      "body": [
+        "Claude is an AI assistant built to be helpful, harmless, and honest — more than a chatbot, it's a thinking partner that generates fresh responses rather than retrieving canned ones. You reach the same Claude through web, desktop, and mobile apps, with conversations syncing across devices.",
+        "The single biggest lever on output is how you frame the ask: set the stage (your role, objective, context), define the task (the action you want), and specify the rules (tone, length, format). Stage, task, rules."
+      ],
+      "plain": "Claude composes answers (it doesn't look them up), you reach it through many doors, and a strong prompt sets the stage, names the task, and lays down the rules.",
+      "lockIt": "Say what Claude is (helpful/harmless/honest, generates not retrieves), name a few surfaces (web/desktop/mobile), and the three parts of a strong prompt: stage, task, rules."
+    },
+    {
+      "n": 2,
+      "lesson": "M1",
+      "heading": "Getting better results",
+      "challenge": "Your first answer disappoints. What's the move — and what are the four competencies of AI Fluency?",
+      "body": [
+        "Treat the first response as a starting point, not a verdict — refine through conversation. Most common failures have a named fix: too generic means add context (role, audience, constraints); and a confident-but-wrong answer reads exactly like a confident-right one, so verify high-stakes facts independently.",
+        "AI Fluency is four competencies: Delegation (what to hand off), Description (communicating the task clearly — where Stage/Task/Rules lives), Discernment (judging the output, where evals live), and Diligence (using AI responsibly and owning the result)."
+      ],
+      "plain": "Iterate instead of starting over, fix 'too generic' with context, never trust fluent-but-unverified facts, and run work through the four D's: Delegation, Description, Discernment, Diligence.",
+      "lockIt": "State the iterate-don't-restart move, the 'add context' fix for generic output, and name the four D's of AI Fluency: Delegation, Description, Discernment, Diligence."
+    },
+    {
+      "n": 3,
+      "lesson": "M2",
+      "heading": "Organizing your work and knowledge",
+      "challenge": "Projects, Artifacts, Skills — which is the what, which is the output, which is the how?",
+      "body": [
+        "Projects are self-contained workspaces with their own knowledge base, instructions, and memory — they store the WHAT, the knowledge Claude should always have. Artifacts are standalone interactive outputs (documents, code, diagrams, mini-apps) created in a window beside the chat — the OUTPUT you walk away with. Skills are folders of instructions Claude loads to run a task the same way every time — the HOW, the process.",
+        "The lock line: Projects store knowledge, Skills perform tasks. Knowledge, process, output — three tools, one system for setting context up once and reusing it."
+      ],
+      "plain": "Projects hold the knowledge, Skills run the process, Artifacts are the output you keep — set it up once instead of re-explaining every chat.",
+      "lockIt": "Sort the three: Projects = knowledge (what), Skills = process (how), Artifacts = output — and the line 'Projects store knowledge, Skills perform tasks.'"
+    },
+    {
+      "n": 4,
+      "lesson": "M3",
+      "heading": "Expanding Claude's reach",
+      "challenge": "Connectors, Enterprise Search, Research — three ranges, but what's the one rule across all three?",
+      "body": [
+        "Connectors plug your everyday tools into Claude through MCP (USB-C for AI) so it works with your real data. Enterprise Search is a pre-built Project for your whole org — 'Ask {Your Org}' searches across company tools and cites sources. Research is agentic, multi-source investigation — many searches building on each other into a cited report in minutes.",
+        "Your tools, your org, the world — three rings of reach. And one rule runs through every ring: Claude only ever sees what you already have permission to see, and it shows its sources."
+      ],
+      "plain": "Connect your tools, search your org, research the world — but Claude never sees more than you're already allowed to, and it cites where it got everything.",
+      "lockIt": "Lay out the three rings — Connectors (tools) → Enterprise Search (org) → Research (world) — and the invariant: Claude only accesses what you already can, and cites its sources."
+    },
+    {
+      "n": 5,
+      "lesson": "M4",
+      "heading": "Putting it all together",
+      "challenge": "There are many Claude surfaces — Code, Slack, Excel, PowerPoint, Chrome. What's the one question that picks the right one?",
+      "body": [
+        "Claude applies across every role — sales, marketing, finance, HR, legal, research — with concrete use-cases in the Use Case Gallery. And it's available beyond claude.ai in surfaces tuned to where work happens: Claude Code in your terminal, Claude in Slack, Claude for Excel, Claude for PowerPoint, Claude for Chrome.",
+        "The unifying move is one principle: it's all one intelligence, and you pick the surface by where the work already lives — not by the topic. Same judgment as Module 1's 'pick the mode by the size of the job, not the subject,' now extended across the whole toolkit."
+      ],
+      "plain": "One Claude shows up wherever you work — terminal, Slack, Excel, slides, browser — and you choose the surface by where the task already lives.",
+      "lockIt": "State that Claude works across roles and surfaces, name a few surfaces (Code, Slack, Excel, PowerPoint, Chrome), and the rule: pick the surface by where the work lives, not the topic."
+    }
+  ],
+  "nugget": {
+    "title": "The whole course is one idea wearing many hats",
+    "challenge": "If you had to compress all of Claude 101 into a single sentence, what would it be?",
+    "body": [
+      "Step all the way back and every module is the same idea. Claude generates rather than retrieves, so the context you put in front of it is the entire game. Stage/Task/Rules is context. Uploaded files are context. Projects, Skills, and Artifacts are context, organized. Connectors, Enterprise Search, and Research are context, reached. Picking the right surface is putting the work in front of the right context. Get the right material in front of Claude, then judge what comes back — that's the whole course.",
+      "And the judgment half has a name from Module 1's golden nugget: the delegation–diligence loop. Test Claude on a task where you already know the answer, trust what passes, own the result either way. Generation puts the power in the context you provide; diligence keeps you accountable for what you do with it. The tool was never the hard part. Steering it is the skill — and you now have the bar to clear."
+    ],
+    "whyItMatters": "Most people leave an intro course with a pile of disconnected features and forget half of them. The durable takeaway is the throughline: because Claude generates from context, every feature you learned is a different way to get the right context in front of it or judge what comes out. Hold that and you can place any future capability instantly — it's either better input or better discernment. That's mastery of the foundation, not memorization of a menu.",
+    "lockIt": "Compress the course to one sentence: Claude generates from context, so every feature is about getting the right context in front of it and judging what comes back — and own the result via the delegation–diligence loop."
+  },
+  "outro": [
+    "That's Claude 101, start to finish. You can frame an ask, fix a bad output, organize context into Projects and Skills, reach your tools and the web, and pick the right surface for any job. The cumulative final above is your certificate exam — clear it and the foundation is proven, not just covered.",
+    "Then take the course's own parting advice: just get started. Pick one recurring task this week and run it through Claude on whichever surface fits. Bring your expertise, context, and judgment — Claude is a collaborator, not a replacement. You have the foundation; the rest comes from doing the work."
+  ]
+}
