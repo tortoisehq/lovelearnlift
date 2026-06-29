@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="A single locomotive resting in a roundhouse bay at dusk, warm work-light spilling out the arched door.">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171f33"/>
+      <stop offset="0.62" stop-color="#27263f"/>
+      <stop offset="1" stop-color="#5a3b46"/>
+    </linearGradient>
+    <linearGradient id="bay" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4c07a"/>
+      <stop offset="1" stop-color="#c9762e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.62" r="0.55">
+      <stop offset="0" stop-color="#f7d29a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#f7d29a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="1200" height="630" fill="url(#sky)"/>
+  <circle cx="980" cy="120" r="3" fill="#cdd6f0" opacity="0.7"/>
+  <circle cx="1080" cy="80" r="2" fill="#cdd6f0" opacity="0.5"/>
+  <circle cx="170" cy="95" r="2.4" fill="#cdd6f0" opacity="0.6"/>
+
+  <!-- ground -->
+  <rect y="470" width="1200" height="160" fill="#101218"/>
+
+  <!-- warm light spilling onto the apron -->
+  <ellipse cx="600" cy="500" rx="430" ry="120" fill="url(#glow)"/>
+
+  <!-- roundhouse mass -->
+  <path d="M120 470 L120 250 Q120 210 165 210 L1035 210 Q1080 210 1080 250 L1080 470 Z" fill="#1c2330"/>
+  <rect x="120" y="200" width="960" height="24" rx="8" fill="#232c3c"/>
+  <!-- roofline beams -->
+  <rect x="300" y="224" width="6" height="246" fill="#161c27"/>
+  <rect x="600" y="224" width="6" height="246" fill="#161c27"/>
+  <rect x="900" y="224" width="6" height="246" fill="#161c27"/>
+
+  <!-- the lit bay -->
+  <path d="M470 470 L470 320 Q470 285 510 285 L690 285 Q730 285 730 320 L730 470 Z" fill="url(#bay)"/>
+  <!-- bay frame -->
+  <path d="M470 470 L470 320 Q470 285 510 285 L690 285 Q730 285 730 320 L730 470" fill="none" stroke="#0e1016" stroke-width="10"/>
+
+  <!-- locomotive silhouette in the bay -->
+  <g fill="#15181f">
+    <rect x="512" y="392" width="176" height="62" rx="6"/>      <!-- long hood -->
+    <rect x="600" y="356" width="74" height="42" rx="5"/>       <!-- cab -->
+    <rect x="512" y="448" width="176" height="12"/>             <!-- frame/wheels bar -->
+    <circle cx="540" cy="462" r="11"/>
+    <circle cx="576" cy="462" r="11"/>
+    <circle cx="636" cy="462" r="11"/>
+    <circle cx="668" cy="462" r="11"/>
+  </g>
+  <!-- headlight -->
+  <circle cx="520" cy="412" r="6" fill="#fff3d6"/>
+  <ellipse cx="500" cy="412" rx="34" ry="10" fill="#fff3d6" opacity="0.35"/>
+
+  <!-- rails leading out of the bay -->
+  <path d="M548 470 L470 630" stroke="#3a3f4b" stroke-width="5" opacity="0.8"/>
+  <path d="M652 470 L735 630" stroke="#3a3f4b" stroke-width="5" opacity="0.8"/>
+  <g stroke="#262b35" stroke-width="6" opacity="0.7">
+    <line x1="520" y1="520" x2="690" y2="520"/>
+    <line x1="500" y1="565" x2="715" y2="565"/>
+    <line x1="478" y1="612" x2="740" y2="612"/>
+  </g>
+</svg>
