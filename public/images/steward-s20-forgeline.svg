@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="Helvetica Neue, Arial, sans-serif">
+  <rect width="800" height="520" rx="18" fill="#2a3f54"/>
+  <text x="48" y="60" fill="#ecf0f1" font-size="30" font-weight="800" letter-spacing="1">THE FORGELINE</text>
+  <text x="48" y="88" fill="#1abb9c" font-size="16" font-weight="600">the crew that runs the loop — one task at a time</text>
+
+  <!-- the loop -->
+  <circle cx="400" cy="290" r="150" fill="none" stroke="#3a536b" stroke-width="2" stroke-dasharray="5 7"/>
+  <!-- direction arrows on the ring (clockwise) -->
+  <g fill="#1abb9c">
+    <path d="M 470 170 l 14 -4 l -3 14 z"/>
+    <path d="M 470 410 l 3 14 l -14 -4 z"/>
+    <path d="M 250 290 l -10 -10 l 14 -3 z"/>
+  </g>
+
+  <!-- 6 stations (hexagon: OPEN-SCOPE-PLAN-REVIEW-SHIP-CLOSE clockwise) -->
+  <g>
+    <!-- SCOPE top -->
+    <circle cx="400" cy="140" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="400" y="146" fill="#ecf0f1" font-size="15" font-weight="700" text-anchor="middle">SCOPE</text>
+    <!-- PLAN upper-right -->
+    <circle cx="530" cy="215" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="530" y="221" fill="#ecf0f1" font-size="15" font-weight="700" text-anchor="middle">PLAN</text>
+    <!-- REVIEW lower-right -->
+    <circle cx="530" cy="365" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="530" y="371" fill="#ecf0f1" font-size="14" font-weight="700" text-anchor="middle">REVIEW</text>
+    <!-- SHIP bottom -->
+    <circle cx="400" cy="440" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="400" y="446" fill="#ecf0f1" font-size="15" font-weight="700" text-anchor="middle">SHIP</text>
+    <!-- CLOSE lower-left -->
+    <circle cx="270" cy="365" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="270" y="371" fill="#ecf0f1" font-size="14" font-weight="700" text-anchor="middle">CLOSE</text>
+    <!-- OPEN upper-left -->
+    <circle cx="270" cy="215" r="40" fill="#1f3043" stroke="#337ab7" stroke-width="3"/>
+    <text x="270" y="221" fill="#ecf0f1" font-size="15" font-weight="700" text-anchor="middle">OPEN</text>
+  </g>
+
+  <!-- the crew at the hub -->
+  <circle cx="400" cy="290" r="58" fill="#1a2a3a" stroke="#3a536b" stroke-width="1.5"/>
+  <circle cx="382" cy="272" r="13" fill="#337ab7"/>
+  <circle cx="420" cy="278" r="13" fill="#1abb9c"/>
+  <circle cx="398" cy="306" r="13" fill="#e74c3c"/>
+  <text x="400" y="338" fill="#8aa0b3" font-size="11" font-weight="600" text-anchor="middle">Claude · GLM · Codex</text>
+</svg>
