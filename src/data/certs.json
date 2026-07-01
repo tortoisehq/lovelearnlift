@@ -11,6 +11,7 @@
       "courseUrl": "https://anthropic.skilljar.com/claude-101",
       "image": "/certs/claude-101-ehx2cjb6twub.jpg",
       "imagePending": true,
+      "pdf": "/certs/claude-101-certificate.pdf",
       "blurb": "The foundations of working with Claude — what it is, how to prompt it, and its core surfaces (Projects, Artifacts, Skills, connectors)."
     }
   ]
