@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import certsData from '../data/certs.json';
+import tracksData from '../data/tracks.json';
+
+const { certs } = certsData as { certs: any[] };
+const { tracks, updated } = tracksData as { tracks: any[]; updated: string };
+
+const EMAIL = 'LovelearnLift@gmail.com';
+
+const services = [
+  {
+    title: 'Agentic systems',
+    body: 'Custom agents, subagents, and skills that run a real workflow end to end — not a chatbot, an operator that acts, checks its work, and reports back.',
+  },
+  {
+    title: 'Automations & pipelines',
+    body: 'The repeatable process wired up and gated: tool use, MCP connections to your stack, review and safety checks, shipped to production.',
+  },
+  {
+    title: 'Web apps & sites',
+    body: 'Fast, static-first sites and interactive tools (like this one) — built to ship, measure, and iterate.',
+  },
+  {
+    title: 'Learning systems',
+    body: 'Turn a body of knowledge into a masterclass: study, retrieve, prove, return. Proven here on the Encode Learn hub.',
+  },
+];
+
+// status → chip classes
+const chip = (s: string): string => {
+  switch (s) {
+    case 'certified': return 'bg-gold text-black';
+    case 'shipped': return 'bg-emerald-500 text-black';
+    case 'proficient': return 'border border-sky-400 text-sky-300';
+    case 'practicing': return 'border border-amber-400 text-amber-300';
+    default: return 'border border-neutral-600 text-neutral-400'; // learning
+  }
+};
+const fmtDate = (iso: string) =>
+  new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout title="Hire Me" description="Miles Miller — software architect. I build the agentic artifact you need, from idea to shipped.">
+  <!-- Hero / pitch -->
+  <section class="mb-16">
+    <p class="text-xs font-mono uppercase tracking-[0.3em] text-flame mb-4">// Hire me</p>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[0.95] mb-5">
+      Software architect.<br />I build the <span class="text-gold">agentic</span> artifact you need.
+    </h1>
+    <p class="text-lg text-neutral-300 leading-relaxed max-w-2xl mb-8">
+      I design and ship AI-agentic software — agents, automations, and the tools that wire Claude into a
+      real product. Idea to shipped, in the open. If there's something you need built, let's build it.
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a href={`mailto:${EMAIL}?subject=Let's build something`} class="inline-flex items-center gap-2 bg-gold text-black font-mono uppercase tracking-wider text-sm px-6 py-3 no-underline hover:bg-white transition-colors">
+        Get in touch →
+      </a>
+      <a href="#work" class="inline-flex items-center gap-2 border border-neutral-700 text-neutral-200 font-mono uppercase tracking-wider text-sm px-6 py-3 no-underline hover:border-white transition-colors">
+        See what I build
+      </a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="work" class="mb-16">
+    <h2 class="text-2xl font-black tracking-tight mb-6 border-b border-neutral-800 pb-2">What I can build for you</h2>
+    <div class="grid sm:grid-cols-2 gap-px bg-neutral-800 border border-neutral-800">
+      {services.map((s) => (
+        <div class="bg-neutral-950 p-5">
+          <h3 class="text-lg font-bold tracking-tight mb-2">{s.title}</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Skills tracker -->
+  <section class="mb-16">
+    <div class="flex items-baseline justify-between gap-4 mb-6 border-b border-neutral-800 pb-2">
+      <h2 class="text-2xl font-black tracking-tight">What I've learned & shipped</h2>
+      <span class="text-[11px] font-mono text-neutral-500">grows as I learn · updated {fmtDate(updated)}</span>
+    </div>
+    <div class="grid md:grid-cols-3 gap-px bg-neutral-800 border border-neutral-800">
+      {tracks.map((t) => (
+        <div class="bg-neutral-950 p-5">
+          <div class="mb-3">
+            <a href={t.href} class="text-lg font-bold tracking-tight no-underline hover:text-gold">{t.name}</a>
+            <p class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500 mt-0.5">{t.label}</p>
+            <p class="text-xs text-neutral-500 mt-2 leading-relaxed">{t.blurb}</p>
+          </div>
+          <ul class="space-y-2">
+            {t.skills.map((sk: any) => (
+              <li class="flex items-center justify-between gap-2">
+                <span class="text-sm text-neutral-200">{sk.name}</span>
+                <span class={`shrink-0 text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 ${chip(sk.status)}`}>{sk.status}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="mb-16">
+    <h2 class="text-2xl font-black tracking-tight mb-6 border-b border-neutral-800 pb-2">Certifications</h2>
+    <div class="grid sm:grid-cols-2 gap-4">
+      {certs.map((c) => (
+        <a href={c.verifyUrl} target="_blank" rel="noopener noreferrer" class="block border border-neutral-800 bg-neutral-950 no-underline hover:border-gold transition-colors group">
+          {c.image && !c.imagePending ? (
+            <img src={c.image} alt={`${c.title} certificate`} class="w-full border-b border-neutral-800" />
+          ) : (
+            <div class="aspect-[1.6] bg-neutral-900 border-b border-neutral-800 flex items-center justify-center">
+              <span class="text-4xl font-black text-neutral-700 group-hover:text-gold transition-colors">✓</span>
+            </div>
+          )}
+          <div class="p-5">
+            <div class="flex items-baseline justify-between gap-2 mb-1">
+              <h3 class="text-lg font-bold tracking-tight">{c.title}</h3>
+              <span class="text-[11px] font-mono text-neutral-500 shrink-0">{fmtDate(c.date)}</span>
+            </div>
+            <p class="text-xs font-mono uppercase tracking-wider text-gold mb-2">{c.issuer}</p>
+            {c.blurb ? <p class="text-sm text-neutral-400 leading-relaxed mb-3">{c.blurb}</p> : null}
+            <span class="text-xs font-mono text-neutral-500 group-hover:text-white">Verify credential →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="mb-6 border border-neutral-800 bg-neutral-950 p-6 md:p-8">
+    <h2 class="text-2xl font-black tracking-tight mb-2">Let's build something</h2>
+    <p class="text-neutral-400 leading-relaxed mb-5 max-w-2xl">
+      Have an artifact you need built — an agent, an automation, a tool, a site? Tell me what it is and what
+      "done" looks like. I'll tell you honestly whether I'm the right build for it.
+    </p>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-mono">
+      <a href={`mailto:${EMAIL}?subject=Let's build something`} class="inline-flex items-center gap-2 bg-gold text-black uppercase tracking-wider px-6 py-3 no-underline hover:bg-white transition-colors">
+        {EMAIL}
+      </a>
+      <a href="https://github.com/tortoisehq" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white">GitHub ↗</a>
+    </div>
+  </section>
+</Layout>

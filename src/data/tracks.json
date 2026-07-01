@@ -1,0 +1,45 @@
+{
+  "_note": "Living skills tracker shown on /hire. Three tracks: Workhorse, Steward, Encode. Add or update entries as you learn/ship. status vocab: learning | practicing | proficient | shipped | certified. Keep it honest — this is the resume.",
+  "updated": "2026-07-01",
+  "tracks": [
+    {
+      "id": "workhorse",
+      "name": "Workhorse",
+      "label": "Forge · Build One",
+      "href": "/forge/workhorse",
+      "blurb": "Production code, shipped in public.",
+      "skills": [
+        { "name": "Shipping to production", "status": "shipped" },
+        { "name": "Pipeline & agent architecture", "status": "proficient" },
+        { "name": "Risk-gated releases", "status": "proficient" }
+      ]
+    },
+    {
+      "id": "steward",
+      "name": "Steward",
+      "label": "Forge · Build Two",
+      "href": "/forge/steward",
+      "blurb": "Second build, alpha arc.",
+      "skills": [
+        { "name": "Greenfield build in the open", "status": "shipped" },
+        { "name": "Framing before drywall (spec-first)", "status": "practicing" }
+      ]
+    },
+    {
+      "id": "encode",
+      "name": "Encode",
+      "label": "Learning in public",
+      "href": "/encode",
+      "blurb": "Learning the tools I build with, straight from the source.",
+      "skills": [
+        { "name": "Claude 101", "status": "certified", "note": "Anthropic Academy" },
+        { "name": "Claude Code 101", "status": "learning" },
+        { "name": "Claude Platform 101", "status": "learning" },
+        { "name": "Prompting & context engineering", "status": "practicing" },
+        { "name": "Agentic loops & tool use", "status": "learning" },
+        { "name": "MCP & context management", "status": "learning" },
+        { "name": "Managed agents", "status": "learning" }
+      ]
+    }
+  ]
+}

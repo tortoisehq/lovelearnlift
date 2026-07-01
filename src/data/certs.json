@@ -1,0 +1,17 @@
+{
+  "_note": "Certifications shown on /hire. To embed a cert image, drop the file at public/certs/<image> and set `image`; otherwise the card links to `verifyUrl`. Skilljar cert images are signed-CDN and can't be auto-downloaded — save them manually from the verify page or your Anthropic Academy profile.",
+  "certs": [
+    {
+      "id": "claude-101",
+      "title": "Claude 101",
+      "issuer": "Anthropic Education",
+      "date": "2026-06-28",
+      "credentialId": "ehx2cjb6twub",
+      "verifyUrl": "https://verify.skilljar.com/c/ehx2cjb6twub",
+      "courseUrl": "https://anthropic.skilljar.com/claude-101",
+      "image": "/certs/claude-101-ehx2cjb6twub.jpg",
+      "imagePending": true,
+      "blurb": "The foundations of working with Claude — what it is, how to prompt it, and its core surfaces (Projects, Artifacts, Skills, connectors)."
+    }
+  ]
+}
