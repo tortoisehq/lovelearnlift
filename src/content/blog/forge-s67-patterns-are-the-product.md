@@ -16,6 +16,10 @@ And then, living with it, the framing I'd started with went hollow. I'd been cal
 
 The unfair thing isn't any one signal. It's crossing them. Your worst-sleep weeks are your highest-spend weeks. Your best work follows the mornings you trained. No single-purpose app can see that, because seeing it needs your whole life in one place. That's not a feature you bolt onto a health app. It's a different product — a self-improvement platform, where the patterns *are* the product. You don't open it to log a thing; you open it to find out what your body and your words and your days quietly revealed.
 
-Which is why capture collapsed to one button. You speak; the app files it where it belongs. [Here's the shape of it](/insight-dashboard.html) — a whole life laid out, the patterns leading, one thumb-sized button at the bottom.
+Which is why capture collapsed to one button. You speak; the app files it where it belongs. Here's the shape of it — a whole life laid out, the patterns leading, one thumb-sized button at the bottom. Tap around; flip the theme and the handedness:
+
+<iframe src="/insight-dashboard.html" title="InSight — interactive prototype" loading="lazy" style="width:100%;height:960px;border:1px solid rgba(120,120,120,0.25);border-radius:16px;margin:1.5rem 0;background:#0b0d12;display:block"></iframe>
+
+<p style="text-align:center;margin-top:-0.5rem;font-size:0.85rem;opacity:0.6"><a href="/insight-dashboard.html">Open the prototype full-screen →</a></p>
 
 The lesson I keep relearning: a design isn't real until it's in the thing you actually touch. And sometimes wiring it up is the only thing that finally tells you what you built.
