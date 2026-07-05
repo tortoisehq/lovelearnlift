@@ -1,4 +1,4 @@
-export type CategorySlug = 'forge' | 'encode' | 'beacon' | 'evolve' | 'dispatch' | 'masterclass';
+export type CategorySlug = 'forge' | 'craft' | 'encode' | 'beacon' | 'evolve' | 'dispatch' | 'masterclass';
 
 export interface Category {
   slug: CategorySlug;
@@ -94,6 +94,25 @@ export const categories: Record<CategorySlug, Category> = {
       chipText: 'text-neutral-200',
       accent: 'white',
       inverse: 'black',
+    },
+  },
+  craft: {
+    slug: 'craft',
+    // S68 — the press Craft category (teaching one discipline/metaskill). Wired so a `press craft`
+    // post can ship; archived from nav like dispatch/beacon (lives at /craft + posts on disk).
+    // A clean textbook look: black on white with an indigo accent for the discipline pillar.
+    name: 'Craft',
+    description: 'The discipline behind the work.',
+    palette: {
+      bg: 'bg-white',
+      text: 'text-black',
+      textMuted: 'text-neutral-600',
+      border: 'border-indigo-200',
+      borderHover: 'hover:border-indigo-600',
+      chipBg: 'bg-indigo-100',
+      chipText: 'text-indigo-700',
+      accent: 'black',
+      inverse: 'white',
     },
   },
   masterclass: {
