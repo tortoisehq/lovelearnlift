@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="Lexend, system-ui, sans-serif">
+  <rect width="1200" height="630" fill="#FAFAFB"/>
+  <rect x="0" y="0" width="1200" height="10" fill="#2E7CF6"/>
+  <text x="80" y="120" font-size="52" font-weight="800" fill="#151A22" letter-spacing="-1">Build only what the engine returns.</text>
+  <text x="80" y="172" font-size="26" font-weight="500" fill="#5B6472">A bar with no data behind it is a lie you drew yourself.</text>
+
+  <!-- Protein: real -->
+  <text x="80" y="288" font-size="26" font-weight="700" fill="#151A22">Protein</text>
+  <rect x="80" y="306" width="840" height="26" rx="13" fill="#E9ECF1"/>
+  <rect x="80" y="306" width="380" height="26" rx="13" fill="#22C55E"/>
+  <text x="945" y="326" font-size="22" font-weight="700" fill="#22C55E">real</text>
+  <text x="985" y="326" font-size="20" font-weight="500" fill="#5B6472">54–71 g</text>
+
+  <!-- Carbs: not modelled -->
+  <text x="80" y="392" font-size="26" font-weight="700" fill="#9AA1AC">Carbs</text>
+  <rect x="80" y="410" width="840" height="26" rx="13" fill="#F0F1F4" stroke="#D6DAE1" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="945" y="430" font-size="20" font-weight="600" fill="#9AA1AC">not faked</text>
+
+  <!-- Fat: not modelled -->
+  <text x="80" y="480" font-size="26" font-weight="700" fill="#9AA1AC">Fat</text>
+  <rect x="80" y="498" width="840" height="26" rx="13" fill="#F0F1F4" stroke="#D6DAE1" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="945" y="518" font-size="20" font-weight="600" fill="#9AA1AC">not faked</text>
+
+  <text x="80" y="588" font-size="22" font-weight="500" fill="#5B6472">The engine estimates energy and protein. Carbs and fat it doesn&#39;t — so they stay empty, honestly.</text>
+</svg>
