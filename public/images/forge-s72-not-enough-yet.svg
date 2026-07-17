@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="A quilt of denim patches with a bright thread stitching through them into a card that reads: not enough yet.">
+  <rect width="640" height="360" fill="#FAFAFB"/>
+  <!-- the quilt: a grid of denim patches, stitched -->
+  <g>
+    <rect x="40" y="60" width="70" height="70" rx="8" fill="#3d5a86"/>
+    <rect x="118" y="60" width="70" height="70" rx="8" fill="#54749f"/>
+    <rect x="196" y="60" width="70" height="70" rx="8" fill="#22385a"/>
+    <rect x="40" y="138" width="70" height="70" rx="8" fill="#2c476f"/>
+    <rect x="118" y="138" width="70" height="70" rx="8" fill="#22C55E"/>
+    <rect x="196" y="138" width="70" height="70" rx="8" fill="#3d5a86"/>
+    <rect x="40" y="216" width="70" height="70" rx="8" fill="#54749f"/>
+    <rect x="118" y="216" width="70" height="70" rx="8" fill="#C6A24E"/>
+    <rect x="196" y="216" width="70" height="70" rx="8" fill="#2c476f"/>
+    <!-- stitch dashes over the seams -->
+    <g stroke="#FBF7EF" stroke-width="2" stroke-dasharray="6 5" opacity="0.85">
+      <line x1="40" y1="130" x2="266" y2="130"/>
+      <line x1="40" y1="208" x2="266" y2="208"/>
+      <line x1="110" y1="60" x2="110" y2="286"/>
+      <line x1="188" y1="60" x2="188" y2="286"/>
+    </g>
+  </g>
+  <!-- the Stitch: a bright thread leaving the quilt toward the card -->
+  <path d="M266 173 C 330 173, 340 150, 410 150" fill="none" stroke="#2E7CF6" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+  <circle cx="266" cy="173" r="5" fill="#2E7CF6"/>
+  <!-- the honest card -->
+  <g>
+    <rect x="410" y="108" width="196" height="150" rx="16" fill="#FFFFFF" stroke="#CFE0FF" stroke-width="1.5"/>
+    <text x="430" y="140" font-family="Lexend, system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5" fill="#98A0AD">◔ THE STITCH SAYS</text>
+    <text x="430" y="176" font-family="Lexend, system-ui, sans-serif" font-size="22" font-weight="800" fill="#151A22">not enough</text>
+    <text x="430" y="203" font-family="Lexend, system-ui, sans-serif" font-size="22" font-weight="800" fill="#151A22">yet <tspan font-size="20">🧵</tspan></text>
+    <text x="430" y="232" font-family="Lexend, system-ui, sans-serif" font-size="12" fill="#525A66">(and it&#39;s proud of that)</text>
+  </g>
+  <!-- title strip -->
+  <text x="40" y="330" font-family="Lexend, system-ui, sans-serif" font-size="15" font-weight="600" fill="#151A22">Quilt · the Stitch — a becoming-engine that won&#39;t make things up</text>
+</svg>
