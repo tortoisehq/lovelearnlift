@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Two phone calls, one split correctly and one collapsed into a single block">
+  <defs>
+    <style>
+      .bg{fill:#151A22}.card{fill:#1C222C}.ink{fill:#FAFAFB}.mut{fill:#8B94A3}
+      .t{font-family:Lexend,'Segoe UI',system-ui,sans-serif}
+      .h{font-size:30px;font-weight:700}.l{font-size:17px;font-weight:600}
+      .s{font-size:14px;font-weight:500}.k{font-size:13px;font-weight:600;letter-spacing:1.4px}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t k mut" x="72" y="74">ONE NUMBER, TWO OUTCOMES</text>
+
+  <!-- LEFT: worked -->
+  <rect class="card" x="72" y="108" width="480" height="404" rx="20"/>
+  <circle cx="108" cy="152" r="7" fill="#22C55E"/>
+  <text class="t l ink" x="128" y="158">69-second call</text>
+  <text class="t s mut" x="104" y="192">output fit inside the cap</text>
+
+  <rect x="104" y="222" width="416" height="46" rx="10" fill="#22C55E" opacity="0.16"/>
+  <text class="t s ink" x="122" y="251">journal — how the day went</text>
+  <rect x="104" y="280" width="416" height="46" rx="10" fill="#2E7CF6" opacity="0.20"/>
+  <text class="t s ink" x="122" y="309">food — yogurt, protein, an apple</text>
+  <rect x="104" y="338" width="416" height="46" rx="10" fill="#22C55E" opacity="0.16"/>
+  <text class="t s ink" x="122" y="367">journal — training notes</text>
+
+  <text class="t l" x="104" y="432" fill="#22C55E">5 pieces, each filed</text>
+  <text class="t s mut" x="104" y="462">everything showed up where it belonged</text>
+
+  <!-- RIGHT: failed -->
+  <rect class="card" x="648" y="108" width="480" height="404" rx="20"/>
+  <circle cx="684" cy="152" r="7" fill="#F04A4A"/>
+  <text class="t l ink" x="704" y="158">269-second call</text>
+  <text class="t s mut" x="680" y="192">output hit the cap exactly</text>
+
+  <rect x="680" y="222" width="416" height="162" rx="10" fill="#F04A4A" opacity="0.13"/>
+  <text class="t s mut" x="698" y="253">everything I said —</text>
+  <text class="t s mut" x="698" y="279">the food, the training, the day —</text>
+  <text class="t s mut" x="698" y="305">one undivided block of text</text>
+  <text class="t s mut" x="698" y="349">no error. no warning.</text>
+
+  <text class="t l" x="680" y="432" fill="#F04A4A">1 piece, nothing filed</text>
+  <text class="t s mut" x="680" y="462">the screen looked completely normal</text>
+
+  <text class="t h ink" x="72" y="576">The code knew. Nothing read the flag.</text>
+</svg>

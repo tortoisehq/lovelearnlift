@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="A phone screen showing food logged by voice with calorie and protein ranges">
+  <defs>
+    <style>
+      .bg{fill:#FAFAFB}.ink{fill:#151A22}.mut{fill:#6B7280}.line{stroke:#E6E8EC;stroke-width:1}
+      .t{font-family:Lexend,'Segoe UI',system-ui,sans-serif}
+      .h{font-size:27px;font-weight:800}.l{font-size:17px;font-weight:700}
+      .s{font-size:14px;font-weight:500}.k{font-size:12px;font-weight:700;letter-spacing:1.4px}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="560"/>
+
+  <text class="t k mut" x="72" y="66">AFTER THE FIX — SPOKEN, NOT TYPED</text>
+  <text class="t h ink" x="72" y="112">Fuel</text>
+
+  <!-- protein bar -->
+  <text class="t l ink" x="72" y="176">Protein</text>
+  <text class="t l ink" x="1128" y="176" text-anchor="end">113–151 / 130 g</text>
+  <rect x="72" y="194" width="1056" height="12" rx="6" fill="#E6E8EC"/>
+  <rect x="72" y="194" width="1056" height="12" rx="6" fill="#22C55E"/>
+
+  <line class="line" x1="72" y1="248" x2="1128" y2="248"/>
+
+  <!-- rows -->
+  <text class="t s mut" x="72" y="298">2:10 AM</text>
+  <text class="t l ink" x="248" y="298">Plain yogurt, protein scoop</text>
+  <text class="t s mut" x="248" y="324">250–320 cal · 37–45 g protein</text>
+
+  <line class="line" x1="248" y1="352" x2="1128" y2="352"/>
+
+  <text class="t s mut" x="72" y="402">9:40 AM</text>
+  <text class="t l ink" x="248" y="402">An apple</text>
+  <text class="t s mut" x="248" y="428">80–95 cal · 0–1 g protein</text>
+
+  <line class="line" x1="248" y1="456" x2="1128" y2="456"/>
+
+  <text class="t s mut" x="72" y="506">6:15 PM</text>
+  <text class="t l ink" x="248" y="506">Frozen butter chicken</text>
+  <text class="t s mut" x="248" y="532">480–700 cal · 28–42 g protein</text>
+
+  <text class="t s mut" x="1128" y="506" text-anchor="end">ranges, not fake precision</text>
+</svg>
