@@ -15,8 +15,8 @@ _(Earlier pillars — Beacon, Dispatch, Evolve, Endure — are archived from the
 
 ## What's on the site
 
-- **Encode Learn** (`/encode/learn`) — a masterclass you prove, not just watch: study guides with a question before every answer, plus self-scoring quizzes that resurface what you missed. Guides live as JSON in `src/data/learn/`.
-- **Encode homework** (`/encode/homework`) — the standalone quiz engine (`src/components/Quiz.astro`), data in `src/data/homework.json`.
+- **Encode Learn** (`/encode/learn`) — the current study track, worked in public one week at a time. As of E39 (2026-07-21) that's the Machine Learning Specialization (Andrew Ng, DeepLearning.AI + Stanford Online). The ten-week ladder is a plain array at the top of `src/pages/encode/learn/index.astro` — edit it there to change status or add units.
+- **Encode homework** (`/encode/homework`) — **archived arc.** The standalone quiz engine (`src/components/Quiz.astro`) over the Anthropic Claude course track, data in `src/data/homework.json`. Still live and playable, banner-marked as archive. The older per-module study guides in `src/data/learn/*.json` are unlinked but retained — `/encode/learn/[id].astro` 301s their URLs to the hub, so deleting the JSON breaks those redirects.
 - **Hire Me** (`/hire`) — services, a live skills tracker across Workhorse / Steward / Encode (`src/data/tracks.json`), and certifications (`src/data/certs.json`).
 - **Blog** (`/blog`) — all posts, one per pillar page.
 

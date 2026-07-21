@@ -1,71 +1,80 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-// ARCHIVED E38 — quiz-course apparatus (module JSON grouping + localStorage
-// mastery tracking + self-scoring quiz flow) pulled off this page per E35's
-// own rule: "site quizzes are optional reinforcement, NOT a gate" — and per
-// E38: rebrand Learn from course-and-quiz to project-and-build. The module
-// JSON files (src/data/learn/*.json) and Quiz.astro component are untouched
-// on disk — nothing deleted, just unlinked. Prior version restorable from
-// git history (this file, pre-E38).
+// REBRANDED E39 2026-07-21 — arc pivot: Anthropic Claude course track / P1–P6 project
+// series → DeepLearning.AI + Stanford Online "Machine Learning Specialization" (Andrew Ng,
+// Coursera). The P-series is parked at P1-shipped, nothing half-open. Prior version of this
+// file (the six-project ladder) restorable from git history.
+//
+// ARCHIVED E38 — quiz-course apparatus (module JSON grouping + localStorage mastery tracking
+// + self-scoring quiz flow) pulled off this page. Module JSON (src/data/learn/*.json) and
+// Quiz.astro untouched on disk — unlinked, not deleted.
 
-type Project = {
+type Unit = {
   id: string; title: string; learns: string; domain: string;
-  status: 'shipped' | 'building' | 'planned';
+  status: 'done' | 'building' | 'planned';
 };
 
-const projects: Project[] = [
-  { id: 'P1', title: 'Single API call, wired into a real workflow', learns: 'Claude Platform M1.1–M1.3 — platform, messages.create, model choice',
-    domain: 'Session-notes → blog-draft tool. Built, shipped, live-tested, then pulled back to a local-only script.', status: 'shipped' },
-  { id: 'P2', title: 'The agent starts taking actions', learns: 'M2.1 agent loop · M2.2 tool use',
-    domain: 'A small lookup-and-answer agent.', status: 'building' },
-  { id: 'P3', title: 'Thinking + keeping context straight', learns: 'M2.3 thinking · M3.1 built-in tools · M3.4 context management',
-    domain: 'A different vertical than P2, on purpose — sample widely.', status: 'planned' },
-  { id: 'P4', title: 'Real data + a reusable skill', learns: 'M3.2 skills · M3.3 MCP',
-    domain: 'Connect to a real system worth caring about.', status: 'planned' },
-  { id: 'P5', title: 'It runs itself', learns: 'M4.1 managed agents · M4.2 build your first one',
-    domain: 'Promote whichever earlier project felt most alive.', status: 'planned' },
-  { id: 'P6', title: 'Capstone — built with Claude Code, and the lane decision', learns: 'M5.1 building with Claude Code',
-    domain: 'Review the signal from P1–P5. Pick the lane from evidence.', status: 'planned' },
+const units: Unit[] = [
+  { id: 'C1 · W1', title: 'Introduction to machine learning', learns: 'Supervised vs. unsupervised · linear regression · cost function · gradient descent',
+    domain: 'Where the whole field starts: a model that fits a line, and the algorithm that finds it.', status: 'building' },
+  { id: 'C1 · W2', title: 'Regression with multiple inputs', learns: 'Multiple linear regression · vectorization · feature scaling · feature engineering',
+    domain: 'One input becomes many. NumPy stops being optional.', status: 'planned' },
+  { id: 'C1 · W3', title: 'Classification', learns: 'Logistic regression · decision boundaries · overfitting · regularization',
+    domain: 'From predicting a number to predicting a category — and the first real failure mode.', status: 'planned' },
+  { id: 'C2 · W1', title: 'Neural networks — inference', learns: 'Layers · forward propagation · running a trained network',
+    domain: 'What a network actually does at run time, before touching how it learns.', status: 'planned' },
+  { id: 'C2 · W2', title: 'Neural networks — training', learns: 'Backprop in practice · activation functions · multiclass · softmax · Adam',
+    domain: 'The fit step. Where "learning without being explicitly programmed" gets concrete.', status: 'planned' },
+  { id: 'C2 · W3', title: 'Advice for applying ML', learns: 'Bias vs. variance · error analysis · train/dev/test · transfer learning',
+    domain: "Ng's own emphasis: the tools matter less than knowing which one to reach for.", status: 'planned' },
+  { id: 'C2 · W4', title: 'Decision trees', learns: 'Trees · ensembles · random forests · XGBoost',
+    domain: 'The other family — often what actually wins on tabular data.', status: 'planned' },
+  { id: 'C3 · W1', title: 'Unsupervised learning', learns: 'Clustering · k-means · anomaly detection',
+    domain: 'No labels, no answer key. Structure found rather than taught.', status: 'planned' },
+  { id: 'C3 · W2', title: 'Recommender systems', learns: 'Collaborative filtering · content-based filtering · PCA',
+    domain: 'The third of the three most-used algorithm families in production today.', status: 'planned' },
+  { id: 'C3 · W3', title: 'Reinforcement learning', learns: 'Reward · policy · state-action value',
+    domain: "Closing the loop back to Samuel's checkers program: learning from outcomes, not examples.", status: 'planned' },
 ];
 
-const chip = (s: Project['status']) => s === 'shipped'
-  ? { label: 'Shipped', cls: 'border-emerald-500 text-emerald-600' }
+const chip = (s: Unit['status']) => s === 'done'
+  ? { label: 'Done', cls: 'border-emerald-500 text-emerald-600' }
   : s === 'building'
-  ? { label: 'Now building', cls: 'border-amber-500 text-amber-600' }
-  : { label: 'Planned', cls: 'border-neutral-300 text-neutral-500' };
+  ? { label: 'Now studying', cls: 'border-amber-500 text-amber-600' }
+  : { label: 'Ahead', cls: 'border-neutral-300 text-neutral-500' };
 ---
 
-<Layout title="Encode Learn" description="Learning Claude by building six real, varied projects — one at a time, in public — then picking a lane from the evidence." palette="masterclass">
+<Layout title="Encode Learn" description="Working the Machine Learning Specialization (Andrew Ng, DeepLearning.AI + Stanford Online) end to end, in public — ten weeks, three courses, one week at a time." palette="masterclass">
   <header class="mb-10">
     <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-3">
       <a href="/encode" class="hover:text-black">// Encode</a> / Learn
     </p>
     <h1 class="text-4xl font-bold tracking-tight mb-3">Learn</h1>
     <p class="text-lg text-neutral-700 max-w-xl leading-relaxed">
-      Learning Claude by building. Six real, varied projects — one at a time, in public — each one earning
-      the next concept as the build needs it. No typecasting: the lane gets picked at the end, from evidence,
-      not guessed up front.
+      Working the <a href="https://www.coursera.org/specializations/machine-learning-introduction" rel="noopener noreferrer" target="_blank" class="underline hover:no-underline">Machine Learning Specialization</a> —
+      Andrew Ng, DeepLearning.AI and Stanford Online. Three courses, ten weeks, ground zero up. Each week gets
+      studied, then written up here in plain language. The maths gets shown, not skipped.
     </p>
   </header>
 
   <ol class="space-y-px bg-neutral-200 border border-neutral-200">
-    {projects.map((p) => {
-      const c = chip(p.status);
+    {units.map((u) => {
+      const c = chip(u.status);
       return (
         <li class="bg-white p-5">
           <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
-            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">{p.id} · {p.learns}</span>
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">{u.id} · {u.learns}</span>
             <span class={`text-[10px] font-mono px-2 py-0.5 border whitespace-nowrap ${c.cls}`}>{c.label}</span>
           </div>
-          <h3 class="text-xl font-semibold tracking-tight">{p.title}</h3>
-          <p class="text-sm text-neutral-600 leading-relaxed mt-1">{p.domain}</p>
+          <h3 class="text-xl font-semibold tracking-tight">{u.title}</h3>
+          <p class="text-sm text-neutral-600 leading-relaxed mt-1">{u.domain}</p>
         </li>
       );
     })}
   </ol>
 
   <p class="mt-6 text-xs font-mono text-neutral-500">
-    Every project ships a public case study before the next one opens. Signal — what came easy, what got
-    traction — gets logged and feeds the lane decision after P5.
+    Notes here are mine, in my own words — the course's own video and transcripts stay on Coursera, where they
+    belong. Links go to the official lectures.
   </p>
 </Layout>

@@ -1,6 +1,6 @@
 {
-  "_note": "Living skills tracker shown on /hire. Three tracks: Workhorse, Steward, Encode. Add or update entries as you learn/ship. status vocab: learning | practicing | proficient | shipped | certified. Keep it honest — this is the resume.",
-  "updated": "2026-07-01",
+  "_note": "Living skills tracker shown on /hire. Three tracks: Workhorse, Steward, Encode. Add or update entries as you learn/ship. status vocab: learning | practicing | proficient | shipped | certified | paused. Anything unrecognised renders as the neutral chip. Keep it honest — this is the resume.",
+  "updated": "2026-07-21",
   "tracks": [
     {
       "id": "workhorse",
@@ -30,15 +30,15 @@
       "name": "Encode",
       "label": "Learning in public",
       "href": "/encode",
-      "blurb": "Learning the tools I build with, straight from the source.",
+      "blurb": "Learning the tools I build with — and now what's underneath them.",
       "skills": [
+        { "name": "Machine Learning Specialization", "status": "learning", "note": "Ng · DeepLearning.AI — current track" },
+        { "name": "Supervised learning & regression", "status": "learning" },
+        { "name": "Neural networks", "status": "learning" },
         { "name": "Claude 101", "status": "certified", "note": "Anthropic Academy" },
-        { "name": "Claude Code 101", "status": "learning" },
-        { "name": "Claude Platform 101", "status": "learning" },
+        { "name": "Claude Code 101", "status": "certified", "note": "Anthropic Academy" },
         { "name": "Prompting & context engineering", "status": "practicing" },
-        { "name": "Agentic loops & tool use", "status": "learning" },
-        { "name": "MCP & context management", "status": "learning" },
-        { "name": "Managed agents", "status": "learning" }
+        { "name": "Claude Platform / agentic loops & tool use", "status": "paused", "note": "P1 shipped; series parked" }
       ]
     }
   ]

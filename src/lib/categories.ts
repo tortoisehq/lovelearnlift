@@ -117,8 +117,10 @@ export const categories: Record<CategorySlug, Category> = {
   },
   masterclass: {
     slug: 'masterclass',
-    // E33 — the Learn masterclass reads as a classic textbook: black text on white.
-    name: 'Masterclass',
+    // E33 — the Learn hub reads as a classic textbook: black text on white.
+    // Slug kept as 'masterclass' at E39 (palette coupling in Layout.astro L60 + existing
+    // post front-matter); only the display name/description follow the ML-arc rebrand.
+    name: 'Coursework',
     description: 'Study guides.',
     palette: {
       bg: 'bg-white',

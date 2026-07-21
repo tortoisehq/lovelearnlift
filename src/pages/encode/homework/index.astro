@@ -12,14 +12,19 @@ type Quiz = {
 const quizzes = (homework as Quiz[]).filter((q) => !q.archived).slice().reverse(); // active only, newest session first
 ---
 
-<Layout title="Encode Homework" description="Scoreable, self-quizzing homework on what I've locked — retrieval practice in public." palette="encode">
+<Layout title="Encode Homework — Claude course archive" description="Archived self-scoring quizzes from the Anthropic Claude course track. Still playable; no longer the current study arc." palette="encode">
   <header class="mb-10">
     <p class="text-xs font-mono uppercase tracking-[0.25em] text-stone-500 mb-3">
       <a href="/encode" class="hover:text-white">// Encode</a> / Homework
     </p>
     <h1 class="text-4xl font-bold tracking-tight mb-3">Homework</h1>
+    <p class="text-sm font-mono text-amber-400/90 border border-amber-500/30 bg-amber-500/5 px-4 py-3 mb-5 max-w-xl leading-relaxed">
+      Archive — this covers the Anthropic Claude course track (Claude 101 certified, Claude Code 101 done).
+      The current study arc is the <a href="/encode/learn" class="underline hover:text-amber-300">Machine Learning Specialization</a>.
+      These quizzes still work; they're just not what I'm on now.
+    </p>
     <p class="text-lg text-stone-300 max-w-xl">
-      Self-scoring quizzes on what I've actually locked in a session. Answer, get the why instantly, watch your
+      Self-scoring quizzes on what I actually locked in a session. Answer, get the why instantly, watch your
       score. Missed questions come back first; your best score and streak live in your browser. This is retrieval
       practice — the part that turns "I watched it" into "I know it."
     </p>
