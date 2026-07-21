@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="880" height="470" fill="#f4efe4"/>
+  <text x="48" y="56" font-size="28" font-weight="bold" fill="#1c1917">Shipped it live. Then took it back down.</text>
+  <text x="48" y="86" font-size="15" fill="#57534e" font-style="italic">A public URL for a tool with one user isn't caution &#8212; it's just spend waiting to happen.</text>
+
+  <!-- BEFORE panel -->
+  <rect x="48" y="112" width="380" height="300" rx="6" fill="#efe7d6" stroke="#b45309"/>
+  <text x="68" y="140" font-size="12.5" font-weight="bold" letter-spacing="1" fill="#b45309">BEFORE &#8212; LIVE, PUBLIC, WAITING</text>
+  <g font-family="'Courier New', monospace" font-size="13.5" fill="#78716c">
+    <text x="68" y="180">lovelearnlift.com/admin</text>
+    <text x="68" y="206">x-admin-key: "test123"</text>
+    <text x="68" y="232">ANTHROPIC_API_KEY &#8594; one guess away</text>
+  </g>
+  <text x="68" y="338" font-size="13" fill="#b45309" font-style="italic">Built for me.</text>
+  <text x="68" y="360" font-size="13" fill="#b45309" font-style="italic">Reachable by anyone.</text>
+
+  <!-- AFTER panel -->
+  <rect x="452" y="112" width="380" height="300" rx="6" fill="#1c2530" stroke="#0f172a"/>
+  <text x="472" y="140" font-size="12.5" font-weight="bold" letter-spacing="1" fill="#4ade80">AFTER &#8212; LOCAL ONLY</text>
+  <g font-family="'Courier New', monospace" font-size="13.5" fill="#e2e8f0">
+    <text x="472" y="180">$ node --env-file=.env.local \</text>
+    <text x="492" y="204">scripts/draft.mjs notes.txt</text>
+    <text x="472" y="240">no server. no route.</text>
+    <text x="472" y="264">nothing to find.</text>
+  </g>
+  <text x="472" y="376" font-size="13" fill="#4ade80" font-style="italic">Same tool. Only reachable by me.</text>
+
+  <text x="48" y="452" font-size="14" fill="#44403c">E38 &#183; teach-others is a later product &#8212; this project isn't done earning that yet.</text>
+</svg>

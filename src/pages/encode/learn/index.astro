@@ -1,189 +1,71 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import homework from '../../../data/homework.json';
+// ARCHIVED E38 — quiz-course apparatus (module JSON grouping + localStorage
+// mastery tracking + self-scoring quiz flow) pulled off this page per E35's
+// own rule: "site quizzes are optional reinforcement, NOT a gate" — and per
+// E38: rebrand Learn from course-and-quiz to project-and-build. The module
+// JSON files (src/data/learn/*.json) and Quiz.astro component are untouched
+// on disk — nothing deleted, just unlinked. Prior version restorable from
+// git history (this file, pre-E38).
 
-const mods = import.meta.glob('../../../data/learn/*.json', { eager: true });
-type Module = {
-  id: string; title: string; session: string; course: string; promise: string;
-  quizId: string; sections: unknown[];
-  courseId?: string; courseTitle?: string; module?: number;
+type Project = {
+  id: string; title: string; learns: string; domain: string;
+  status: 'shipped' | 'building' | 'planned';
 };
 
-// pass% per quiz, for the "to lock" threshold shown on in-progress modules
-const passByQuiz: Record<string, number> = {};
-for (const q of homework as any[]) passByQuiz[q.id] = q.passPct ?? 80;
+const projects: Project[] = [
+  { id: 'P1', title: 'Single API call, wired into a real workflow', learns: 'Claude Platform M1.1–M1.3 — platform, messages.create, model choice',
+    domain: 'Session-notes → blog-draft tool. Built, shipped, live-tested, then pulled back to a local-only script.', status: 'shipped' },
+  { id: 'P2', title: 'The agent starts taking actions', learns: 'M2.1 agent loop · M2.2 tool use',
+    domain: 'A small lookup-and-answer agent.', status: 'building' },
+  { id: 'P3', title: 'Thinking + keeping context straight', learns: 'M2.3 thinking · M3.1 built-in tools · M3.4 context management',
+    domain: 'A different vertical than P2, on purpose — sample widely.', status: 'planned' },
+  { id: 'P4', title: 'Real data + a reusable skill', learns: 'M3.2 skills · M3.3 MCP',
+    domain: 'Connect to a real system worth caring about.', status: 'planned' },
+  { id: 'P5', title: 'It runs itself', learns: 'M4.1 managed agents · M4.2 build your first one',
+    domain: 'Promote whichever earlier project felt most alive.', status: 'planned' },
+  { id: 'P6', title: 'Capstone — built with Claude Code, and the lane decision', learns: 'M5.1 building with Claude Code',
+    domain: 'Review the signal from P1–P5. Pick the lane from evidence.', status: 'planned' },
+];
 
-const all = Object.values(mods).map((m: any) => (m.default ?? m) as Module);
-
-// group into courses, order modules within a course by module number
-const courseMap = new Map<string, { id: string; title: string; subtitle: string; modules: Module[] }>();
-for (const m of all) {
-  const cid = m.courseId ?? 'misc';
-  if (!courseMap.has(cid)) {
-    courseMap.set(cid, {
-      id: cid,
-      title: m.courseTitle ?? m.course ?? 'Course',
-      subtitle: (m.course ?? '').split(',')[0].trim(), // "Anthropic Academy — Claude 101"
-      modules: [],
-    });
-  }
-  courseMap.get(cid)!.modules.push(m);
-}
-const courses = [...courseMap.values()].map((c) => ({
-  ...c,
-  modules: c.modules.sort((a, b) => (a.module ?? 99) - (b.module ?? 99)),
-}));
+const chip = (s: Project['status']) => s === 'shipped'
+  ? { label: 'Shipped', cls: 'border-emerald-500 text-emerald-600' }
+  : s === 'building'
+  ? { label: 'Now building', cls: 'border-amber-500 text-amber-600' }
+  : { label: 'Planned', cls: 'border-neutral-300 text-neutral-500' };
 ---
 
-<Layout title="Encode Learn" description="Masterclass-style study guides — study the material, prove it with a quiz, watch your mastery build, all in one place." palette="masterclass">
+<Layout title="Encode Learn" description="Learning Claude by building six real, varied projects — one at a time, in public — then picking a lane from the evidence." palette="masterclass">
   <header class="mb-10">
     <p class="text-xs font-mono uppercase tracking-[0.25em] text-neutral-500 mb-3">
       <a href="/encode" class="hover:text-black">// Encode</a> / Learn
     </p>
     <h1 class="text-4xl font-bold tracking-tight mb-3">Learn</h1>
     <p class="text-lg text-neutral-700 max-w-xl leading-relaxed">
-      A masterclass you prove, not just watch. Study each module with a question before every answer, prove it on a self-scoring quiz, and watch your mastery build — module by module, in order.
+      Learning Claude by building. Six real, varied projects — one at a time, in public — each one earning
+      the next concept as the build needs it. No typecasting: the lane gets picked at the end, from evidence,
+      not guessed up front.
     </p>
   </header>
 
-  {courses.length === 0 ? (
-    <p class="text-neutral-600">No modules yet — check back after the next session.</p>
-  ) : (
-    courses.map((c) => (
-      <section class="course mb-12" data-course-id={c.id}>
-        {/* course header band */}
-        <div class="border border-neutral-200 bg-white mb-px">
-          <div class="p-5">
-            <div class="flex items-baseline justify-between gap-4 flex-wrap">
-              <div>
-                <h2 class="text-2xl font-bold tracking-tight">{c.title}</h2>
-                <p class="text-xs font-mono uppercase tracking-[0.2em] text-neutral-500 mt-1">{c.subtitle} · {c.modules.length} modules · self-scoring</p>
-              </div>
-              <p class="course-summary text-xs font-mono text-neutral-600" data-total={c.modules.length}>Start with Module 1 →</p>
-            </div>
-            {/* progress bar */}
-            <div class="mt-4 h-1.5 bg-neutral-200 overflow-hidden">
-              <div class="course-bar h-full bg-emerald-500 transition-all" style="width:0%"></div>
-            </div>
-            {/* continue CTA (hydrated) */}
-            <a class="course-continue mt-4 hidden items-center gap-2 bg-black text-white font-semibold text-sm px-4 py-2.5 hover:bg-neutral-800 transition-colors" href="#">
-              <span class="course-continue-label">Continue</span>
-            </a>
+  <ol class="space-y-px bg-neutral-200 border border-neutral-200">
+    {projects.map((p) => {
+      const c = chip(p.status);
+      return (
+        <li class="bg-white p-5">
+          <div class="flex items-baseline justify-between gap-3 mb-1 flex-wrap">
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">{p.id} · {p.learns}</span>
+            <span class={`text-[10px] font-mono px-2 py-0.5 border whitespace-nowrap ${c.cls}`}>{c.label}</span>
           </div>
-        </div>
-
-        {/* ordered module list */}
-        <ol class="space-y-px bg-neutral-200 border border-neutral-200">
-          {c.modules.map((m) => (
-            <li class="bg-white">
-              <a
-                href={`/encode/learn/${m.id}`}
-                data-quiz-id={m.quizId}
-                data-module={m.module ?? 0}
-                data-pass-pct={passByQuiz[m.quizId] ?? 80}
-                class="module-row group flex gap-4 p-5 hover:bg-neutral-100 transition-colors border-l-2 border-transparent"
-              >
-                <span class="module-num font-mono text-sm text-neutral-500 pt-0.5 tabular-nums">{String(m.module ?? 0).padStart(2, '0')}</span>
-                <div class="min-w-0 flex-1">
-                  <div class="flex items-baseline justify-between gap-3 mb-1">
-                    <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-neutral-500">Module {m.module} · {m.sections.length} objectives + quiz</span>
-                    <span class="module-chip hidden text-[10px] font-mono px-2 py-0.5 border whitespace-nowrap"></span>
-                  </div>
-                  <h3 class="text-xl font-semibold tracking-tight group-hover:underline">{m.title}</h3>
-                  <p class="text-sm text-neutral-600 leading-relaxed mt-1">{m.promise}</p>
-                  <p class="module-stats hidden mt-2 text-[11px] font-mono text-neutral-500"></p>
-                </div>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
-    ))
-  )}
+          <h3 class="text-xl font-semibold tracking-tight">{p.title}</h3>
+          <p class="text-sm text-neutral-600 leading-relaxed mt-1">{p.domain}</p>
+        </li>
+      );
+    })}
+  </ol>
 
   <p class="mt-6 text-xs font-mono text-neutral-500">
-    Progress is saved in this browser only — no account, no tracking.
+    Every project ships a public case study before the next one opens. Signal — what came easy, what got
+    traction — gets logged and feeds the lane decision after P5.
   </p>
 </Layout>
-
-<script>
-  const todayStr = () => new Date().toISOString().slice(0, 10);
-
-  document.querySelectorAll<HTMLElement>('.course').forEach((section) => {
-    const rows = Array.from(section.querySelectorAll<HTMLAnchorElement>('.module-row'));
-    let sealed = 0, locked = 0, maxStreak = 0;
-    let continueEl: HTMLAnchorElement | null = null;
-    let firstDueEl: HTMLAnchorElement | null = null;
-
-    rows.forEach((row) => {
-      const id = row.dataset.quizId;
-      const passPct = Number(row.dataset.passPct || 80);
-      const chip = row.querySelector<HTMLElement>('.module-chip')!;
-      const stats = row.querySelector<HTMLElement>('.module-stats')!;
-      let s: any = null;
-      try { const raw = localStorage.getItem(`lll-hw-${id}`); if (raw) s = JSON.parse(raw); } catch {}
-
-      const attempts = s?.attempts ?? 0;
-      const bestPct = s?.bestPct ?? 0;
-      const due = s && s.lastDate !== todayStr();
-      if (s?.streak) maxStreak = Math.max(maxStreak, s.streak);
-
-      chip.classList.remove('hidden');
-      if (attempts === 0) {
-        chip.textContent = 'Not started';
-        chip.classList.add('border-neutral-300', 'text-neutral-500');
-        if (!continueEl) continueEl = row;
-      } else if (bestPct < passPct) {
-        chip.textContent = 'In progress';
-        chip.classList.add('border-amber-500', 'text-amber-600');
-        if (!continueEl) continueEl = row;
-      } else if (bestPct === 100) {
-        sealed++;
-        chip.textContent = due ? 'Sealed 🔒 · review due' : 'Sealed 🔒';
-        chip.classList.add(due ? 'border-amber-500' : 'border-emerald-500', due ? 'text-amber-600' : 'text-emerald-600');
-        if (due && !firstDueEl) firstDueEl = row;
-      } else {
-        locked++;
-        chip.textContent = due ? 'Locked ✓ · review due' : 'Locked ✓';
-        chip.classList.add(due ? 'border-amber-500' : 'border-green-600', due ? 'text-amber-600' : 'text-green-600');
-        if (due && !firstDueEl) firstDueEl = row;
-      }
-
-      if (attempts > 0) {
-        stats.classList.remove('hidden');
-        stats.textContent = bestPct < passPct
-          ? `Best ${bestPct}% · ${passPct}% to lock · ${attempts} attempt${attempts === 1 ? '' : 's'}`
-          : `Best ${bestPct}% · streak ${s.streak ?? 0} · ${attempts} attempt${attempts === 1 ? '' : 's'}`;
-      }
-    });
-
-    const total = rows.length;
-    const done = sealed + locked;
-    const bar = section.querySelector<HTMLElement>('.course-bar')!;
-    bar.style.width = `${Math.round((done / total) * 100)}%`;
-
-    const summary = section.querySelector<HTMLElement>('.course-summary')!;
-    const target = continueEl || firstDueEl;
-    const streakTxt = maxStreak > 0 ? ` · streak ${maxStreak} 🔥` : '';
-    summary.textContent = `${sealed} sealed · ${locked} locked · ${total - done} to go${streakTxt}`;
-
-    // "you are here" + continue CTA
-    const cta = section.querySelector<HTMLAnchorElement>('.course-continue')!;
-    const ctaLabel = cta.querySelector<HTMLElement>('.course-continue-label')!;
-    if (target) {
-      target.classList.add('border-amber-500', 'bg-amber-50');
-      target.querySelector('.module-num')!.classList.add('!text-amber-600');
-      const num = target.dataset.module;
-      const title = target.querySelector('h3')!.textContent;
-      cta.href = target.getAttribute('href') || '#';
-      ctaLabel.textContent = done === 0 && (continueEl === rows[0])
-        ? `Start → Module ${num} · ${title}`
-        : `Continue → Module ${num} · ${title}`;
-      cta.classList.remove('hidden');
-      cta.classList.add('inline-flex');
-    } else {
-      // all sealed/locked, nothing due
-      summary.textContent = `Course complete — ${sealed} sealed, ${locked} locked 🔒`;
-    }
-  });
-</script>
